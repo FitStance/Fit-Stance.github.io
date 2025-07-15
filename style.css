@@ -1,0 +1,80 @@
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  color: #333;
+}
+header {
+  background: linear-gradient(135deg, #1d1d1d, #3b3b3b);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+.hero-text {
+  font-size: 3rem;
+  animation: slideIn 2s ease-in-out;
+}
+.hero-text span {
+  color: #00ffd0;
+}
+.main-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 300px;
+  text-align: center;
+}
+.card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+.card h2 {
+  margin-top: 1rem;
+}
+.btn, .dm-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #00ffd0;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+}
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+.socials a {
+  margin: 0 10px;
+  color: #00ffd0;
+  text-decoration: none;
+}
+form {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+form input, form button {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+@keyframes slideIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
