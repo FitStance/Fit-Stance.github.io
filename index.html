@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitStance - Your Fitness Partner</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero" style="background-image: url('https://via.placeholder.com/1400x600/222/fff?text=FitStance+Hero');">
+    <div class="overlay">
+      <h1 id="typing-text" data-aos="fade-down"></h1>
+      <p data-aos="fade-up">Unlock your potential with guided plans, smart tools, and expert support.</p>
+      <a href="#about" class="cta-button" data-aos="zoom-in">Get Started</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" data-aos="fade-up">
+    <h2>About FitStance</h2>
+    <ul>
+      <li>🚀 Empowering your personal fitness journey—step by step.</li>
+      <li>💪 Built for <strong>beginners</strong> and <strong>intermediates</strong> alike.</li>
+      <li>🎯 Clear guidance with no confusion or fluff.</li>
+      <li>📱 Mobile-friendly, expert-backed fitness made simple.</li>
+      <li>🌱 Sustainable habits that grow with you.</li>
+    </ul>
+  </section>
+
+  <!-- Workout Splits -->
+  <section id="splits" data-aos="fade-up">
+    <h2>Workout Splits for Every Level</h2>
+    <p>
+      💬 <a href="https://www.instagram.com/fitstance.in" target="_blank">
+        Message us on Instagram for personalized workout plans
+      </a>
+    </p>
+    <ul>
+      <li>🏋️ Beginner: Full-body workouts 3x a week.</li>
+      <li>⚡ Intermediate: Push/Pull/Legs structure.</li>
+      <li>🔥 Advanced: 5–6 day targeted routines.</li>
+      <li>📅 Schedules built for real-world consistency.</li>
+      <li>📝 Downloadable split samples available.</li>
+    </ul>
+    <div class="image-placeholder">
+      <img src="https://via.placeholder.com/600x300?text=Workout+Routine" alt="Workout Split Visual" />
+    </div>
+  </section>
+
+  <!-- Diet Plan -->
+  <section id="diet" data-aos="fade-up" style="background-image: url('https://via.placeholder.com/1400x600/111/eee?text=Healthy+Nutrition+Plans');">
+    <h2>Goal-Based Diet Plans</h2>
+    <p>
+      💬 <a href="https://www.instagram.com/fitstance.in" target="_blank">
+        Message us on Instagram for custom meal plans
+      </a>
+    </p>
+    <ul>
+      <li>🥗 Gain Plan: High-protein, calorie-surplus blueprint.</li>
+      <li>🔥 Fat Loss Plan: Lean macros with energy balance.</li>
+      <li>⚖️ Balanced macros: Protein | Carbs | Fats guidance.</li>
+      <li>🍎 Whole food focus — no crash diets.</li>
+      <li>🧠 Learn to eat smarter, not less.</li>
+    </ul>
+  </section>
+
+  <!-- Tools Overview -->
+  <section id="tools" data-aos="fade-up">
+    <h2>Smart Fitness Tools</h2>
+    <ul>
+      <li>📊 BMR, TDEE, BMI & Macros—all in one place.</li>
+      <li>🧮 User-friendly input and instant results.</li>
+      <li>🔍 Understand your body’s needs clearly.</li>
+      <li>📈 Make informed decisions with real data.</li>
+      <li>✅ Built-in for both desktop and mobile ease.</li>
+    </ul>
+    <a href="tools.html" class="cta-button" data-aos="zoom-in">Explore Tools →</a>
+  </section>
+
+  <!-- Footer -->
+  <footer data-aos="fade-up">
+    <div class="footer-links">
+      <a href="https://www.instagram.com/fitstance.in" target="_blank">📸 Instagram</a> |
+      <a href="https://youtube.com/@fitstance" target="_blank">▶ YouTube</a> |
+      <a href="mailto:fitstance.in@gmail.com">✉️ Email</a> |
+      <a href="https://x.com/FitStance" target="_blank">🐦 Twitter</a> |
+      <a href="https://www.facebook.com/share/1BvhGgCUYq/" target="_blank">📘 Facebook</a>
+    </div>
+    <div class="contact">
+      <p>📧 Email us: <a href="mailto:fitstance.in@gmail.com">fitstance.in@gmail.com</a></p>
+      
+    <p class="tagline">© 2025 FitStance · Precision in movement. Power in progress.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+AOS.init();
+const phrases = ["Achieve Your Best Self", "Build Strength with FitStance", "Your Journey. Your Strength."];
+let index = 0, charIndex = 0;
+function type() {
+  if (charIndex < phrases[index].length) {
+    document.getElementById("typing-text").textContent += phrases[index].charAt(charIndex++);
+    setTimeout(type, 70);
+  } else {
+    setTimeout(() => {
+      document.getElementById("typing-text").textContent = "";
+      charIndex = 0;
+      index = (index + 1) % phrases.length;
+      setTimeout(type, 400);
+    }, 1500);
+  }
+}
+type();
+</script>
+</body>
+</html>
