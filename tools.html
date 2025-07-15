@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitStance | Fitness Calculators</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header data-aos="fade-down">
+    <h1>Your Fitness Stats, Simplified</h1>
+    <p>Just enter your details and get instant, personalized insights.</p>
+  </header>
+
+  <!-- Input Form Section -->
+  <section id="input-form" data-aos="fade-up">
+    <form id="fitnessForm">
+      <label for="age">👤 Age:</label>
+      <input type="number" id="age" required>
+
+      <label for="gender">⚥ Gender:</label>
+      <select id="gender" required>
+        <option value="">Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
+      <label for="height">📏 Height (cm):</label>
+      <input type="number" id="height" required>
+
+      <label for="weight">⚖️ Weight (kg):</label>
+      <input type="number" id="weight" required>
+
+      <label for="activity">🏃 Activity Level:</label>
+      <select id="activity" required>
+        <option value="">Select</option>
+        <option value="sedentary">Sedentary</option>
+        <option value="light">Lightly Active</option>
+        <option value="moderate">Moderately Active</option>
+        <option value="very">Very Active</option>
+      </select>
+
+      <label for="goal">🎯 Goal:</label>
+      <select id="goal" required>
+        <option value="">Select</option>
+        <option value="maintain">Maintain</option>
+        <option value="gain">Gain</option>
+        <option value="lose">Lose</option>
+      </select>
+
+      <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+  </section>
+
+  <!-- Output Results Section -->
+  <section id="outputs" data-aos="fade-up">
+    <div class="output-box"><h3>🔥 BMR</h3><p id="bmrOutput"></p></div>
+    <div class="output-box"><h3>📊 BMI</h3><p id="bmiOutput"></p></div>
+    <div class="output-box"><h3>💧 Water Intake</h3><p id="waterOutput"></p></div>
+    <div class="output-box"><h3>⚡ TDEE</h3><p id="tdeeOutput"></p></div>
+    <div class="output-box"><h3>🍽️ Macro Breakdown</h3><p id="macroOutput"></p></div>
+  </section>
+
+  <section><a href="index.html" class="cta-button">← Back to Home</a></section>
+
+  <!-- Footer -->
+  <footer data-aos="fade-up">
+    <div class="footer-links">
+      <a href="https://www.instagram.com/fitstance.in" target="_blank">📸 Instagram</a>
+      <a href="https://www.facebook.com/share/1BvhGgCUYq/" target="_blank">📘 Facebook</a>
+      <a href="https://x.com/FitStance" target="_blank">🐦 Twitter</a>
+      <a href="https://youtube.com/@fitstance" target="_blank">▶ YouTube</a>
+    </div>
+    <div class="contact">
+      <p>📧 Email us: <a href="mailto:fitstance.in@gmail.com">fitstance.in@gmail.com</a></p>
+      <p class="tagline">💡 FitStance: Your Journey, Your Strength.</p>
+    </div>
+  </footer>
+
+  <script src="js/calculator.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>AOS.init();</script>
+</body>
+</html>
