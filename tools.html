@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FitStance | Tools</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- Animated Heart Logo (Top Left Corner) -->
+<div id="walking-heart" aria-hidden="true"></div>
+
+<header class="tools-header">
+  <h1>Your Fitness Stats, Simplified</h1>
+  <p>Track, calculate, and master your nutrition and fitness levels.</p>
+</header>
+
+<!-- FORM SECTION -->
+<section class="calculator-form" style="background-image: url('images/tools-bg.jpg'); background-size: cover; background-position: center;">
+  <form id="fitness-form" class="styled-form">
+    <div class="form-row">
+      <label for="age">Age:</label>
+      <input type="number" name="age" required />
+    </div>
+
+    <div class="form-row">
+      <label for="gender">Gender:</label>
+      <select name="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="height">Height (cm):</label>
+      <input type="number" name="height" required />
+    </div>
+
+    <div class="form-row">
+      <label for="weight">Weight (kg):</label>
+      <input type="number" name="weight" required />
+    </div>
+
+    <div class="form-row">
+      <label for="activity">Activity Level:</label>
+      <select name="activity">
+        <option value="1.2">Sedentary</option>
+        <option value="1.375">Lightly Active</option>
+        <option value="1.55">Moderately Active</option>
+        <option value="1.725">Very Active</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="goal">Goal:</label>
+      <select name="goal">
+        <option value="maintain">Maintain</option>
+        <option value="gain">Gain</option>
+        <option value="lose">Lose</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn-primary">Calculate</button>
+  </form>
+</section>
+
+<!-- RESULTS SECTION -->
+<section class="calculator-results">
+  <h2>Results:</h2>
+  <p><strong>BMR:</strong> <span id="bmr"></span> kcal/day</p>
+  <p><strong>BMI:</strong> <span id="bmi"></span> - <span id="bmi-category"></span></p>
+  <p><strong>TDEE:</strong> <span id="tdee"></span> kcal/day</p>
+  <p><strong>Water Intake:</strong> <span id="water"></span> liters/day</p>
+  <p><strong>Macros:</strong></p>
+  <ul>
+    <li>Protein: <span id="protein"></span> g</li>
+    <li>Carbs: <span id="carbs"></span> g</li>
+    <li>Fats: <span id="fats"></span> g</li>
+  </ul>
+</section>
+
+<!-- INSTAGRAM MESSAGE BUTTON -->
+<div class="message-button">
+  <a href="https://www.instagram.com/fitstance.in" target="_blank" class="btn-primary">📩 Message us on Instagram</a>
+</div>
+
+<!-- BACK BUTTON -->
+<div class="back-button">
+  <a href="index.html">← Back to Home</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <h3>Follow us on Social Media</h3>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/share/1BvhGgCUYq/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/FitStance?t=_DIhrgQAH0SJg8SLcqvMQA&s=09" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/fitstance.in?igsh=MW01NHYwcW5ydXlycA==" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com/@fitstance?si=BjB7jiGPy22KnJQL" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="mailto:fitstance.in@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+  </div>
+  <p class="tagline">FitStance: Your Journey, Your Strength.</p>
+</footer>
+
+<!-- SCRIPT -->
+<script src="script.js"></script>
+</body>
+</html>
