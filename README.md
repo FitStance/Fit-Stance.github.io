@@ -35,9 +35,7 @@ Welcome to **FitStance**, your digital fitness ally — designed to simplify you
 
 ## 🌐 Live Website
 
-➡️ Hosted at: [https://yourusername.github.io/fitstance](https://yourusername.github.io/fitstance)
-
-> Replace `yourusername` with your actual GitHub username
+➡️ Hosted at: [https://FitStance.github.io/fitstance](https://FitStance.github.io/fitstance)
 
 ---
 
@@ -50,4 +48,4 @@ Message us on [Instagram](https://www.instagram.com/fitstance.in?igsh=MW01NHYwcW
 
 ---
 
-Built with 💪 by **Farhan Shaikh**
+Built with 💪 by **Farhan**
