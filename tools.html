@@ -1,82 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FitStance | Tools</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitStance | Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .input-row {
+            display: flex; /* Makes label and input appear on the same line */
+            align-items: center; /* Vertically aligns items in the row */
+            margin-bottom: 15px; /* Adds space between each row */
+            flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+        }
+        .input-row label {
+            min-width: 100px; /* Gives labels a consistent width for better alignment */
+            margin-right: 10px; /* Space between label and input */
+            font-weight: bold;
+        }
+        .input-row input[type="text"],
+        .input-row input[type="number"],
+        .input-row select {
+            flex-grow: 1; /* Allows input fields to take up available space */
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't increase total width */
+        }
+        .calculate-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .calculate-btn:hover {
+            background-color: #c0392b;
+        }
+        .results {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .results p {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- Animated Heart Logo (Top Left Corner) -->
-<div id="walking-heart" aria-hidden="true"></div>
+    <div class="container">
+        <h1>FitStance | Tools</h1>
+        <h2>Your Fitness Stats, Simplified</h2>
+        <p>Track, calculate, and master your nutrition and fitness levels.</p>
 
-<header class="tools-header">
-  <h1>Your Fitness Stats, Simplified</h1>
-  <p>Track, calculate, and master your nutrition and fitness levels.</p>
-</header>
+        <form>
+            <div class="input-row">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age">
+            </div>
 
-<section class="calculator-form">
-  <form id="fitness-form">
-    <label>Age: <input type="number" name="age" required /></label>
-    <label>Gender:
-      <select name="gender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-    </label>
-    <label>Height (cm): <input type="number" name="height" required /></label>
-    <label>Weight (kg): <input type="number" name="weight" required /></label>
-    <label>Activity Level:
-      <select name="activity">
-        <option value="1.2">Sedentary</option>
-        <option value="1.375">Lightly Active</option>
-        <option value="1.55">Moderately Active</option>
-        <option value="1.725">Very Active</option>
-      </select>
-    </label>
-    <label>Goal:
-      <select name="goal">
-        <option value="maintain">Maintain</option>
-        <option value="gain">Gain</option>
-        <option value="lose">Lose</option>
-      </select>
-    </label>
-    <button type="submit" class="btn-primary">Calculate</button>
-  </form>
-</section>
+            <div class="input-row">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
 
-<section class="calculator-results">
-  <h2>Results:</h2>
-  <p><strong>BMR:</strong> <span id="bmr"></span> kcal/day</p>
-  <p><strong>BMI:</strong> <span id="bmi"></span> - <span id="bmi-category"></span></p>
-  <p><strong>TDEE:</strong> <span id="tdee"></span> kcal/day</p>
-  <p><strong>Water Intake:</strong> <span id="water"></span> liters/day</p>
-  <p><strong>Macros:</strong></p>
-  <ul>
-    <li>Protein: <span id="protein"></span> g</li>
-    <li>Carbs: <span id="carbs"></span> g</li>
-    <li>Fats: <span id="fats"></span> g</li>
-  </ul>
-</section>
+            <div class="input-row">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" placeholder="Enter your height in cm">
+            </div>
 
-<div class="back-button">
-  <a href="index.html">← Back to Home</a>
-</div>
+            <div class="input-row">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" placeholder="Enter your weight in kg">
+            </div>
 
-<footer>
-  <h3>Follow us on Social Media</h3>
-  <div class="social-icons">
-    <a href="https://www.facebook.com/share/1BvhGgCUYq/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://x.com/FitStance?t=_DIhrgQAH0SJg8SLcqvMQA&s=09" target="_blank"><i class="fab fa-twitter"></i></a>
-    <a href="https://www.instagram.com/fitstance.in?igsh=MW01NHYwcW5ydXlycA==" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://youtube.com/@fitstance?si=BjB7jiGPy22KnJQL" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="mailto:fitstance.in@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-  </div>
-  <p class="tagline">FitStance: Your Journey, Your Strength.</p>
-</footer>
+            <div class="input-row">
+                <label for="activity-level">Activity Level:</label>
+                <select id="activity-level" name="activity-level">
+                    <option value="sedentary">Sedentary</option>
+                    <option value="lightly-active">Lightly Active</option>
+                    <option value="moderately-active">Moderately Active</option>
+                    <option value="very-active">Very Active</option>
+                </select>
+            </div>
 
-<script src="script.js"></script>
+            <div class="input-row">
+                <label for="goal">Goal:</label>
+                <select id="goal" name="goal">
+                    <option value="maintain">Maintain</option>
+                    <option value="gain">Gain</option>
+                    <option value="lose">Lose</option>
+                </select>
+            </div>
+
+            <button type="submit" class="calculate-btn">Calculate</button>
+        </form>
+
+        <div class="results">
+            <h2>Results:</h2>
+            <p><strong>BMR:</strong> <span id="bmr-result">kcal/day</span></p>
+            <p><strong>BMI:</strong> <span id="bmi-result">-</span></p>
+            <p><strong>TDEE:</strong> <span id="tdee-result">kcal/day</span></p>
+            <p><strong>Water Intake:</strong> <span id="water-intake-result">liters/day</span></p>
+
+            <h3>Macros:</h3>
+            <p><strong>Protein:</strong> <span id="protein-result">g</span></p>
+            <p><strong>Carbs:</strong> <span id="carbs-result">g</span></p>
+            <p><strong>Fats:</strong> <span id="fats-result">g</span></p>
+        </div>
+
+        <p style="text-align: center; margin-top: 40px;">← Back to Home</p>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <p>Follow us on Social Media</p>
+            </div>
+
+        <p style="text-align: center; margin-top: 20px; font-weight: bold;">FitStance: Your Journey, Your Strength.</p>
+
+    </div>
+
 </body>
 </html>
