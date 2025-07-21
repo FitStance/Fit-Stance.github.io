@@ -6,14 +6,178 @@
   <title>FitStance | Tools</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .brand-header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+
+    .brand-name {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .heart {
+      color: red;
+    }
+
+    .calculator-form {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 12px;
+    }
+
+    .styled-form .form-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .styled-form label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .styled-form input,
+    .styled-form select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background-color: #e63946;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: #d62828;
+    }
+
+    .calculator-results {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f2f2f2;
+      border-radius: 12px;
+    }
+
+    .calculator-results h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .calculator-results p, .calculator-results ul {
+      margin-bottom: 12px;
+    }
+
+    .calculator-results ul {
+      padding-left: 20px;
+    }
+
+    .message-button,
+    .back-button {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .back-button a {
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    footer h3 {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .social-icons {
+      margin-bottom: 15px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 10px;
+      color: #fff;
+      background: #222;
+      padding: 12px;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: #e63946;
+    }
+
+    footer .tagline {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+      .calculator-form, .calculator-results {
+        margin: 20px 15px;
+        padding: 15px;
+      }
+
+      .btn-primary {
+        width: 100%;
+      }
+
+      .back-button a {
+        display: inline-block;
+        margin-top: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
+<!-- Header -->
 <header class="brand-header">
   <h1 class="brand-name">FITSTANCE</h1>
   <p class="tagline">Move better. Feel better <span class="heart">♥️</span></p>
 </header>
 
+<!-- Calculator Form -->
 <section class="calculator-form">
   <form id="fitness-form" class="styled-form">
     <div class="form-row">
@@ -62,6 +226,7 @@
   </form>
 </section>
 
+<!-- Results Section -->
 <section class="calculator-results">
   <h2>Results:</h2>
   <p><strong>BMR:</strong> <span id="bmr"></span> kcal/day</p>
@@ -81,9 +246,9 @@
   <a href="https://www.instagram.com/fitstance.in" target="_blank" class="btn-primary">📩 Message us on Instagram</a>
 </div>
 
-<!-- Back Button -->
+<!-- Back to Home Button -->
 <div class="back-button">
-  <a href="index.html">← Back to Home</a>
+  <a href="index.html" class="btn-primary">← Back to Home</a>
 </div>
 
 <!-- Footer -->
