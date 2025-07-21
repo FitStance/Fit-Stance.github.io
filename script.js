@@ -5,8 +5,8 @@ document.getElementById("fitness-form").addEventListener("submit", function (e) 
 
   const age = parseInt(form.age.value);
   const gender = form.gender.value;
-  const height = parseFloat(form.height.value); // cm
-  const weight = parseFloat(form.weight.value); // kg
+  const height = parseFloat(form.height.value); // in cm
+  const weight = parseFloat(form.weight.value); // in kg
   const activity = parseFloat(form.activity.value);
   const goal = form.goal.value;
 
@@ -21,7 +21,7 @@ document.getElementById("fitness-form").addEventListener("submit", function (e) 
   // TDEE
   const tdee = bmr * activity;
 
-  // Adjusted calories based on goal
+  // Adjust calories based on goal
   let calories = tdee;
   if (goal === "gain") calories += 300;
   if (goal === "lose") calories -= 300;
@@ -38,26 +38,18 @@ document.getElementById("fitness-form").addEventListener("submit", function (e) 
   // Water intake in liters/day (35 ml per kg)
   const water = (weight * 35) / 1000;
 
-  // Macros split by goal
-  let proteinRatio, carbRatio, fatRatio;
+  // Macronutrients
+  //  Protein: 1 gram per pound of body weight
+  const weightLbs = weight * 2.20462;
+  const protein = Math.round(weightLbs);
 
-  if (goal === "gain") {
-    proteinRatio = 0.30;
-    carbRatio = 0.50;
-    fatRatio = 0.20;
-  } else if (goal === "lose") {
-    proteinRatio = 0.40;
-    carbRatio = 0.35;
-    fatRatio = 0.25;
-  } else {
-    proteinRatio = 0.30;
-    carbRatio = 0.45;
-    fatRatio = 0.25;
-  }
+  //  Remaining calories for carbs & fats after protein
+  const proteinCalories = protein * 4;
+  const remainingCalories = calories - proteinCalories;
 
-  const protein = Math.round((calories * proteinRatio) / 4);
-  const carbs = Math.round((calories * carbRatio) / 4);
-  const fats = Math.round((calories * fatRatio) / 9);
+  //  60% carbs, 40% fats (or adjust as needed)
+  const carbs = Math.round((remainingCalories * 0.6) / 4);
+  const fats = Math.round((remainingCalories * 0.4) / 9);
 
   // Display results
   document.getElementById("bmr").textContent = Math.round(bmr);
