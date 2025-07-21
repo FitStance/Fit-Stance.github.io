@@ -30,6 +30,7 @@ li {
 section {
   padding: 2rem 1rem;
   text-align: center;
+  word-wrap: break-word;
 }
 
 .section-image {
@@ -80,6 +81,7 @@ section {
   padding: 0.8rem 1.6rem;
   font-size: 1rem;
   font-weight: 600;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -150,6 +152,9 @@ footer .tagline {
   .btn-primary {
     width: 100%;
     text-align: center;
+  }
+  .social-icons {
+    gap: 12px;
   }
   .section-image {
     aspect-ratio: 16/9;
