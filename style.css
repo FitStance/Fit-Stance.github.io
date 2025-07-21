@@ -91,6 +91,13 @@ section {
   background-color: #c62828;
 }
 
+/* Centering and spacing for message/back buttons */
+.message-button,
+.back-button {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
 /* Footer */
 footer {
   background-color: #111;
@@ -143,19 +150,24 @@ footer .tagline {
   .section-content {
     padding: 0 1rem;
   }
+
   .brand-name {
     font-size: 2rem;
   }
+
   .tagline {
     font-size: 1rem;
   }
+
   .btn-primary {
     width: 100%;
     text-align: center;
   }
+
   .social-icons {
     gap: 12px;
   }
+
   .section-image {
     aspect-ratio: 16/9;
     width: 100%;
