@@ -5,8 +5,8 @@ document.getElementById("fitness-form").addEventListener("submit", function (e) 
 
   const age = parseInt(form.age.value);
   const gender = form.gender.value;
-  const height = parseFloat(form.height.value); // in cm
-  const weight = parseFloat(form.weight.value); // in kg
+  const height = parseFloat(form.height.value); // cm
+  const weight = parseFloat(form.weight.value); // kg
   const activity = parseFloat(form.activity.value);
   const goal = form.goal.value;
 
@@ -21,7 +21,7 @@ document.getElementById("fitness-form").addEventListener("submit", function (e) 
   // TDEE
   const tdee = bmr * activity;
 
-  // Adjust calories by goal
+  // Adjusted calories based on goal
   let calories = tdee;
   if (goal === "gain") calories += 300;
   if (goal === "lose") calories -= 300;
@@ -35,13 +35,29 @@ document.getElementById("fitness-form").addEventListener("submit", function (e) 
   else if (bmi < 29.9) bmiCategory = "Overweight";
   else bmiCategory = "Obese";
 
-  // Water intake (liters/day)
+  // Water intake in liters/day (35 ml per kg)
   const water = (weight * 35) / 1000;
 
-  // Macronutrients
-  const protein = Math.round((calories * 0.3) / 4);
-  const carbs = Math.round((calories * 0.5) / 4);
-  const fats = Math.round((calories * 0.2) / 9);
+  // Macros split by goal
+  let proteinRatio, carbRatio, fatRatio;
+
+  if (goal === "gain") {
+    proteinRatio = 0.30;
+    carbRatio = 0.50;
+    fatRatio = 0.20;
+  } else if (goal === "lose") {
+    proteinRatio = 0.40;
+    carbRatio = 0.35;
+    fatRatio = 0.25;
+  } else {
+    proteinRatio = 0.30;
+    carbRatio = 0.45;
+    fatRatio = 0.25;
+  }
+
+  const protein = Math.round((calories * proteinRatio) / 4);
+  const carbs = Math.round((calories * carbRatio) / 4);
+  const fats = Math.round((calories * fatRatio) / 9);
 
   // Display results
   document.getElementById("bmr").textContent = Math.round(bmr);
