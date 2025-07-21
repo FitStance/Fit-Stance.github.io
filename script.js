@@ -1,6 +1,4 @@
-// script.js
-
-document.getElementById("fitness-form").addEventListener("submit", function(e) {
+document.getElementById("fitness-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const age = parseInt(this.age.value);
@@ -11,44 +9,44 @@ document.getElementById("fitness-form").addEventListener("submit", function(e) {
   const goal = this.goal.value;
 
   // BMR Calculation
-  let bmr = gender === "male"
-    ? 10 * weight + 6.25 * height - 5 * age + 5
-    : 10 * weight + 6.25 * height - 5 * age - 161;
+  let bmr;
+  if (gender === "male") {
+    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  // TDEE Calculation
+  const tdee = bmr * activity;
+
+  // Goal Adjustment
+  let calories = tdee;
+  if (goal === "gain") calories += 300;
+  if (goal === "lose") calories -= 300;
 
   // BMI Calculation
-  const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
-
-  // TDEE
-  const tdee = Math.round(bmr * activity);
-
-  // Water Intake
-  const water = (weight * 0.035).toFixed(2);
-
-  // BMI Category
-  let bmiCategory = "Normal";
+  const heightInMeters = height / 100;
+  const bmi = weight / (heightInMeters * heightInMeters);
+  let bmiCategory = "";
   if (bmi < 18.5) bmiCategory = "Underweight";
-  else if (bmi >= 25 && bmi < 30) bmiCategory = "Overweight";
-  else if (bmi >= 30) bmiCategory = "Obese";
+  else if (bmi < 24.9) bmiCategory = "Normal weight";
+  else if (bmi < 29.9) bmiCategory = "Overweight";
+  else bmiCategory = "Obese";
 
-  // Adjust TDEE for goal
-  let adjustedCalories = tdee;
-  if (goal === "gain") adjustedCalories += 300;
-  if (goal === "lose") adjustedCalories -= 300;
+  // Water Intake (in liters)
+  const water = (weight * 35) / 1000;
 
-  // Macro Breakdown
-  const protein = Math.round(weight * 2); // grams
-  const fats = Math.round(weight * 1);    // grams
-  const proteinCal = protein * 4;
-  const fatCal = fats * 9;
-  const carbCal = adjustedCalories - (proteinCal + fatCal);
-  const carbs = Math.round(carbCal / 4);  // grams
+  // Macronutrient Distribution (in grams)
+  const protein = Math.round((calories * 0.3) / 4);
+  const carbs = Math.round((calories * 0.5) / 4);
+  const fats = Math.round((calories * 0.2) / 9);
 
-  // Display Results
+  // Output
   document.getElementById("bmr").textContent = Math.round(bmr);
-  document.getElementById("bmi").textContent = bmi;
+  document.getElementById("bmi").textContent = bmi.toFixed(1);
   document.getElementById("bmi-category").textContent = bmiCategory;
-  document.getElementById("tdee").textContent = tdee;
-  document.getElementById("water").textContent = water;
+  document.getElementById("tdee").textContent = Math.round(tdee);
+  document.getElementById("water").textContent = water.toFixed(2);
   document.getElementById("protein").textContent = protein;
   document.getElementById("carbs").textContent = carbs;
   document.getElementById("fats").textContent = fats;
