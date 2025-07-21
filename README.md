@@ -1,51 +1,39 @@
-# FITSTANCE
+# FitStance – Move better. Feel better. ♥️
 
-**Move better. Feel better.** ❤️
-
-Welcome to **FitStance**, your digital fitness ally — designed to simplify your transformation journey with smart tools, structured workout plans, and personalized diet guidance.
+**FitStance** is a fitness website offering free, science-backed tools to help people achieve their health goals. Built with purpose and dedication, it’s designed to make fitness simple, accessible, and empowering — for everyone.
 
 ---
 
-## 🔥 Features
-
-- 🧠 Tools to calculate:
-  - BMR (Basal Metabolic Rate)
-  - BMI (Body Mass Index)
-  - TDEE (Total Daily Energy Expenditure)
-  - Water Intake
-  - Macronutrient Breakdown
-- 🏋️‍♂️ Structured workout plans
-- 🥗 Personalized gain or fat loss diet suggestions
-- 🧮 Easy-to-use fitness calculator
-- 💖 Animated heart logo doing a brisk walk in place
+## 💡 Features
+- ✅ BMR, TDEE, BMI & Macro Calculator
+- ✅ Personalized workout splits (Push/Pull/Legs, Upper-Lower)
+- ✅ Diet suggestions for various preferences (Veg, Non-Veg, Vegan)
+- ✅ Clean, mobile-responsive design
+- ✅ 100% free — no logins, no ads, no distractions
 
 ---
 
-## 📂 Files in This Project
-
-| File          | Description                        |
-|---------------|------------------------------------|
-| `index.html`  | Main landing page (sections + CTA) |
-| `tools.html`  | Fitness calculator tools           |
-| `style.css`   | Styling, animation, layout         |
-| `script.js`   | JavaScript logic for tools         |
-| `images/`     | Logo and background assets         |
+## 📂 Project Structure
 
 ---
 
-## 🌐 Live Website
+## 📬 Connect With Us
 
-➡️ Hosted at: [https://FitStance.github.io/fitstance](https://FitStance.github.io/fitstance)
-
----
-
-## 📬 Contact Us
-
-Message us on [Instagram](https://www.instagram.com/fitstance.in?igsh=MW01NHYwcW5ydXlycA==) for:
-- Custom Workout Plans
-- Personalized Diet Coaching
-- Reels Editing & AI Prompt Engineering help
+- 📸 [Instagram](https://www.instagram.com/fitstance.in?igsh=MW01NHYwcW5ydXlycA==)
+- 📘 [Facebook](https://www.facebook.com/share/1BvhGgCUYq/)
+- 🐦 [Twitter (X)](https://x.com/FitStance?t=_DIhrgQAH0SJg8SLcqvMQA&s=09)
+- 📺 [YouTube](https://youtube.com/@fitstance?si=BjB7jiGPy22KnJQL)
+- 📧 [fitstance.in@gmail.com](mailto:fitstance.in@gmail.com)
 
 ---
 
-Built with 💪 by **Farhan**
+## 🙏 Built With Purpose
+
+This website was created not just as a project — but as a promise.  
+A promise to help others live better, feel stronger, and take charge of their health.  
+**FitStance** is dedicated to that mission — in memory, in love, and in strength.
+
+---
+
+Thank you for supporting the mission. 💪
+
