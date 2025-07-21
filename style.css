@@ -1,0 +1,158 @@
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #000;
+}
+
+h1, h2, p, ul, li {
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+section {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.section-image {
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.section-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Header */
+.brand-header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  background-color: #fff;
+}
+
+.brand-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #000;
+  margin-top: 0.5rem;
+}
+
+.heart {
+  color: red;
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-block;
+  background-color: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #c62828;
+}
+
+/* Footer */
+footer {
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+}
+
+footer h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 1rem 0;
+}
+
+.social-icons a {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: #fff;
+  color: #111;
+}
+
+footer .tagline {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .section-content {
+    padding: 0 1rem;
+  }
+  .brand-name {
+    font-size: 2rem;
+  }
+  .tagline {
+    font-size: 1rem;
+  }
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+  .section-image {
+    aspect-ratio: 16/9;
+    width: 100%;
+  }
+}
