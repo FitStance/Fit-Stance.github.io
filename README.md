@@ -14,13 +14,7 @@
 ---
 
 ## 📂 Project Structure
-FitStance/
-├── index.html # Main homepage
-├── tools.html # Fitness calculators page
-├── style.css # Visual styling
-├── script.js # Calculator logic
-├── README.md # Project documentation
-└── images/ # Section images
+
 ---
 
 ## 📬 Connect With Us
