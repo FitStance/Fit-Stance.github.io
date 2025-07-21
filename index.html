@@ -6,6 +6,151 @@
   <title>FitStance | Home</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    .brand-header {
+      text-align: center;
+      padding: 30px 20px 10px;
+      background: #fff;
+    }
+
+    .brand-name {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .heart {
+      color: red;
+    }
+
+    section {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f9f9f9;
+    }
+
+    .section-image {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-content {
+      max-width: 800px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .section-content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background-color: #e63946;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #d62828;
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    footer h3 {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .social-icons {
+      margin-bottom: 15px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 10px;
+      color: #fff;
+      background: #222;
+      padding: 12px;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: #e63946;
+    }
+
+    footer .tagline {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+      .section-content h2 {
+        font-size: 1.5rem;
+      }
+
+      .btn-primary {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+      }
+
+      .section {
+        padding: 30px 15px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -17,7 +162,7 @@
 
 <!-- Hero Section -->
 <section class="hero">
-  <img src="images/hero-bg.jpg" alt="Hero Image" class="section-image" />
+  <img src="images/hero-bg.jpg" alt="" class="section-image" />
   <div class="section-content">
     <h2>Why FitStance?</h2>
     <ul>
@@ -33,7 +178,7 @@
 
 <!-- Workout Section -->
 <section class="workout">
-  <img src="images/workout.jpg" alt="Workout Section" class="section-image" />
+  <img src="images/workout.jpg" alt="" class="section-image" />
   <div class="section-content">
     <h2>Workout Plans</h2>
     <ul>
@@ -49,7 +194,7 @@
 
 <!-- Diet Section -->
 <section class="diet">
-  <img src="images/diet-bg.jpg" alt="Diet Section" class="section-image" />
+  <img src="images/diet-bg.jpg" alt="" class="section-image" />
   <div class="section-content">
     <h2>Diet Suggestions</h2>
     <ul>
@@ -65,7 +210,7 @@
 
 <!-- Tools Section -->
 <section class="tools">
-  <img src="images/tools-bg.jpg" alt="Tools Section" class="section-image" />
+  <img src="images/tools-bg.jpg" alt="" class="section-image" />
   <div class="section-content">
     <h2>Free Fitness Tools</h2>
     <ul>
@@ -76,8 +221,7 @@
       <li>Fast, accurate, and beginner-friendly</li>
       <li>Use it anytime at no cost</li>
     </ul>
-  <a href="tools.html" class="btn-primary">Use Fitness Calculator</a>
-
+    <a href="tools.html" class="btn-primary">Use Fitness Calculator</a>
   </div>
 </section>
 
