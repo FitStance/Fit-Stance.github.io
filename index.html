@@ -112,25 +112,32 @@
     }
 
     .social-icons {
-      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
     }
 
     .social-icons a {
-      display: inline-block;
-      margin: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border: 2px solid white;
+      border-radius: 12px;
+      font-size: 22px;
       color: #fff;
-      background: #222;
-      padding: 12px;
-      border-radius: 50%;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .social-icons a:hover {
-      background: #e63946;
+      background: white;
+      color: #000;
     }
 
     footer .tagline {
-      margin-top: 15px;
       font-size: 1rem;
       color: #ccc;
     }
@@ -146,8 +153,12 @@
         margin-top: 10px;
       }
 
-      .section {
+      section {
         padding: 30px 15px;
+      }
+
+      .social-icons {
+        gap: 12px;
       }
     }
   </style>
