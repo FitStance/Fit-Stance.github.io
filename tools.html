@@ -7,16 +7,16 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #fff;
       color: #000;
       margin: 0;
       padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     .brand-header {
@@ -97,7 +97,8 @@
       text-align: center;
     }
 
-    .calculator-results p, .calculator-results ul {
+    .calculator-results p,
+    .calculator-results ul {
       margin-bottom: 12px;
     }
 
@@ -111,9 +112,10 @@
       margin: 20px 0;
     }
 
-    .back-button a {
-      font-weight: bold;
-      text-decoration: none;
+    .message-button .btn-primary,
+    .back-button .btn-primary {
+      width: 90%;
+      max-width: 400px;
     }
 
     footer {
@@ -129,31 +131,39 @@
     }
 
     .social-icons {
-      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
     }
 
     .social-icons a {
-      display: inline-block;
-      margin: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border: 2px solid white;
+      border-radius: 12px;
+      font-size: 22px;
       color: #fff;
-      background: #222;
-      padding: 12px;
-      border-radius: 50%;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .social-icons a:hover {
-      background: #e63946;
+      background: white;
+      color: #000;
     }
 
     footer .tagline {
-      margin-top: 15px;
       font-size: 1rem;
       color: #ccc;
     }
 
     @media (max-width: 768px) {
-      .calculator-form, .calculator-results {
+      .calculator-form,
+      .calculator-results {
         margin: 20px 15px;
         padding: 15px;
       }
@@ -162,9 +172,8 @@
         width: 100%;
       }
 
-      .back-button a {
-        display: inline-block;
-        margin-top: 10px;
+      .social-icons {
+        gap: 12px;
       }
     }
   </style>
