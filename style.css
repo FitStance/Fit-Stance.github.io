@@ -9,6 +9,7 @@ body {
   padding: 0;
   background: #fff;
   color: #000;
+  line-height: 1.6;
 }
 
 h1, h2, p, ul, li {
@@ -29,7 +30,6 @@ li {
 
 section {
   padding: 2rem 1rem;
-  text-align: center;
   word-wrap: break-word;
 }
 
@@ -38,7 +38,7 @@ section {
   max-width: 960px;
   aspect-ratio: 16/9;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 1.5rem;
 }
 
@@ -77,7 +77,7 @@ section {
   background-color: #e63946;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 30px;
   padding: 0.8rem 1.6rem;
   font-size: 1rem;
   font-weight: 600;
@@ -108,7 +108,7 @@ footer {
 }
 
 footer h3 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #fff;
 }
@@ -122,8 +122,8 @@ footer h3 {
 }
 
 .social-icons a {
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,7 +142,57 @@ footer h3 {
 footer .tagline {
   margin-top: 1.5rem;
   font-size: 1rem;
-  color: #fff;
+  color: #ccc;
+}
+
+/* Form (Tools Page) */
+.calculator-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.styled-form .form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.styled-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.styled-form input,
+.styled-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.calculator-results {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f2f2f2;
+  border-radius: 12px;
+}
+
+.calculator-results h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.calculator-results p,
+.calculator-results ul {
+  margin-bottom: 12px;
+}
+
+.calculator-results ul {
+  padding-left: 20px;
 }
 
 /* Responsive Layout */
@@ -161,6 +211,7 @@ footer .tagline {
 
   .btn-primary {
     width: 100%;
+    max-width: 400px;
     text-align: center;
   }
 
@@ -171,5 +222,11 @@ footer .tagline {
   .section-image {
     aspect-ratio: 16/9;
     width: 100%;
+  }
+
+  .calculator-form,
+  .calculator-results {
+    margin: 20px 15px;
+    padding: 15px;
   }
 }
