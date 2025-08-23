@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FitStance | Move Better. Feel Better ❤️</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* === New structure overrides === */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s forwards;
+    }
+    .card:nth-child(odd) { animation-delay: 0.2s; }
+    .card:nth-child(even) { animation-delay: 0.4s; }
+    .card i {
+      font-size: 1.8rem;
+      margin-right: 1rem;
+      color: #e63946;
+      min-width: 30px;
+      text-align: center;
+    }
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+      color: #1d3557;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile */
+    @media(max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
+    <h1 class="brand-name">FITSTANCE</h1>
+    <p class="tagline">Move better. Feel better ❤️</p>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search topics...">
+    </div>
+  </header>
+
+  <!-- ===== Topics Grid ===== -->
+  <main>
+    <div class="grid" id="topics-grid">
+      <div class="card" data-title="About Us"><i class="fas fa-users"></i><h3>About Us</h3></div>
+      <div class="card" data-title="Workouts"><i class="fas fa-dumbbell"></i><h3>Workouts & Routines</h3></div>
+      <div class="card" data-title="Diet Plans"><i class="fas fa-apple-alt"></i><h3>Diet Plans</h3></div>
+      <div class="card" data-title="Tools"><i class="fas fa-calculator"></i><h3>Tools</h3></div>
+      <div class="card" data-title="Pro Tips"><i class="fas fa-bolt"></i><h3>Pro Tips</h3></div>
+      <div class="card" data-title="Success Stories"><i class="fas fa-star"></i><h3>Success Stories</h3></div>
+      <div class="card" data-title="Blog"><i class="fas fa-blog"></i><h3>Blog / Articles</h3></div>
+      <div class="card" data-title="FAQ"><i class="fas fa-question-circle"></i><h3>FAQ</h3></div>
+      <div class="card" data-title="Shop"><i class="fas fa-book"></i><h3>Shop / eBook</h3></div>
+      <div class="card" data-title="Contact"><i class="fas fa-envelope"></i><h3>Contact Us</h3></div>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="socials">
+      <a href="https://www.instagram.com/fitstance.in" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1BvhGgCUYq/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/FitStance" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://youtube.com/@fitstance" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="mailto:fitstance.in@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p>© 2025 FitStance. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ===== Script ===== -->
+  <script>
+    // 🔎 Search filter
+    const searchInput = document.getElementById("search");
+    const cards = document.querySelectorAll(".card");
+    searchInput.addEventListener("keyup", () => {
+      const query = searchInput.value.toLowerCase();
+      cards.forEach(card => {
+        card.style.display = card.dataset.title.toLowerCase().includes(query) ? "flex" : "none";
+      });
+    });
+
+    // 📍 Navigation
+    const links = {
+      "About Us": "about.html",
+      "Workouts": "workouts.html",
+      "Diet Plans": "diet.html",
+      "Tools": "tools.html",
+      "Pro Tips": "protips.html",
+      "Success Stories": "success.html",
+      "Blog": "blog.html",
+      "FAQ": "faq.html",
+      "Shop": "shop.html",
+      "Contact": "contact.html"
+    };
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        const page = links[card.dataset.title];
+        if (page) window.location.href = page;
+      });
+    });
+  </script>
+
+</body>
+</html>
