@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | FitStance</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Mission & Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .value-card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .value-card i {
+      font-size: 1.8rem;
+      color: #e63946;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    .value-card p {
+      font-size: 1.05rem;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .values-section h2 {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
+    <h1 class="brand-name">FITSTANCE</h1>
+    <p class="tagline">Move better. Feel better ❤️</p>
+  </header>
+
+  <!-- ===== Hero Image ===== -->
+  <div class="page-image">
+    <img src="about-us.jpg" alt="About Us - FitStance">
+  </div>
+
+  <!-- ===== About Us Section ===== -->
+  <section>
+    <h2>About Us</h2>
+    <p>
+      Welcome to <strong>FitStance</strong>, your trusted fitness and wellness partner.  
+      We started with a simple idea – to help people move better, feel better, and live healthier lives.  
+      At FitStance, we believe that fitness should be simple, accessible, and sustainable for everyone.  
+      Our platform is designed to give you the right tools, guidance, and motivation you need on your journey.
+    </p>
+    <p>
+      We provide personalized <strong>workouts</strong>, <strong>diet plans</strong>, and  
+      powerful <strong>tools</strong> like BMI, BMR, TDEE, <strong>water intake calculators</strong>,  
+      and macro planners. You’ll also find expert <strong>pro tips</strong>, success stories, and insightful blogs  
+      that keep you informed and inspired every step of the way.
+    </p>
+    <p>
+      Our mission is clear: <em>to simplify fitness and make it accessible to all</em>.  
+      Whether you’re just starting out or already experienced, FitStance is here  
+      to guide you, motivate you, and celebrate your progress.
+    </p>
+  </section>
+
+  <!-- ===== Mission & Values ===== -->
+  <section class="values-section">
+    <h2>Our Mission & Values</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <i class="fas fa-bullseye"></i>
+        <p><strong>Mission:</strong> To simplify fitness & make it accessible for everyone.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-lightbulb"></i>
+        <p><strong>Values:</strong> Consistency, Simplicity, Community, and Progress.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-handshake"></i>
+        <p>Build trust by focusing on long-term results, not quick fixes.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-globe"></i>
+        <p>Create a supportive global fitness community.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Call To Action ===== -->
+  <section style="text-align:center;">
+    <a href="https://www.instagram.com/fitstance.in" target="_blank" class="btn">Message Us for Custom Plans</a>
+    <a href="index.html" class="btn" style="background:#457b9d; margin-left:1rem;">Back to Home</a>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="socials">
+      <a href="https://www.instagram.com/fitstance.in" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1BvhGgCUYq/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/FitStance" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://youtube.com/@fitstance" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="mailto:fitstance.in@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p>© 2025 FitStance. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
