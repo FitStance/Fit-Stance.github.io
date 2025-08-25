@@ -115,21 +115,19 @@
 
   <!-- ===== Call To Action ===== -->
   <section style="text-align:center;">
-    <a href="https://www.instagram.com/fitstance.in" target="_blank" class="btn">Message Us for Custom Plans</a>
+    <a href="https://www.instagram.com/fitstance__?igsh=MW01NHYwcW5ydXlycA==" target="_blank" class="btn">Message Us for Custom Plans</a>
     <a href="index.html" class="btn" style="background:#457b9d; margin-left:1rem;">Back to Home</a>
   </section>
 
-  <!-- ===== Footer ===== -->
-  <footer>
-    <div class="socials">
-      <a href="https://www.instagram.com/fitstance.in" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/share/1BvhGgCUYq/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://x.com/FitStance" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://youtube.com/@fitstance" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="mailto:fitstance.in@gmail.com"><i class="fas fa-envelope"></i></a>
-    </div>
-    <p>© 2025 FitStance. All Rights Reserved.</p>
-  </footer>
+  <!-- ===== Footer (loaded from footer.html) ===== -->
+  <div id="footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
 
 </body>
 </html>
