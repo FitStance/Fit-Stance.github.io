@@ -11,21 +11,31 @@ html {
 
 body {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #f1faee, #a8dadc);
+  background: #fff;
   color: #000;
   line-height: 1.6;
+}
+
+/* ========= Layout Helpers ========= */
+section {
+  padding: 4rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* ========= Header ========= */
 header {
   text-align: center;
   padding: 2rem 1rem;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 header h1 {
@@ -109,6 +119,31 @@ header p {
   max-width: 600px;
 }
 
+/* ========= Card / Grid Layout ========= */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
 /* ========= Accordion (Workouts/FAQs) ========= */
 .goal-btn {
   display: block;
@@ -145,19 +180,35 @@ header p {
 .btn {
   display: inline-block;
   padding: 12px 24px;
-  border-radius: 30px;
-  background: #e63946;
-  color: #fff;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: 500;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
+  text-align: center;
+  line-height: 1.4;
+  min-width: 160px;
 }
 
-.btn:hover {
+.btn-primary {
+  background: #e63946;
+  color: #fff;
+}
+
+.btn-primary:hover {
   background: #c52834;
+  transform: translateY(-3px);
+}
+
+.btn-home {
+  background: #000;
+  color: #fff;
+}
+
+.btn-home:hover {
+  background: #333;
   transform: translateY(-3px);
 }
 
@@ -214,8 +265,14 @@ header p {
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.2rem;
+}
+
+@media (min-width: 1024px) {
+  .results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .results-item {
@@ -238,52 +295,77 @@ header p {
   color: #1d3557;
 }
 
-/* ========= Footer ========= */
-footer {
-  background: #000;
-  color: #fff;
+/* ========= Footer (updated) ========= */
+/* Applies to both <footer> tag and .site-footer class so both markup styles are supported */
+footer,
+.site-footer {
+  background: #f5f5f5;
+  color: #000;
   text-align: center;
   padding: 2.5rem 1rem;
   margin-top: 3rem;
+  border-radius: 20px 20px 0 0;
 }
 
+/* container inside footer */
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* brand / copyright text */
+.footer-text,
 footer p {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #ccc;
-  opacity: 0.9;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+  opacity: 0.95;
 }
 
-/* ========= Social Icons ========= */
+/* Social icons area - new class used in footer.html */
+.footer-socials,
 footer .socials {
   display: flex;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1rem;
 }
 
+/* support both .social-icon (new) and legacy footer .socials a (old) */
+.footer-socials .social-icon,
 footer .socials a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  border: 2px solid #fff;
-  color: #fff;
-  font-size: 1.4rem;
-  transition: 0.3s ease;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;  /* Rounded square */
+  background: #fff;
+  border: 1.5px solid #ccc;
+  color: #000;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
   text-decoration: none;
 }
 
+/* hover effect */
+.footer-socials .social-icon:hover,
 footer .socials a:hover {
   background: #e63946;
+  color: #fff;
   border-color: #e63946;
   transform: translateY(-4px);
 }
 
+/* Mobile responsiveness for footer icons */
 @media (max-width: 768px) {
+  .footer-socials .social-icon,
   footer .socials a {
     width: 42px;
     height: 42px;
