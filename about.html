@@ -6,13 +6,14 @@
   <title>About Us | FitStance</title>
   
   <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   
   <!-- Main CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+
   <style>
-    /* Mission & Values Grid */
+    /* Ensure 2 cards per row on desktop, 1 per row on mobile */
     .values-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -21,12 +22,10 @@
     }
 
     .value-card {
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 14px;
+      background: #fff;
+      border-radius: 12px;
       padding: 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
+      text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       transition: transform 0.3s ease;
     }
@@ -36,31 +35,9 @@
     }
 
     .value-card i {
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #e63946;
-      flex-shrink: 0;
-      margin-top: 0.2rem;
-    }
-
-    .value-card p {
-      font-size: 1.05rem;
-      color: #333;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .values-section h2 {
       margin-bottom: 1rem;
-    }
-
-    /* Back to Home Button (black & white style) */
-    .btn-home {
-      background: #000 !important;
-      color: #fff !important;
-    }
-
-    .btn-home:hover {
-      background: #333 !important;
     }
   </style>
 </head>
@@ -75,7 +52,7 @@
 
   <!-- ===== Hero Image ===== -->
   <div class="page-image">
-    <img src="about-us.jpg" alt="About Us - FitStance">
+    <img src="about-us.jpg" alt="" />
   </div>
 
   <!-- ===== About Us Section ===== -->
@@ -89,8 +66,8 @@
     </p>
     <p>
       We provide personalized <strong>workouts</strong>, <strong>diet plans</strong>, and  
-      <strong>powerful tools</strong> like <strong>BMI</strong>, <strong>BMR</strong>, <strong>TDEE </strong>, <strong>water intake calculators</strong>,  
-      and<strong> macro planners </strong>. You’ll also find expert <strong>pro tips</strong>,<strong> success stories</strong>, and insightful <strong>blogs</strong>  
+      <strong>powerful tools</strong> like <strong>BMI</strong>, <strong>BMR</strong>, <strong>TDEE</strong>, <strong>water intake calculators</strong>,  
+      and <strong>macro planners</strong>. You’ll also find expert <strong>pro tips</strong>, <strong>success stories</strong>, and insightful <strong>blogs</strong>  
       that keep you informed and inspired every step of the way.
     </p>
     <p>
@@ -131,7 +108,11 @@
 
   <!-- ===== Footer (loaded from footer.html) ===== -->
   <div id="footer"></div>
+
+  <!-- ===== Master JS ===== -->
+  <script src="js/master.js"></script>
   <script>
+    // Load global footer dynamically
     fetch("footer.html")
       .then(res => res.text())
       .then(data => {
