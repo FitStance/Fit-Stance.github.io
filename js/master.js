@@ -4,7 +4,6 @@
    ========================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-
   /* ------------------------------
      0. Load Global Footer Dynamically
   ------------------------------ */
@@ -12,15 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   footerContainer.id = "footer-container";
   document.body.appendChild(footerContainer);
 
-  fetch("footer.html") // make sure footer.html is in same directory
-    .then(response => {
-      if (!response.ok) throw new Error("Footer not found");
-      return response.text();
-    })
-    .then(html => {
-      footerContainer.innerHTML = html;
-    })
-    .catch(err => console.error("Error loading footer:", err));
+  fetch("./footer.html") // safer relative path
+    .then(res => res.ok ? res.text() : Promise.reject("Footer not found"))
+    .then(html => (footerContainer.innerHTML = html))
+    .catch(err => console.warn("⚠️ Footer load skipped:", err));
 
   /* ------------------------------
      1. Mobile Navigation Toggle
@@ -29,9 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.querySelector(".nav-links");
 
   if (menuToggle && navMenu) {
+    menuToggle.setAttribute("aria-expanded", "false");
+
     menuToggle.addEventListener("click", () => {
+      const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!expanded));
       navMenu.classList.toggle("active");
-      menuToggle.classList.toggle("open"); // animate hamburger
+      menuToggle.classList.toggle("open");
     });
   }
 
@@ -39,20 +37,20 @@ document.addEventListener("DOMContentLoaded", () => {
      2. Smooth Scrolling
   ------------------------------ */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-      const href = this.getAttribute("href");
+    anchor.addEventListener("click", e => {
+      const href = anchor.getAttribute("href");
       if (!href || href === "#") return;
 
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
       // Close mobile nav after clicking link
       if (navMenu && navMenu.classList.contains("active")) {
         navMenu.classList.remove("active");
-        menuToggle.classList.remove("open");
+        menuToggle?.classList.remove("open");
       }
     });
   });
@@ -60,14 +58,19 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ------------------------------
      3. Accordion (Workouts / FAQs)
   ------------------------------ */
-  const buttons = document.querySelectorAll(".goal-btn");
-  buttons.forEach(btn => {
+  const accordions = document.querySelectorAll(".goal-btn");
+  accordions.forEach(btn => {
     btn.addEventListener("click", () => {
-      const plan = btn.nextElementSibling;
-      if (plan) {
-        plan.classList.toggle("hidden");
-        btn.classList.toggle("active"); // highlight active button
-      }
+      // close others
+      accordions.forEach(b => {
+        if (b !== btn) {
+          b.classList.remove("active");
+          b.nextElementSibling?.classList.add("hidden");
+        }
+      });
+      // toggle clicked
+      btn.classList.toggle("active");
+      btn.nextElementSibling?.classList.toggle("hidden");
     });
   });
 
@@ -77,13 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const backToTop = document.querySelector(".back-to-top");
   if (backToTop) {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        backToTop.classList.add("show");
-        backToTop.style.display = "flex"; // ensure visible
-      } else {
-        backToTop.classList.remove("show");
-        backToTop.style.display = "none"; // hide when top
-      }
+      backToTop.classList.toggle("show", window.scrollY > 300);
     });
 
     backToTop.addEventListener("click", () => {
@@ -95,19 +92,24 @@ document.addEventListener("DOMContentLoaded", () => {
      5. Fade-in Animations
   ------------------------------ */
   const faders = document.querySelectorAll(".fade-in");
-  const appearOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
 
-  const appearOnScroll = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("appear");
-      observer.unobserve(entry.target);
-    });
-  }, appearOptions);
+  if ("IntersectionObserver" in window) {
+    const appearOnScroll = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("appear");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.3, rootMargin: "0px 0px -50px 0px" }
+    );
 
-  faders.forEach(fader => {
-    appearOnScroll.observe(fader);
-  });
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  } else {
+    // fallback
+    faders.forEach(f => f.classList.add("appear"));
+  }
 
   /* ------------------------------
      6. Tools Page - Fitness Calculator
@@ -115,49 +117,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const fitnessForm = document.getElementById("fitness-form");
 
   if (fitnessForm) {
-    fitnessForm.addEventListener("submit", function (e) {
+    fitnessForm.addEventListener("submit", e => {
       e.preventDefault();
-
       const form = e.target;
 
       const age = parseInt(form.age.value);
       const gender = form.gender.value;
-      const height = parseFloat(form.height.value); // in cm
-      const weight = parseFloat(form.weight.value); // in kg
+      const height = parseFloat(form.height.value); // cm
+      const weight = parseFloat(form.weight.value); // kg
       const activity = parseFloat(form.activity.value);
       const goal = form.goal.value;
 
-      if (!age || !gender || !height || !weight || !activity || !goal) {
-        alert("⚠️ Please fill in all fields.");
+      if (
+        [age, height, weight, activity].some(v => isNaN(v)) ||
+        !gender ||
+        !goal
+      ) {
+        alert("⚠️ Please fill in all fields correctly.");
         return;
       }
 
-      // BMR Calculation (Mifflin-St Jeor)
-      let bmr;
-      if (gender === "male") {
-        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
-      } else {
-        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
-      }
+      // BMR (Mifflin-St Jeor)
+      const bmr =
+        gender === "male"
+          ? 10 * weight + 6.25 * height - 5 * age + 5
+          : 10 * weight + 6.25 * height - 5 * age - 161;
 
       // TDEE
       const tdee = bmr * activity;
 
-      // Adjust calories based on goal
+      // Goal adjustment
       let calories = tdee;
       if (goal === "gain") calories += 300;
       if (goal === "lose") calories -= 300;
 
       // BMI
-      const heightM = height / 100;
-      const bmi = weight / (heightM * heightM);
-      let bmiCategory = "";
-      if (bmi < 18.5) bmiCategory = "Underweight";
-      else if (bmi < 24.9) bmiCategory = "Normal weight";
-      else if (bmi < 29.9) bmiCategory = "Overweight";
-      else bmiCategory = "Obese";
+      const bmi = weight / Math.pow(height / 100, 2);
+      const bmiCategory =
+        bmi < 18.5
+          ? "Underweight"
+          : bmi < 25
+          ? "Normal weight"
+          : bmi < 30
+          ? "Overweight"
+          : "Obese";
 
-      // Water intake in liters/day (40 ml per kg)
+      // Water (40ml/kg)
       const water = (weight * 40) / 1000;
 
       // Macronutrients
@@ -185,8 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateResult("carbs", carbs);
       updateResult("fats", fats);
 
-      const results = document.querySelector(".results");
-      if (results) results.scrollIntoView({ behavior: "smooth" });
+      document.querySelector(".results")?.scrollIntoView({ behavior: "smooth" });
     });
   }
 });
