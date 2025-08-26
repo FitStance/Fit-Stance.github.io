@@ -11,9 +11,10 @@ html {
 
 body {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background: #fff;
+  background: linear-gradient(180deg, #f1faee, #a8dadc);
   color: #000;
   line-height: 1.6;
+  text-align: center;
 }
 
 /* ========= Layout Helpers ========= */
@@ -34,99 +35,57 @@ section {
 header {
   text-align: center;
   padding: 2rem 1rem;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: transparent;
+}
+
+header .logo {
+  width: 70px;
+  margin: 0 auto 10px;
+  display: block;
 }
 
 header h1 {
   font-size: 2rem;
   letter-spacing: 1px;
+  color: #e63946;
+  font-weight: 700;
 }
 
 header p {
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   font-size: 1rem;
-  color: #444;
+  color: #222;
 }
 
-/* ========= Navigation ========= */
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
+/* ========= Search Bar ========= */
+.search-bar {
+  margin: 1.2rem auto 2rem;
 }
 
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  transition: max-height 0.3s ease;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.nav-links a:hover {
-  color: #e63946;
-}
-
-.nav-links.active {
-  display: block;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    margin: 0 auto 10px;
-  }
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    gap: 1rem;
-    background: rgba(255,255,255,0.95);
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-}
-
-/* ========= Hero Section ========= */
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 5rem 1.5rem;
-  background: url("hero-bg.jpg") center/cover no-repeat;
-  color: #fff;
-  text-align: center;
-  border-radius: 0 0 30px 30px;
-}
-
-.hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 0 3px 6px rgba(0,0,0,0.5);
-}
-
-.hero p {
-  font-size: 1.2rem;
-  max-width: 600px;
+.search-bar input {
+  width: 80%;
+  max-width: 400px;
+  padding: 12px 18px;
+  border-radius: 25px;
+  border: 1.5px solid #ddd;
+  outline: none;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 /* ========= Card / Grid Layout ========= */
+.grid, 
 .cards {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 1.2rem;
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
 }
 
 @media (min-width: 1024px) {
+  .grid, 
   .cards {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -136,44 +95,26 @@ header p {
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  padding: 2rem;
-  transition: transform 0.3s ease;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card i {
+  color: #e63946;
+  font-size: 1.2rem;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-}
-
-/* ========= Accordion (Workouts/FAQs) ========= */
-.goal-btn {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 14px 18px;
-  margin: 8px 0;
-  background: #e63946;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.goal-btn:hover {
-  background: #c52834;
-}
-
-.goal-plan {
-  padding: 1rem;
-  margin: 0.5rem 0 1rem;
-  background: rgba(255,255,255,0.9);
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-.hidden {
-  display: none;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
 /* ========= Buttons ========= */
@@ -212,40 +153,36 @@ header p {
   transform: translateY(-3px);
 }
 
-/* ========= Back to Top Button ========= */
-.back-to-top {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
+/* ========= Accordion (Workouts/FAQs) ========= */
+.goal-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  margin: 8px 0;
   background: #e63946;
   color: #fff;
   border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  font-size: 1.3rem;
-  display: none;
+  border-radius: 10px;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: 0.3s ease;
-  z-index: 1100;
 }
 
-.back-to-top:hover {
+.goal-btn:hover {
   background: #c52834;
-  transform: translateY(-3px);
 }
 
-/* ========= Fade-in Animation ========= */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+.goal-plan {
+  padding: 1rem;
+  margin: 0.5rem 0 1rem;
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-.fade-in.appear {
-  opacity: 1;
-  transform: translateY(0);
+.hidden {
+  display: none;
 }
 
 /* ========= Tools Page - Results ========= */
@@ -295,50 +232,24 @@ header p {
   color: #1d3557;
 }
 
-/* ========= Footer (updated) ========= */
-/* Applies to both <footer> tag and .site-footer class so both markup styles are supported */
-footer,
-.site-footer {
-  background: #f5f5f5;
-  color: #000;
+/* ========= Footer ========= */
+footer {
+  background: #000;
+  color: #fff;
   text-align: center;
-  padding: 2.5rem 1rem;
+  padding: 2rem 1rem;
   margin-top: 3rem;
   border-radius: 20px 20px 0 0;
 }
 
-/* container inside footer */
-.footer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* brand / copyright text */
-.footer-text,
-footer p {
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-  color: #333;
-  opacity: 0.95;
-}
-
-/* Social icons area - new class used in footer.html */
-.footer-socials,
 footer .socials {
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-/* support both .social-icon (new) and legacy footer .socials a (old) */
-.footer-socials .social-icon,
 footer .socials a {
   display: flex;
   align-items: center;
@@ -347,28 +258,19 @@ footer .socials a {
   height: 46px;
   border-radius: 12px;  /* Rounded square */
   background: #fff;
-  border: 1.5px solid #ccc;
   color: #000;
   font-size: 1.3rem;
   transition: all 0.3s ease;
   text-decoration: none;
 }
 
-/* hover effect */
-.footer-socials .social-icon:hover,
 footer .socials a:hover {
   background: #e63946;
   color: #fff;
-  border-color: #e63946;
   transform: translateY(-4px);
 }
 
-/* Mobile responsiveness for footer icons */
-@media (max-width: 768px) {
-  .footer-socials .social-icon,
-  footer .socials a {
-    width: 42px;
-    height: 42px;
-    font-size: 1.2rem;
-  }
+footer p {
+  font-size: 0.9rem;
+  color: #ccc;
 }
