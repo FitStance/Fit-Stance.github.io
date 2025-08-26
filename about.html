@@ -13,7 +13,37 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* Ensure 2 cards per row on desktop, 1 per row on mobile */
+    /* Page-specific styles */
+    .page-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #111;
+      font-weight: 700;
+    }
+
+    section p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    /* Values grid */
     .values-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -23,21 +53,47 @@
 
     .value-card {
       background: #fff;
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .value-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     }
 
     .value-card i {
       font-size: 2rem;
       color: #e63946;
       margin-bottom: 1rem;
+    }
+
+    /* CTA Buttons */
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #e63946;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #c72533;
+    }
+
+    .btn-home {
+      background: #333;
+    }
+
+    .btn-home:hover {
+      background: #000;
     }
   </style>
 </head>
@@ -52,7 +108,7 @@
 
   <!-- ===== Hero Image ===== -->
   <div class="page-image">
-    <img src="about-us.jpg" alt="" />
+    <img src="about-us.jpg" alt="FitStance About Us Image" />
   </div>
 
   <!-- ===== About Us Section ===== -->
@@ -101,9 +157,13 @@
   </section>
 
   <!-- ===== Call To Action ===== -->
-  <section style="text-align:center;">
-    <a href="https://www.instagram.com/fitstance__?igsh=MW01NHYwcW5ydXlycA==" target="_blank" class="btn">Message Us for Custom Plans</a>
-    <a href="index.html" class="btn btn-home" style="margin-left:1rem;">Back to Home</a>
+  <section>
+    <a href="https://www.instagram.com/fitstance__?igsh=MW01NHYwcW5ydXlycA==" target="_blank" class="btn">
+      Message Us for Custom Plans
+    </a>
+    <a href="index.html" class="btn btn-home" style="margin-left:1rem;">
+      Back to Home
+    </a>
   </section>
 
   <!-- ===== Footer (loaded from footer.html) ===== -->
