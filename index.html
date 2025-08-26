@@ -6,63 +6,11 @@
   <title>FitStance | Move Better. Feel Better ❤️</title>
   
   <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   
   <!-- Main CSS -->
-  <link rel="stylesheet" href="style.css">
-  
-  <style>
-    /* === New structure overrides === */
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .card {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 12px;
-      padding: 1rem 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.6s forwards;
-    }
-    .card:nth-child(odd) { animation-delay: 0.2s; }
-    .card:nth-child(even) { animation-delay: 0.4s; }
-    .card i {
-      font-size: 1.8rem;
-      margin-right: 1rem;
-      color: #e63946;
-      min-width: 30px;
-      text-align: center;
-    }
-    .card h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0;
-      color: #1d3557;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Mobile */
-    @media(max-width: 768px) {
-      .grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -94,8 +42,12 @@
     </div>
   </main>
 
-  <!-- ===== Footer (loaded from footer.html) ===== -->
+  <!-- ===== Footer Container ===== -->
   <div id="footer"></div>
+
+  <!-- ===== Master JS ===== -->
+  <script src="js/master.js"></script>
+
   <script>
     // 🔎 Search filter
     const searchInput = document.getElementById("search");
@@ -107,7 +59,7 @@
       });
     });
 
-    // 📍 Navigation
+    // 📍 Card navigation
     const links = {
       "About Us": "about.html",
       "Workouts": "workouts.html",
@@ -128,7 +80,7 @@
       });
     });
 
-    // Load global footer
+    // Load global footer dynamically
     fetch("footer.html")
       .then(res => res.text())
       .then(data => {
