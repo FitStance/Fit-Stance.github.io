@@ -6,6 +6,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ------------------------------
+     0. Load Global Footer Dynamically
+  ------------------------------ */
+  const footerContainer = document.createElement("div");
+  footerContainer.id = "footer-container";
+  document.body.appendChild(footerContainer);
+
+  fetch("footer.html") // make sure footer.html is in same directory
+    .then(response => {
+      if (!response.ok) throw new Error("Footer not found");
+      return response.text();
+    })
+    .then(html => {
+      footerContainer.innerHTML = html;
+    })
+    .catch(err => console.error("Error loading footer:", err));
+
+  /* ------------------------------
      1. Mobile Navigation Toggle
   ------------------------------ */
   const menuToggle = document.querySelector(".menu-toggle");
@@ -144,18 +161,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const water = (weight * 40) / 1000;
 
       // Macronutrients
-      // Protein: 1.7g per kg body weight (instead of per lbs)
       const protein = Math.round(weight * 1.7);
-
-      // Remaining calories for carbs & fats after protein
       const proteinCalories = protein * 4;
       const remainingCalories = calories - proteinCalories;
-
-      // 60% carbs, 40% fats
       const carbs = Math.round((remainingCalories * 0.6) / 4);
       const fats = Math.round((remainingCalories * 0.4) / 9);
 
-      // Display results with smooth highlight
       const updateResult = (id, value) => {
         const el = document.getElementById(id);
         if (el) {
@@ -174,11 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
       updateResult("carbs", carbs);
       updateResult("fats", fats);
 
-      // Scroll to results smoothly
       const results = document.querySelector(".results");
-      if (results) {
-        results.scrollIntoView({ behavior: "smooth" });
-      }
+      if (results) results.scrollIntoView({ behavior: "smooth" });
     });
   }
 });
