@@ -251,30 +251,42 @@ footer p {
   margin-top: 1rem;
   font-size: 0.9rem;
   color: #ccc;
+  opacity: 0.9;
 }
 
 /* ========= Social Icons ========= */
-footer .social-links {
+footer .socials {
   display: flex;
   justify-content: center;
   gap: 1.2rem;
+  flex-wrap: wrap;
   margin-top: 1rem;
 }
 
-footer .social-links a {
+footer .socials a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   border: 2px solid #fff;
   color: #fff;
-  font-size: 1.2rem;
-  transition: 0.3s;
+  font-size: 1.4rem;
+  transition: 0.3s ease;
+  text-decoration: none;
 }
 
-footer .social-links a:hover {
+footer .socials a:hover {
   background: #e63946;
   border-color: #e63946;
+  transform: translateY(-4px);
+}
+
+@media (max-width: 768px) {
+  footer .socials a {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+  }
 }
