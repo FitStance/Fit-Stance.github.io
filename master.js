@@ -23,11 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
   ------------------------------ */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
+      const href = this.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const target = document.querySelector(href);
       if (target) {
+        e.preventDefault();
         target.scrollIntoView({ behavior: "smooth" });
       }
+
       // Close mobile nav after clicking link
       if (navMenu && navMenu.classList.contains("active")) {
         navMenu.classList.remove("active");
@@ -58,8 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 300) {
         backToTop.classList.add("show");
+        backToTop.style.display = "flex"; // ensure visible
       } else {
         backToTop.classList.remove("show");
+        backToTop.style.display = "none"; // hide when top
       }
     });
 
@@ -138,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const water = (weight * 40) / 1000;
 
       // Macronutrients
-      // Protein: 1.7g per kg body weight
+      // Protein: 1.7g per kg body weight (instead of per lbs)
       const protein = Math.round(weight * 1.7);
 
       // Remaining calories for carbs & fats after protein
