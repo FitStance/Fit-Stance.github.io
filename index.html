@@ -17,41 +17,84 @@
   <!-- ===== Header ===== -->
   <header>
     <div class="header-content">
+      <!-- Logo -->
       <img src="logo-heart.gif" alt="" class="logo" />
+
+      <!-- Brand -->
       <div class="brand-text">
         <h1 class="brand-name">FITSTANCE</h1>
         <p class="tagline">Move better. Feel better ❤️</p>
       </div>
     </div>
 
-    <!-- Search -->
+    <!-- 🔎 Search -->
     <div class="search-bar">
       <input type="text" id="search" placeholder="Search topics...">
     </div>
   </header>
 
-  <!-- ===== Topics Grid ===== -->
+  <!-- ===== Main Grid Section ===== -->
   <main>
-    <div class="grid" id="topics-grid">
-      <div class="card" data-title="About Us"><i class="fas fa-users"></i><h3>About Us</h3></div>
-      <div class="card" data-title="Workouts"><i class="fas fa-dumbbell"></i><h3>Workouts & Routines</h3></div>
-      <div class="card" data-title="Diet Plans"><i class="fas fa-apple-alt"></i><h3>Diet Plans</h3></div>
-      <div class="card" data-title="Tools"><i class="fas fa-calculator"></i><h3>Tools</h3></div>
-      <div class="card" data-title="Pro Tips"><i class="fas fa-bolt"></i><h3>Pro Tips</h3></div>
-      <div class="card" data-title="Success Stories"><i class="fas fa-star"></i><h3>Success Stories</h3></div>
-      <div class="card" data-title="Blog"><i class="fas fa-blog"></i><h3>Blog / Articles</h3></div>
-      <div class="card" data-title="FAQ"><i class="fas fa-question-circle"></i><h3>FAQ</h3></div>
-      <div class="card" data-title="Shop"><i class="fas fa-book"></i><h3>Shop / eBook</h3></div>
-      <div class="card" data-title="Contact"><i class="fas fa-envelope"></i><h3>Contact Us</h3></div>
-    </div>
+    <section class="topics">
+      <div class="grid" id="topics-grid">
+        <div class="card" data-title="About Us">
+          <i class="fas fa-users"></i>
+          <h3>About Us</h3>
+        </div>
+
+        <div class="card" data-title="Workouts">
+          <i class="fas fa-dumbbell"></i>
+          <h3>Workouts & Routines</h3>
+        </div>
+
+        <div class="card" data-title="Diet Plans">
+          <i class="fas fa-apple-alt"></i>
+          <h3>Diet Plans</h3>
+        </div>
+
+        <div class="card" data-title="Tools">
+          <i class="fas fa-calculator"></i>
+          <h3>Tools</h3>
+        </div>
+
+        <div class="card" data-title="Pro Tips">
+          <i class="fas fa-bolt"></i>
+          <h3>Pro Tips</h3>
+        </div>
+
+        <div class="card" data-title="Success Stories">
+          <i class="fas fa-star"></i>
+          <h3>Success Stories</h3>
+        </div>
+
+        <div class="card" data-title="Blog">
+          <i class="fas fa-blog"></i>
+          <h3>Blog / Articles</h3>
+        </div>
+
+        <div class="card" data-title="FAQ">
+          <i class="fas fa-question-circle"></i>
+          <h3>FAQ</h3>
+        </div>
+
+        <div class="card" data-title="Shop">
+          <i class="fas fa-book"></i>
+          <h3>Shop / eBook</h3>
+        </div>
+
+        <div class="card" data-title="Contact">
+          <i class="fas fa-envelope"></i>
+          <h3>Contact Us</h3>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- ===== Footer Container ===== -->
+  <!-- ===== Footer Container (Loaded Dynamically) ===== -->
   <div id="footer"></div>
 
-  <!-- ===== Master JS ===== -->
+  <!-- ===== Scripts ===== -->
   <script src="js/master.js"></script>
-
   <script>
     // 🔎 Search filter
     const searchInput = document.getElementById("search");
@@ -84,13 +127,12 @@
       });
     });
 
-    // Load global footer dynamically
+    // 🌐 Load global footer dynamically
     fetch("footer.html")
       .then(res => res.text())
       .then(data => {
         document.getElementById("footer").innerHTML = data;
       });
   </script>
-
 </body>
 </html>
