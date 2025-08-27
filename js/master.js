@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   footerContainer.id = "footer-container";
   document.body.appendChild(footerContainer);
 
-  fetch("./footer.html") // safer relative path
+  fetch("./includes/footer.html") // correct relative path
     .then(res => res.ok ? res.text() : Promise.reject("Footer not found"))
     .then(html => (footerContainer.innerHTML = html))
     .catch(err => console.warn("⚠️ Footer load skipped:", err));
@@ -58,19 +58,23 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ------------------------------
      3. Accordion (Workouts / FAQs)
   ------------------------------ */
-  const accordions = document.querySelectorAll(".goal-btn");
-  accordions.forEach(btn => {
-    btn.addEventListener("click", () => {
+  const accordions = document.querySelectorAll(".accordion-header");
+
+  accordions.forEach(header => {
+    header.addEventListener("click", () => {
+      const content = header.nextElementSibling;
+
       // close others
-      accordions.forEach(b => {
-        if (b !== btn) {
-          b.classList.remove("active");
-          b.nextElementSibling?.classList.add("hidden");
+      accordions.forEach(h => {
+        if (h !== header) {
+          h.classList.remove("active");
+          h.nextElementSibling?.classList.remove("open");
         }
       });
+
       // toggle clicked
-      btn.classList.toggle("active");
-      btn.nextElementSibling?.classList.toggle("hidden");
+      header.classList.toggle("active");
+      content?.classList.toggle("open");
     });
   });
 
