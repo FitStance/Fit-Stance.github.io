@@ -171,17 +171,23 @@ section {
 }
 
 /* ========= Footer ========= */
-footer {
+.site-footer {
   background: #000;
-  color: #fff;               /* White footer text */
+  color: #fff;
   text-align: center;
   padding: 2rem 1rem;
   margin-top: 3rem;
 }
 
-footer p {
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-text {
   margin-bottom: 1rem;
-  color: #fff;               /* Force white */
+  font-size: 0.95rem;
+  color: #fff; /* Force white */
 }
 
 .socials {
@@ -195,18 +201,20 @@ footer p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   background: white;
   color: #e63946;
   border-radius: 50%;
   transition: 0.3s;
   font-size: 1.2rem;
+  border: 2px solid #e63946;  /* Outline style */
 }
 
 .socials a:hover {
   background: #e63946;
   color: white;
+  transform: scale(1.1);  /* Small hover zoom */
 }
 
 /* ========= Responsive ========= */
