@@ -58,23 +58,21 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ------------------------------
      3. Accordion (Workouts / FAQs)
   ------------------------------ */
-  const accordions = document.querySelectorAll(".accordion-header");
+  const accordionHeaders = document.querySelectorAll(".accordion-header");
 
-  accordions.forEach(header => {
+  accordionHeaders.forEach(header => {
     header.addEventListener("click", () => {
-      const content = header.nextElementSibling;
+      const item = header.parentElement; // .accordion-item
 
-      // close others
-      accordions.forEach(h => {
+      // Close others
+      accordionHeaders.forEach(h => {
         if (h !== header) {
-          h.classList.remove("active");
-          h.nextElementSibling?.classList.remove("open");
+          h.parentElement.classList.remove("active");
         }
       });
 
-      // toggle clicked
-      header.classList.toggle("active");
-      content?.classList.toggle("open");
+      // Toggle clicked
+      item.classList.toggle("active");
     });
   });
 
