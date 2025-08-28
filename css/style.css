@@ -14,6 +14,17 @@ body {
   background: linear-gradient(135deg, #f1faee, #a8dadc);
   color: #000;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased; /* ✅ smoother text */
+}
+
+/* Links & Focus Styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:focus, button:focus, input:focus {
+  outline: 2px solid #e63946;
+  outline-offset: 3px;
 }
 
 /* ========= Header ========= */
@@ -133,6 +144,7 @@ section {
   background: #f8f9fa;
   transform: translateY(-3px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  cursor: pointer; /* ✅ better UX */
 }
 
 .card h2 {
@@ -192,10 +204,16 @@ section {
 }
 
 .accordion-content {
-  display: none;
-  padding: 1rem;
+  max-height: 0;             /* ✅ smoother accordion */
+  overflow: hidden;
+  padding: 0 1rem;
   background: #fff;
   text-align: left;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.accordion-item.active .accordion-content {
+  max-height: 500px; /* adjust if needed */
+  padding: 1rem;
 }
 
 /* ========= Results Box ========= */
@@ -266,6 +284,16 @@ section {
 }
 
 /* ========= Responsive ========= */
+@media (max-width: 992px) {
+  /* ✅ tablet breakpoint */
+  .topics-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   header h1 {
     font-size: 1.7rem;
