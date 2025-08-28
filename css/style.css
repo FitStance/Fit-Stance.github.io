@@ -69,8 +69,8 @@ section {
 /* ========= Mission & Values ========= */
 .mission-values-container {
   display: flex;
-  flex-direction: column; /* force stacked layout */
-  align-items: center;
+  flex-direction: column; /* always stacked */
+  align-items: center;    /* center horizontally */
   gap: 1.2rem;
 }
 
@@ -87,14 +87,14 @@ section {
 /* ========= Homepage Topics Grid ========= */
 .topics-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 per row on desktop */
+  grid-template-columns: repeat(2, 1fr); /* desktop: 2 per row */
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
 .topic-card {
   display: flex;
-  align-items: center; /* keep icon + text inline */
+  align-items: center;       /* vertically center icon + text */
   gap: 12px;
   padding: 15px 20px;
   border-radius: 15px;
@@ -102,13 +102,15 @@ section {
   font-weight: 500;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   text-align: left;
+  min-height: 80px;          /* ✅ equal height cards */
 }
 
 .topic-card i {
-  font-size: 1.3rem;
-  color: #e63946; /* red icons */
+  font-size: 1.5rem;         /* slightly larger for balance */
+  color: #e63946;            /* red icons */
   flex-shrink: 0;
-  margin-right: 8px; /* little spacing from text */
+  width: 30px;               /* ✅ fixed width for alignment */
+  text-align: center;        /* keep icons aligned */
 }
 
 /* ========= Cards (General) ========= */
@@ -255,11 +257,11 @@ section {
 
 /* ========= About Us Page Image ========= */
 .about-image {
-  max-width: 600px;   /* keeps it from being too big on desktop */
-  width: 100%;        /* responsive */
-  height: auto;       /* maintain aspect ratio */
+  max-width: 600px;
+  width: 100%;
+  height: auto;
   display: block;
-  margin: 0 auto 2rem; /* center + spacing */
+  margin: 0 auto 2rem;
   border-radius: 15px;
 }
 
