@@ -69,42 +69,45 @@ section {
 /* ========= Mission & Values ========= */
 .mission-values-container {
   display: flex;
-  flex-direction: column; /* one card per row */
-  gap: 1.2rem;
+  flex-direction: column; /* always stacked */
   align-items: center;
+  gap: 1.2rem;
 }
 
 .mission-card {
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   background: #fff;
   padding: 1.5rem;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: left;
 }
 
 /* ========= Homepage Topics Grid ========= */
 .topics-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* 2 per row desktop */
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
 .topic-card {
   display: flex;
-  align-items: center; /* align icon & text */
+  align-items: center; /* icon + text inline */
   gap: 12px;
   padding: 15px 20px;
   border-radius: 15px;
   background: #fff;
   font-weight: 500;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: left;
 }
 
 .topic-card i {
   font-size: 1.3rem;
   color: #e63946; /* red icons */
+  flex-shrink: 0;
 }
 
 /* ========= Cards (General) ========= */
@@ -264,6 +267,6 @@ section {
     grid-template-columns: 1fr;
   }
   .topics-container {
-    grid-template-columns: 1fr; /* 1 per row on small screens */
+    grid-template-columns: 1fr; /* 1 per row on mobile */
   }
 }
