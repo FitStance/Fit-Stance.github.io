@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   footerContainer.id = "footer-container";
   document.body.appendChild(footerContainer);
 
-  fetch("./includes/footer.html") // correct relative path
+   fetch("../footer.html") // correct relative path
     .then(res => res.ok ? res.text() : Promise.reject("Footer not found"))
     .then(html => (footerContainer.innerHTML = html))
     .catch(err => console.warn("⚠️ Footer load skipped:", err));
