@@ -8,7 +8,7 @@
   <!-- Use your existing theme -->
   <link rel="stylesheet" href="style.css"/>
 
-  <!-- Page-local styles just for the accordion and table alignment -->
+  <!-- Page-local styles (keeps everything self-contained so you don't need to edit style.css) -->
   <style>
     /* prevent header overlap */
     main { padding-top: 1rem; }
@@ -58,6 +58,41 @@
     /* utility */
     .btn-row { display:flex; gap:.75rem; flex-wrap:wrap; margin-top: 1rem; }
     .muted { color:#444; font-size:.95rem; }
+
+    /* ==========================
+       Responsive tables (local to this file)
+       Keeps tables scrollable on small screens without touching your global CSS
+       ========================== */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: .75rem 0 1.25rem 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    /* Keep original table look but ensure a minimum width so horizontal scroll appears on small screens */
+    .table-responsive table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px; /* adjust if your widest table needs more space */
+      background: rgba(255,255,255,0.92);
+    }
+
+    /* subtle zebra striping for readability (only visual change) */
+    .table-responsive tr:nth-child(even) td { background: #fbfbfb; }
+
+    /* smaller spacing on very small screens to improve fit */
+    @media (max-width: 480px) {
+      .table-responsive th,
+      .table-responsive td {
+        padding: 8px;
+        font-size: 14px;
+      }
+      .sublevel-btn { padding: .45rem .9rem; font-size: .9rem; }
+      .goal-card { padding: 1rem; font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -72,6 +107,40 @@
     <section>
       <h2>Workouts &amp; Routines</h2>
       <p class="muted">Tap a goal to reveal levels, then choose a level to see the full 7-day plan.</p>
+
+      <!-- ================= FAT LOSS ================= -->
+      <div class="goal-card" onclick="toggleSublevels('fatloss')">Fat Loss</div>
+      <div id="fatloss-sub" class="sublevels">
+        <span class="sublevel-btn" onclick="showPlan('fatloss-beginner')">Beginner</span>
+        <span class="sublevel-btn" onclick="showPlan('fatloss-intermediate')">Intermediate</span>
+        <span class="sublevel-btn" onclick="showPlan('fatloss-advanced')">Advanced</span>
+      </div>
+
+      <!-- ================= MUSCLE GAIN ================= -->
+      <div class="goal-card" onclick="toggleSublevels('musclegain')">Muscle Gain</div>
+      <div id="musclegain-sub" class="sublevels">
+        <span class="sublevel-btn" onclick="showPlan('musclegain-beginner')">Beginner</span>
+        <span class="sublevel-btn" onclick="showPlan('musclegain-intermediate')">Intermediate</span>
+        <span class="sublevel-btn" onclick="showPlan('musclegain-advanced')">Advanced</span>
+      </div>
+
+      <!-- ================= STRENGTH ================= -->
+      <div class="goal-card" onclick="toggleSublevels('strength')">Strength</div>
+      <div id="strength-sub" class="sublevels">
+        <span class="sublevel-btn" onclick="showPlan('strength-beginner')">Beginner</span>
+        <span class="sublevel-btn" onclick="showPlan('strength-intermediate')">Intermediate</span>
+        <span class="sublevel-btn" onclick="showPlan('strength-advanced')">Advanced</span>
+      </div>
+
+      <!-- ================= HOME WORKOUTS ================= -->
+      <div class="goal-card" onclick="toggleSublevels('home')">Home Workouts</div>
+      <div id="home-sub" class="sublevels">
+        <span class="sublevel-btn" onclick="showPlan('home-beginner')">Beginner</span>
+        <span class="sublevel-btn" onclick="showPlan('home-intermediate')">Intermediate</span>
+        <span class="sublevel-btn" onclick="showPlan('home-advanced')">Advanced</span>
+      </div>
+
+      <!-- ======= Tables (the workout "data") START in Part 2 ======= -->
 
       <!-- ================= FAT LOSS ================= -->
       <div class="goal-card" onclick="toggleSublevels('fatloss')">Fat Loss</div>
