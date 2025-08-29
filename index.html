@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FitStance | Move Better. Feel Better ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitStance | Move Better. Feel Better ❤</title>
   
   <!-- Fonts & Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   
   <!-- Main CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
@@ -18,24 +18,25 @@
   <header>
     <div class="header-content">
       <!-- Logo -->
-      <img src="logo-heart.gif" alt="" class="logo" />
+      <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
 
       <!-- Brand -->
       <div class="brand-text">
         <h1 class="brand-name">FITSTANCE</h1>
-        <p class="tagline">Move better. Feel better ❤️</p>
+        <p class="tagline">Move better. Feel better ❤</p>
       </div>
     </div>
 
     <!-- 🔎 Search -->
     <div class="search-bar">
-      <input type="text" id="search" placeholder="Search topics...">
+      <input type="text" id="search" placeholder="Search topics..." />
     </div>
   </header>
 
   <!-- ===== Main Grid Section ===== -->
   <main>
     <section class="topics">
+      <h2 class="section-title">Explore FitStance</h2>
       <div class="grid" id="topics-grid">
         <div class="card" data-title="About Us">
           <i class="fas fa-users"></i>
@@ -86,6 +87,32 @@
           <i class="fas fa-envelope"></i>
           <h3>Contact Us</h3>
         </div>
+      </div>
+    </section>
+
+    <!-- ===== Responsive Media Gallery ===== -->
+    <section class="media-section">
+      <h2 class="section-title">Fitness Inspiration</h2>
+      <p class="section-subtitle">Watch, Learn & Transform</p>
+
+      <div class="media-container">
+        <!-- Video 1 -->
+        <video controls poster="media/workout1.jpg">
+          <source src="media/workout1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Video 2 -->
+        <video controls poster="media/workout2.jpg">
+          <source src="media/workout2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Image 1 -->
+        <img src="media/stretching.jpg" alt="Stretching Exercise" />
+
+        <!-- Image 2 -->
+        <img src="media/healthy-meal.jpg" alt="Healthy Meal" />
       </div>
     </section>
   </main>
