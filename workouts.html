@@ -116,40 +116,6 @@
         <span class="sublevel-btn" onclick="showPlan('fatloss-advanced')">Advanced</span>
       </div>
 
-      <!-- ================= MUSCLE GAIN ================= -->
-      <div class="goal-card" onclick="toggleSublevels('musclegain')">Muscle Gain</div>
-      <div id="musclegain-sub" class="sublevels">
-        <span class="sublevel-btn" onclick="showPlan('musclegain-beginner')">Beginner</span>
-        <span class="sublevel-btn" onclick="showPlan('musclegain-intermediate')">Intermediate</span>
-        <span class="sublevel-btn" onclick="showPlan('musclegain-advanced')">Advanced</span>
-      </div>
-
-      <!-- ================= STRENGTH ================= -->
-      <div class="goal-card" onclick="toggleSublevels('strength')">Strength</div>
-      <div id="strength-sub" class="sublevels">
-        <span class="sublevel-btn" onclick="showPlan('strength-beginner')">Beginner</span>
-        <span class="sublevel-btn" onclick="showPlan('strength-intermediate')">Intermediate</span>
-        <span class="sublevel-btn" onclick="showPlan('strength-advanced')">Advanced</span>
-      </div>
-
-      <!-- ================= HOME WORKOUTS ================= -->
-      <div class="goal-card" onclick="toggleSublevels('home')">Home Workouts</div>
-      <div id="home-sub" class="sublevels">
-        <span class="sublevel-btn" onclick="showPlan('home-beginner')">Beginner</span>
-        <span class="sublevel-btn" onclick="showPlan('home-intermediate')">Intermediate</span>
-        <span class="sublevel-btn" onclick="showPlan('home-advanced')">Advanced</span>
-      </div>
-
-      <!-- ======= Tables (the workout "data") START in Part 2 ======= -->
-
-      <!-- ================= FAT LOSS ================= -->
-      <div class="goal-card" onclick="toggleSublevels('fatloss')">Fat Loss</div>
-      <div id="fatloss-sub" class="sublevels">
-        <span class="sublevel-btn" onclick="showPlan('fatloss-beginner')">Beginner</span>
-        <span class="sublevel-btn" onclick="showPlan('fatloss-intermediate')">Intermediate</span>
-        <span class="sublevel-btn" onclick="showPlan('fatloss-advanced')">Advanced</span>
-      </div>
-
       <!-- Fat Loss — Beginner -->
       <div id="fatloss-beginner" class="workout-plan">
         <h3>Fat Loss — Beginner</h3>
@@ -632,40 +598,10 @@
   </a>
 </section>
 
-  <!-- ===== Global Footer Include ===== -->
-  <div id="footer-placeholder"></div>
-  <script>
-    fetch("footer.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("footer-placeholder").innerHTML = data);
-  </script>
+  <!-- Footer placeholder -->
+  <div id="footer"></div>
 
-  <script>
-    // accordion logic
-    function hideAllSublevels() {
-      document.querySelectorAll('.sublevels').forEach(s => s.style.display = 'none');
-    }
-    function hideAllPlans() {
-      document.querySelectorAll('.workout-plan').forEach(w => w.style.display = 'none');
-    }
-    function toggleSublevels(goal) {
-      const sub = document.getElementById(goal + '-sub');
-      const isOpen = sub && sub.style.display === 'block';
-      hideAllSublevels();
-      hideAllPlans();
-      if (sub) {
-        sub.style.display = isOpen ? 'none' : 'block';
-        if (!isOpen) sub.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-    function showPlan(id) {
-      hideAllPlans();
-      const plan = document.getElementById(id);
-      if (plan) {
-        plan.style.display = 'block';
-        plan.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-  </script>
+  <!-- Scripts -->
+  <script src="js/master.js"></script>
 </body>
 </html>
