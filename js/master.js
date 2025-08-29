@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   footerContainer.id = "footer-container";
   document.body.appendChild(footerContainer);
 
-   fetch("../footer.html") // correct relative path
+  fetch("../footer.html")
     .then(res => res.ok ? res.text() : Promise.reject("Footer not found"))
     .then(html => (footerContainer.innerHTML = html))
-    .catch(err => console.warn("⚠️ Footer load skipped:", err));
+    .catch(err => console.warn("⚠ Footer load skipped:", err));
 
   /* ------------------------------
      1. Mobile Navigation Toggle
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (menuToggle && navMenu) {
     menuToggle.setAttribute("aria-expanded", "false");
-
     menuToggle.addEventListener("click", () => {
       const expanded = menuToggle.getAttribute("aria-expanded") === "true";
       menuToggle.setAttribute("aria-expanded", String(!expanded));
@@ -47,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
-      // Close mobile nav after clicking link
       if (navMenu && navMenu.classList.contains("active")) {
         navMenu.classList.remove("active");
         menuToggle?.classList.remove("open");
@@ -56,25 +54,33 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ------------------------------
-     3. Accordion (Workouts / FAQs)
+     3. Workout Goals & Plans Collapsible
   ------------------------------ */
-  const accordionHeaders = document.querySelectorAll(".accordion-header");
+  const goalCards = document.querySelectorAll(".goal-card");
+  const sublevels = document.querySelectorAll(".sublevels");
+  const workoutPlans = document.querySelectorAll(".workout-plan");
 
-  accordionHeaders.forEach(header => {
-    header.addEventListener("click", () => {
-      const item = header.parentElement; // .accordion-item
-
-      // Close others
-      accordionHeaders.forEach(h => {
-        if (h !== header) {
-          h.parentElement.classList.remove("active");
-        }
-      });
-
-      // Toggle clicked
-      item.classList.toggle("active");
+  window.toggleSublevels = id => {
+    sublevels.forEach(sub => {
+      if (sub.id === `${id}-sub`) {
+        sub.classList.toggle("show");
+      } else {
+        sub.classList.remove("show");
+      }
     });
-  });
+
+    workoutPlans.forEach(plan => plan.classList.remove("show"));
+  };
+
+  window.showPlan = id => {
+    workoutPlans.forEach(plan => {
+      if (plan.id === id) {
+        plan.classList.add("show");
+      } else {
+        plan.classList.remove("show");
+      }
+    });
+  };
 
   /* ------------------------------
      4. Back to Top Button
@@ -109,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     faders.forEach(fader => appearOnScroll.observe(fader));
   } else {
-    // fallback
     faders.forEach(f => f.classList.add("appear"));
   }
 
@@ -125,35 +130,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const age = parseInt(form.age.value);
       const gender = form.gender.value;
-      const height = parseFloat(form.height.value); // cm
-      const weight = parseFloat(form.weight.value); // kg
+      const height = parseFloat(form.height.value);
+      const weight = parseFloat(form.weight.value);
       const activity = parseFloat(form.activity.value);
       const goal = form.goal.value;
 
-      if (
-        [age, height, weight, activity].some(v => isNaN(v)) ||
-        !gender ||
-        !goal
-      ) {
-        alert("⚠️ Please fill in all fields correctly.");
+      if ([age, height, weight, activity].some(v => isNaN(v)) || !gender || !goal) {
+        alert("⚠ Please fill in all fields correctly.");
         return;
       }
 
-      // BMR (Mifflin-St Jeor)
       const bmr =
         gender === "male"
           ? 10 * weight + 6.25 * height - 5 * age + 5
           : 10 * weight + 6.25 * height - 5 * age - 161;
 
-      // TDEE
       const tdee = bmr * activity;
 
-      // Goal adjustment
       let calories = tdee;
       if (goal === "gain") calories += 300;
       if (goal === "lose") calories -= 300;
 
-      // BMI
       const bmi = weight / Math.pow(height / 100, 2);
       const bmiCategory =
         bmi < 18.5
@@ -164,10 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
           ? "Overweight"
           : "Obese";
 
-      // Water (40ml/kg)
       const water = (weight * 40) / 1000;
 
-      // Macronutrients
       const protein = Math.round(weight * 1.7);
       const proteinCalories = protein * 4;
       const remainingCalories = calories - proteinCalories;
@@ -195,4 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".results")?.scrollIntoView({ behavior: "smooth" });
     });
   }
+
+  /* ------------------------------
+     7. Responsive Media Auto-Scaling
+  ------------------------------ */
+  const mediaElements = document.querySelectorAll(".media-container img, .media-container video");
+  mediaElements.forEach(media => {
+    media.style.width = "100%";
+    media.style.height = "auto";
+  });
 });
