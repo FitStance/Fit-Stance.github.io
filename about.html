@@ -235,19 +235,11 @@
     </a>
   </section>
 
-  <!-- ===== Footer (loaded from footer.html) ===== -->
-  <div id="footer"></div>
+ <!-- ===== Footer (loaded from footer.html) ===== -->
+<div id="footer"></div>
 
-  <!-- ===== Master JS ===== -->
-  <script src="js/master.js"></script>
-  <script>
-    // Load global footer dynamically
-    fetch("footer.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("footer").innerHTML = data;
-      });
-  </script>
+<!-- ===== Master JS ===== -->
+<script src="js/master.js"></script>
 
 </body>
 </html>
