@@ -13,87 +13,148 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* Page-specific styles */
+    /* Hero Image */
     .page-image img {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 12px;
-      margin: 1.5rem 0;
+      border-radius: 16px;
+      margin: 1.5rem 0 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
 
-    section {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      text-align: center;
+    /* About Section */
+    .about-section {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: left;
     }
 
-    section h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: #111;
+    .about-section h2 {
+      font-size: 2.4rem;
       font-weight: 700;
-    }
-
-    section p {
-      font-size: 1rem;
+      color: #e63946;
       margin-bottom: 1rem;
-      color: #333;
-      line-height: 1.7;
+      text-align: left;
     }
 
-    /* Values grid */
+    .about-section p {
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .about-section ul {
+      margin: 1rem 0 1.5rem 1.5rem;
+      padding-left: 1rem;
+      color: #444;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    /* Mission & Values Section */
+    .values-section {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .values-section h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #e63946;
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+
     .values-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
-      margin-top: 1.5rem;
     }
 
     .value-card {
       background: #fff;
       border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
     }
 
     .value-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     }
 
     .value-card i {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: #e63946;
       margin-bottom: 1rem;
     }
 
+    .value-card p {
+      font-size: 1.05rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
     /* CTA Buttons */
+    .cta-buttons {
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+
     .btn {
       display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
+      margin-top: 1rem;
+      padding: 0.8rem 1.6rem;
+      border: none;
       background: #e63946;
-      color: #fff;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
       font-weight: 600;
-      border-radius: 30px;
       text-decoration: none;
-      transition: background 0.3s ease;
+      transition: 0.3s;
     }
 
     .btn:hover {
-      background: #c72533;
+      background: #d62839;
+      transform: scale(1.05);
     }
 
     .btn-home {
       background: #333;
+      margin-left: 1rem;
     }
 
     .btn-home:hover {
       background: #000;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .about-section h2,
+      .values-section h2 {
+        font-size: 1.9rem;
+      }
+
+      .about-section p,
+      .about-section ul {
+        font-size: 1rem;
+      }
+
+      .value-card {
+        padding: 1.5rem;
+      }
+
+      .value-card i {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -103,33 +164,41 @@
   <header>
     <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
     <h1 class="brand-name">FITSTANCE</h1>
-    <p class="tagline">Move better. Feel better ❤️</p>
+    <p class="tagline">Move better. Feel better ❤</p>
   </header>
 
   <!-- ===== Hero Image ===== -->
   <div class="page-image">
-    <img src="about-us.jpg" alt="FitStance About Us Image" />
+    <img src="about-us.jpg" alt="FitStance About Us" />
   </div>
 
   <!-- ===== About Us Section ===== -->
-  <section>
+  <section class="about-section">
     <h2>About Us</h2>
     <p>
       Welcome to <strong>FitStance</strong>, your trusted fitness and wellness partner.  
-      We started with a simple idea – to help people move better, feel better, and live healthier lives.  
-      At FitStance, we believe that fitness should be simple, accessible, and sustainable for everyone.  
-      Our platform is designed to give you the right tools, guidance, and motivation you need on your journey.
+      We began with a simple yet powerful vision — to empower people to move better, feel stronger, and lead healthier lives.  
+      Our belief is simple: <em>fitness should be accessible, sustainable, and effective for everyone</em>.
     </p>
     <p>
-      We provide personalized <strong>workouts</strong>, <strong>diet plans</strong>, and  
-      <strong>powerful tools</strong> like <strong>BMI</strong>, <strong>BMR</strong>, <strong>TDEE</strong>, <strong>water intake calculators</strong>,  
-      and <strong>macro planners</strong>. You’ll also find expert <strong>pro tips</strong>, <strong>success stories</strong>, and insightful <strong>blogs</strong>  
-      that keep you informed and inspired every step of the way.
+      At <strong>FitStance</strong>, we combine scientific research with practical experience to bring you personalized solutions for your health and wellness journey.  
+      Whether you're a beginner taking your first steps or an athlete striving to level up, we provide the right guidance, tools, and motivation tailored to your unique goals.
+    </p>
+    <p>With FitStance, you get access to:</p>
+    <ul>
+      <li><strong>Personalized Workouts</strong> tailored to your fitness level and body type.</li>
+      <li><strong>Custom Diet Plans</strong> built by experts to complement your lifestyle and goals.</li>
+      <li><strong>Powerful Tools</strong> including BMI, BMR, TDEE, water intake, and macro calculators.</li>
+      <li><strong>Expert Tips & Blogs</strong> to help you stay informed and motivated.</li>
+      <li><strong>Success Stories</strong> from real people achieving real results.</li>
+      <li><strong>A Global Fitness Community</strong> where support and inspiration thrive.</li>
+    </ul>
+    <p>
+      Our mission is to create a platform where fitness is simple, efficient, and results-driven.  
+      By focusing on education, empowerment, and long-term health, we aim to help you make lasting changes — not quick fixes.
     </p>
     <p>
-      Our mission is clear: <em>to simplify fitness and make it accessible to all</em>.  
-      Whether you’re just starting out or already experienced, FitStance is here  
-      to guide you, motivate you, and celebrate your progress.
+      At FitStance, your progress is our passion. Together, let's redefine what fitness means and make your journey more exciting, rewarding, and fulfilling.
     </p>
   </section>
 
@@ -139,29 +208,29 @@
     <div class="values-grid">
       <div class="value-card">
         <i class="fas fa-bullseye"></i>
-        <p><strong>Mission:</strong> To simplify fitness & make it accessible for everyone.</p>
+        <p><strong>Mission:</strong> To simplify fitness and make it accessible to everyone, everywhere.</p>
       </div>
       <div class="value-card">
         <i class="fas fa-lightbulb"></i>
-        <p><strong>Values:</strong> Consistency, Simplicity, Community, and Progress.</p>
+        <p><strong>Values:</strong> Consistency, Simplicity, Community, and Progress — the foundation of everything we do.</p>
       </div>
       <div class="value-card">
         <i class="fas fa-handshake"></i>
-        <p>Build trust by focusing on long-term results, not quick fixes.</p>
+        <p>We focus on building trust and providing long-term, sustainable solutions — not shortcuts.</p>
       </div>
       <div class="value-card">
         <i class="fas fa-globe"></i>
-        <p>Create a supportive global fitness community.</p>
+        <p>Our goal is to build a positive, inclusive, and supportive fitness community worldwide.</p>
       </div>
     </div>
   </section>
 
   <!-- ===== Call To Action ===== -->
-  <section>
+  <section class="cta-buttons">
     <a href="https://www.instagram.com/fitstance__?igsh=MW01NHYwcW5ydXlycA==" target="_blank" class="btn">
       Message Us for Custom Plans
     </a>
-    <a href="index.html" class="btn btn-home" style="margin-left:1rem;">
+    <a href="index.html" class="btn btn-home">
       Back to Home
     </a>
   </section>
