@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Workouts & Routines | FitStance</title>
+
+ 
+
+  <!-- Fonts & Icons -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+ 
+
+  <!-- Main CSS -->
+
+  <link rel="stylesheet" href="css/style.css" />
+
+ 
+
+  <style>
+
+    /* Page image */
+
+    .page-image img {
+
+      width: 100%;
+
+      height: auto;
+
+      display: block;
+
+      border-radius: 16px;
+
+      margin: 1.5rem 0;
+
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+    }
+
+ 
+
+    /* Section wrapper */
+
+    .workout-section {
+
+      max-width: 1200px;
+
+      margin: 2rem auto;
+
+      padding: 0 1.5rem;
+
+    }
+
+    .workout-section h2 {
+
+      font-size: 2.2rem;
+
+      color: #e63946;
+
+      margin-bottom: 0.5rem;
+
+      font-weight: 700;
+
+      text-align: left;
+
+    }
+
+    .workout-section .intro {
+
+      color: #333;
+
+      margin-bottom: 1.5rem;
+
+      text-align: left;
+
+      line-height: 1.7;
+
+      font-size: 1rem;
+
+    }
+
+ 
+
+    /* Goal card (click to reveal sublevels) */
+
+    .goal-card {
+
+      background: #fff;
+
+      border-radius: 16px;
+
+      padding: 1rem 1.25rem;
+
+      margin: 1.25rem 0 0.75rem;
+
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+      font-size: 1.25rem;
+
+      font-weight: 700;
+
+      color: #222;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      cursor: pointer;
+
+      user-select: none;
+
+    }
+
+    .goal-card:active { transform: scale(0.997); }
+
+ 
+
+    /* Sublevel buttons */
+
+    .sublevels {
+
+      display: none; /* hidden until goal is opened via JS */
+
+      gap: 0.75rem;
+
+      flex-wrap: wrap;
+
+      margin: 0 0 1rem;
+
+    }
+
+    .sublevels.show { display: flex; }
+
+    .sublevel-btn {
+
+      display: inline-block;
+
+      padding: 0.55rem 1rem;
+
+      background: #fff;
+
+      color: #e63946;
+
+      border: 2px solid #e63946;
+
+      border-radius: 25px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: 0.25s ease;
+
+      line-height: 1;
+
+      text-decoration: none;
+
+      user-select: none;
+
+    }
+
+    .sublevel-btn:hover {
+
+      background: #e63946;
+
+      color: #fff;
+
+      transform: translateY(-1px);
+
+    }
+
+ 
+
+    /* CTA Buttons */
+
+    .cta-buttons {
+
+      text-align: center;
+
+      margin: 3rem 0 2rem;
+
+    }
+
+ 
+
+    .btn {
+
+      display: inline-block;
+
+      margin-top: 1rem;
+
+      padding: 0.8rem 1.6rem;
+
+      border: none;
+
+      background: #e63946;
+
+      color: white;
+
+      border-radius: 25px;
+
+      cursor: pointer;
+
+      font-size: 1rem;
+
+      font-weight: 600;
+
+      text-decoration: none;
+
+      transition: 0.3s;
+
+    }
+
+ 
+
+    .btn:hover {
+
+      background: #d62839;
+
+      transform: scale(1.05);
+
+    }
+
+ 
+
+    .btn-home {
+
+      background: #333;
+
+      margin-left: 1rem;
+
+    }
+
+ 
+
+    .btn-home:hover {
+
+      background: #000;
+
+    }
+
+ 
+
+ 
+
+    /* Plans (hidden until a sublevel is picked via JS) */
+
+    .workout-plan {
+
+      display: none;
+
+      margin-bottom: 1.5rem;
+
+    }
+
+    .workout-plan.show { display: block; }
+
+    .workout-plan h3 {
+
+      font-size: 1.4rem;
+
+      margin: 0.75rem 0 0.5rem;
+
+      color: #222;
+
+      font-weight: 700;
+
+      text-align: left;
+
+    }
+
+ 
+
+    /* Scrollable tables with sticky header */
+
+    .table-container {
+
+      overflow-x: auto;
+
+      -webkit-overflow-scrolling: touch;
+
+      border-radius: 12px;
+
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+      background: #fff;
+
+    }
+
+    table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      min-width: 680px; /* enables horizontal scroll on small screens */
+
+      background: #fff;
+
+    }
+
+    thead {
+
+      background: #e63946;
+
+      color: #fff;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 2;
+
+    }
+
+    th, td {
+
+      padding: 0.8rem;
+
+      text-align: left;
+
+      border-bottom: 1px solid #f0f0f0;
+
+      font-size: 0.95rem;
+
+      white-space: nowrap;
+
+    }
+
+    tr:hover td { background: #fafafa; }
+
+ 
+
+    /* Responsive adjustments */
+
+    @media (max-width: 992px) {
+
+      .workout-section h2 { font-size: 2rem; }
+
+    }
+
+    @media (max-width: 768px) {
+
+      .workout-section h2 { font-size: 1.8rem; }
+
+      th, td { font-size: 0.9rem; padding: 0.6rem; }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+ 
+
+  <!-- ===== Header (same style as other pages) ===== -->
+
+  <header>
+
+    <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
+
+    <h1 class="brand-name">FITSTANCE</h1>
+
+    <p class="tagline">Move better. Feel better ♥️</p>
+
+  </header>
+
+ 
+
+  <!-- ===== Hero Image (you can replace the file) ===== -->
+
+  <div class="page-image">
+
+    <img src="workouts-hero.jpg" alt="Workout Routines" />
+
+  </div>
+
+ 
+
+  <!-- ===== Workouts Section ===== -->
+
+  <section class="workout-section">
+
+    <h2>Workout Routines</h2>
+
+    <p class="intro">
+
+      Choose your main goal, then pick a level to reveal the full 7-day plan.
+
+      All tables are fully responsive: on small screens you can swipe sideways.
+
+    </p>
+
+ 
+
+    <!-- ================= FAT LOSS ================= -->
+
+    <div class="goal-card" onclick="toggleSublevels && toggleSublevels('fatloss')">Fat Loss</div>
+
+    <div id="fatloss-sub" class="sublevels">
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('fatloss-beginner')">Beginner</button>
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('fatloss-intermediate')">Intermediate</button>
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('fatloss-advanced')">Advanced</button>
+
+    </div>
+
+ 
+
+    <!-- Fat Loss - Beginner -->
+
+    <div id="fatloss-beginner" class="workout-plan">
+
+      <h3>Fat Loss - Beginner</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Full Body</td><td>Goblet Squats</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Dumbbell Bench Press</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Dumbbell Rows</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Plank</td><td>3</td><td>30-45 sec</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Rest</td><td>Active Recovery - brisk walk or light stretching</td><td> - </td><td> - </td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Full Body</td><td>Romanian Deadlifts (Dumbbell)</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Lat Pulldowns (or Pull-ups)</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Press (Dumbbell)</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Push-ups (on knees/incline)</td><td>3</td><td>To failure</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Rest</td><td>Active Recovery - brisk walk or light stretching</td><td>-</td><td>-</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Full Body</td><td>Leg Press</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Seated Cable Rows</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Walking Lunges</td><td>3</td><td>10 per leg</td></tr>
+
+            <tr><td></td><td></td><td>Russian Twists</td><td>3</td><td>20 per side</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Rest</td><td>Active Recovery - brisk walk or light stretching</td><td>-</td><td>-</td></tr>
+
+            <tr><td>Day 7</td><td>Rest</td><td>-</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- Fat Loss - Intermediate -->
+
+    <div id="fatloss-intermediate" class="workout-plan">
+
+      <h3>Fat Loss - Intermediate</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Upper Body A</td><td>Barbell Bench Press</td><td>4</td><td>6-8</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Rows</td><td>4</td><td>6-8</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Press (Dumbbell)</td><td>3</td><td>8-10</td></tr>
+
+            <tr><td></td><td></td><td>Lat Pulldowns</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Bicep Curls</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Tricep Pushdowns</td><td>3</td><td>12-15</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Lower Body A</td><td>Barbell Squats</td><td>4</td><td>6-8</td></tr>
+
+            <tr><td></td><td></td><td>Romanian Deadlifts</td><td>4</td><td>8-10</td></tr>
+
+            <tr><td></td><td></td><td>Leg Press</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Leg Curls</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Standing Calf Raises</td><td>3</td><td>15-20</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Rest</td><td>-</td><td>-</td><td>-</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Upper Body B</td><td>Incline Dumbbell Press</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>One-Arm Dumbbell Rows</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Seated Dumbbell Shoulder Press</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Reverse Pec Deck</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Hammer Curls</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Lateral Raises</td><td>3</td><td>15-20</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Lower Body B</td><td>Hack Squats</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Bulgarian Split Squats</td><td>3</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Glute Bridges</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Leg Extensions</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Seated Calf Raises</td><td>3</td><td>15-20</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Rest</td><td>Active Recovery - brisk walk or light stretching</td><td>-</td><td>-</td></tr>
+
+            <tr><td>Day 7</td><td>Rest</td><td>-</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- Fat Loss - Advanced -->
+
+    <div id="fatloss-advanced" class="workout-plan">
+
+      <h3>Fat Loss - Advanced</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Push (Strength)</td><td>Barbell Bench Press</td><td>4-5</td><td>5-8</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Press (Barbell)</td><td>4-5</td><td>6-8</td></tr>
+
+            <tr><td></td><td></td><td>Incline Dumbbell Press</td><td>3-4</td><td>8-10</td></tr>
+
+            <tr><td></td><td></td><td>Tricep Dips (Weighted)</td><td>3-4</td><td>8-10</td></tr>
+
+            <tr><td></td><td></td><td>Lateral Raises (superset with Skullcrushers)</td><td>3</td><td>12-15</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Pull (Strength)</td><td>Deadlifts (or Heavy Barbell Rows)</td><td>4-5</td><td>5-8</td></tr>
+
+            <tr><td></td><td></td><td>Weighted Pull-ups (or Lat Pulldowns)</td><td>4-5</td><td>6-8</td></tr>
+
+            <tr><td></td><td></td><td>Seated Cable Rows</td><td>3-4</td><td>8-10</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Curls</td><td>3-4</td><td>8-10</td></tr>
+
+            <tr><td></td><td></td><td>Face Pulls (superset with Hammer Curls)</td><td>3</td><td>12-15</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Legs (Strength)</td><td>Barbell Squats</td><td>4-5</td><td>6-8</td></tr>
+
+            <tr><td></td><td></td><td>Romanian Deadlifts</td><td>4</td><td>8-10</td></tr>
+
+            <tr><td></td><td></td><td>Leg Press</td><td>3-4</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Lying Leg Curls</td><td>3-4</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Calf Raises (superset with Core)</td><td>4</td><td>15-20</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Push (Hypertrophy)</td><td>Incline Dumbbell Press (High Volume)</td><td>4-5</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Seated Dumbbell Shoulder Press</td><td>4</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Cable Flyes</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Rope Tricep Pushdowns (superset with Lateral Raises)</td><td>3</td><td>15-20</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Tricep Extensions</td><td>3</td><td>12-15</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Pull (Hypertrophy)</td><td>Lat Pulldowns (High Volume)</td><td>4-5</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>One-Arm Dumbbell Rows</td><td>4</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Reverse Pec Deck (superset with Dumbbell Shrugs)</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Hammer Curls</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Face Pulls</td><td>3</td><td>15-20</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Legs (Hypertrophy)</td><td>Hack Squats</td><td>4-5</td><td>10-12</td></tr>
+
+            <tr><td></td><td></td><td>Bulgarian Split Squats</td><td>4</td><td>10 per leg</td></tr>
+
+            <tr><td></td><td></td><td>Leg Extensions (superset with Leg Curls)</td><td>3</td><td>15-20</td></tr>
+
+            <tr><td></td><td></td><td>Walking Lunges (with dumbbells)</td><td>3</td><td>20 total</td></tr>
+
+            <tr><td></td><td></td><td>Seated Calf Raises</td><td>3</td><td>15-20</td></tr>
+
+ 
+
+            <tr><td>Day 7</td><td>Rest</td><td>Full Rest</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- ================= MUSCLE GAIN ================= -->
+
+    <div class="goal-card" onclick="toggleSublevels && toggleSublevels('musclegain')">Muscle Gain</div>
+
+    <div id="musclegain-sub" class="sublevels">
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('musclegain-beginner')">Beginner</button>
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('musclegain-intermediate')">Intermediate</button>
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('musclegain-advanced')">Advanced</button>
+
+    </div>
+
+ 
+
+    <!-- Muscle Gain - Beginner -->
+
+    <div id="musclegain-beginner" class="workout-plan">
+
+      <h3>Muscle Gain - Beginner</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Full Body A</td><td>Barbell Squats</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Dumbbell Bench Press</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Lat Pulldowns (or Pull-ups)</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Press (Dumbbell)</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Dumbbell Bicep Curls</td><td>3</td><td>10-15</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Rest</td><td>-</td><td>-</td><td>-</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Full Body B</td><td>Barbell Romanian Deadlifts</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Rows</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Incline Dumbbell Press</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Tricep Pushdowns</td><td>3</td><td>10-15</td></tr>
+
+            <tr><td></td><td></td><td>Plank</td><td>3</td><td>30-45 sec</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Rest</td><td>-</td><td>-</td><td>-</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Full Body C</td><td>Leg Press</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Seated Cable Rows</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Push-ups (on knees/incline)</td><td>3</td><td>To failure</td></tr>
+
+            <tr><td></td><td></td><td>Walking Lunges</td><td>3</td><td>8-12 per leg</td></tr>
+
+            <tr><td></td><td></td><td>Seated Calf Raises</td><td>3</td><td>12-15</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Rest</td><td>Active Recovery - brisk walk or light stretching</td><td>-</td><td>-</td></tr>
+
+            <tr><td>Day 7</td><td>Rest</td><td>-</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- Muscle Gain - Intermediate -->
+
+    <div id="musclegain-intermediate" class="workout-plan">
+
+      <h3>Muscle Gain - Intermediate</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Upper Body A</td><td>Barbell Bench Press</td><td>4</td><td>6-10</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Rows</td><td>4</td><td>6-10</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Press (Barbell)</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Lat Pulldowns</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Dumbbell Hammer Curls</td><td>3</td><td>10-15</td></tr>
+
+            <tr><td></td><td></td><td>Tricep Pushdowns</td><td>3</td><td>10-15</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Lower Body A</td><td>Barbell Squats</td><td>4</td><td>6-10</td></tr>
+
+            <tr><td></td><td></td><td>Romanian Deadlifts</td><td>4</td><td>6-8</td></tr>
+
+            <tr><td></td><td></td><td>Leg Press</td><td>3</td><td>10-15</td></tr>
+
+            <tr><td></td><td></td><td>Leg Extensions</td><td>3</td><td>10-15</td></tr>
+
+            <tr><td></td><td></td><td>Lying Leg Curls</td><td>3</td><td>10-15</td></tr>
+
+            <tr><td></td><td></td><td>Calf Raises</td><td>4</td><td>15-20</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Rest</td><td>-</td><td>-</td><td>-</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Upper Body B</td><td>Incline Dumbbell Press</td><td>4</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Seated Dumbbell Shoulder Press</td><td>4</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>One-Arm Dumbbell Rows</td><td>4</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Face Pulls</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Lateral Raises</td><td>3</td><td>12-15</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Curls</td><td>3</td><td>12-15</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Lower Body B</td><td>Hack Squats</td><td>4</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Bulgarian Split Squats</td><td>3</td><td>8-12</td></tr>
+
+            <tr><td></td><td></td><td>Glute Bridges</td><td>3</td><td>10-15</td></tr>
+
+            <tr><td></td><td></td><td>Seated Calf Raises</td><td>3</td><td>15-20</td></tr>
+
+            <tr><td></td><td></td><td>Walking Lunges</td><td>3</td><td>12 each leg</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Rest</td><td>Active Recovery - light stretching or walking</td><td>-</td><td>-</td></tr>
+
+            <tr><td>Day 7</td><td>Rest</td><td>-</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- Muscle Gain - Advanced -->
+
+    <div id="musclegain-advanced" class="workout-plan">
+
+      <h3>Muscle Gain - Advanced</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Push Strength</td><td>Barbell Bench Press</td><td>5</td><td>5</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Press</td><td>4</td><td>6</td></tr>
+
+            <tr><td></td><td></td><td>Incline Dumbbell Press</td><td>4</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Weighted Dips</td><td>4</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Lateral Raises</td><td>4</td><td>15</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Pull Strength</td><td>Deadlifts</td><td>5</td><td>5</td></tr>
+
+            <tr><td></td><td></td><td>Weighted Pull-ups</td><td>4</td><td>6</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Rows</td><td>4</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Hammer Curls</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Face Pulls</td><td>3</td><td>15</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Legs Strength</td><td>Back Squats</td><td>5</td><td>5</td></tr>
+
+            <tr><td></td><td></td><td>Romanian Deadlifts</td><td>4</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Walking Lunges</td><td>3</td><td>10 each leg</td></tr>
+
+            <tr><td></td><td></td><td>Seated Calf Raises</td><td>4</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Hanging Leg Raises</td><td>3</td><td>15</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Push Hypertrophy</td><td>Incline Dumbbell Press</td><td>4</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Seated Dumbbell Press</td><td>4</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Cable Flyes</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Tricep Rope Pushdowns</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Lateral Raises</td><td>3</td><td>20</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Pull Hypertrophy</td><td>Lat Pulldowns</td><td>4</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Single-Arm Dumbbell Rows</td><td>4</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Curls</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Face Pulls</td><td>3</td><td>20</td></tr>
+
+            <tr><td></td><td></td><td>Preacher Curls</td><td>3</td><td>12</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Legs Hypertrophy</td><td>Hack Squats</td><td>4</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Bulgarian Split Squats</td><td>4</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Leg Extensions</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Glute Bridges</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Standing Calf Raises</td><td>4</td><td>20</td></tr>
+
+ 
+
+            <tr><td>Day 7</td><td>Rest</td><td>Full Rest</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- ================= STRENGTH ================= -->
+
+    <div class="goal-card" onclick="toggleSublevels && toggleSublevels('strength')">Strength</div>
+
+    <div id="strength-sub" class="sublevels">
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('strength-beginner')">Beginner</button>
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('strength-intermediate')">Intermediate</button>
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('strength-advanced')">Advanced</button>
+
+    </div>
+
+ 
+
+    <!-- Strength - Beginner -->
+
+    <div id="strength-beginner" class="workout-plan">
+
+      <h3>Strength - Beginner</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Full Body</td><td>Bodyweight Squats</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Push-ups</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Glute Bridges</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Plank</td><td>3</td><td>30 sec</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Rest</td><td>Light walking or stretching</td><td>-</td><td>-</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Upper Body</td><td>Dumbbell Bench Press</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Seated Dumbbell Shoulder Press</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>One-Arm Dumbbell Rows</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Bicep Curls</td><td>3</td><td>12</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Lower Body</td><td>Goblet Squats</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Romanian Deadlifts</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Calf Raises</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Side Plank</td><td>3</td><td>30 sec</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Rest</td><td>Active Recovery</td><td>-</td><td>-</td></tr>
+
+            <tr><td>Day 6</td><td>Full Body</td><td>Walking Lunges</td><td>3</td><td>12 per leg</td></tr>
+
+            <tr><td></td><td></td><td>Dumbbell Rows</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Push-ups</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Crunches</td><td>3</td><td>15</td></tr>
+
+ 
+
+            <tr><td>Day 7</td><td>Rest</td><td>Full Rest</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- Strength - Intermediate -->
+
+    <div id="strength-intermediate" class="workout-plan">
+
+      <h3>Strength - Intermediate</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Push</td><td>Barbell Bench Press</td><td>4</td><td>6</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Press</td><td>4</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Incline Dumbbell Press</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Lateral Raises</td><td>3</td><td>12</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Pull</td><td>Deadlifts</td><td>4</td><td>5</td></tr>
+
+            <tr><td></td><td></td><td>Pull-ups</td><td>4</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Rows</td><td>3</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Face Pulls</td><td>3</td><td>15</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Legs</td><td>Back Squats</td><td>4</td><td>6</td></tr>
+
+            <tr><td></td><td></td><td>Romanian Deadlifts</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Walking Lunges</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Calf Raises</td><td>3</td><td>15</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Rest</td><td>Active Recovery</td><td>-</td><td>-</td></tr>
+
+            <tr><td>Day 5</td><td>Push Hypertrophy</td><td>Incline Barbell Press</td><td>4</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Dumbbell Flyes</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Arnold Press</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Tricep Dips</td><td>3</td><td>12</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Pull Hypertrophy</td><td>Lat Pulldowns</td><td>4</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Seated Cable Rows</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Bicep Curls</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Hammer Curls</td><td>3</td><td>15</td></tr>
+
+ 
+
+            <tr><td>Day 7</td><td>Rest</td><td>Full Rest</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- Strength - Advanced -->
+
+    <div id="strength-advanced" class="workout-plan">
+
+      <h3>Strength - Advanced</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Powerlifting</td><td>Barbell Squats</td><td>5</td><td>3</td></tr>
+
+            <tr><td></td><td></td><td>Bench Press</td><td>5</td><td>3</td></tr>
+
+            <tr><td></td><td></td><td>Deadlifts</td><td>5</td><td>3</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Press</td><td>4</td><td>5</td></tr>
+
+            <tr><td></td><td></td><td>Weighted Pull-ups</td><td>4</td><td>6</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Hypertrophy</td><td>Incline Dumbbell Press</td><td>4</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>One-Arm Dumbbell Rows</td><td>4</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Arnold Press</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Curls</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Tricep Dips</td><td>3</td><td>15</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Active Recovery</td><td>Walking / Yoga</td><td>-</td><td>-</td></tr>
+
+            <tr><td>Day 4</td><td>Pull Power</td><td>Deadlifts</td><td>5</td><td>5</td></tr>
+
+            <tr><td></td><td></td><td>Barbell Rows</td><td>4</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Lat Pulldowns</td><td>4</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Face Pulls</td><td>3</td><td>12</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Push Power</td><td>Bench Press</td><td>5</td><td>5</td></tr>
+
+            <tr><td></td><td></td><td>Overhead Press</td><td>4</td><td>6</td></tr>
+
+            <tr><td></td><td></td><td>Cable Flyes</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Tricep Pushdowns</td><td>3</td><td>12</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Legs Power</td><td>Front Squats</td><td>5</td><td>5</td></tr>
+
+            <tr><td></td><td></td><td>Romanian Deadlifts</td><td>4</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Glute Bridges</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Calf Raises</td><td>4</td><td>20</td></tr>
+
+ 
+
+            <tr><td>Day 7</td><td>Rest</td><td>Full Rest</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- ================= HOME WORKOUT ================= -->
+
+    <div class="goal-card" onclick="toggleSublevels && toggleSublevels('homeworkout')">Home Workout</div>
+
+    <div id="homeworkout-sub" class="sublevels">
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('homeworkout-beginner')">Beginner</button>
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('homeworkout-intermediate')">Intermediate</button>
+
+      <button class="sublevel-btn" onclick="showPlan && showPlan('homeworkout-advanced')">Advanced</button>
+
+    </div>
+
+ 
+
+    <!-- Home Workout - Beginner -->
+
+    <div id="homeworkout-beginner" class="workout-plan">
+
+      <h3>Home Workout - Beginner</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Full Body</td><td>Bodyweight Squats</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Push-ups (knee variation)</td><td>3</td><td>8-10</td></tr>
+
+            <tr><td></td><td></td><td>Glute Bridges</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Plank</td><td>3</td><td>20 sec</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Rest</td><td>Light walking or stretching</td><td>-</td><td>-</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Upper Body</td><td>Incline Push-ups</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Pike Shoulder Press</td><td>3</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Supermans</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Side Plank</td><td>3</td><td>15 sec per side</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Lower Body</td><td>Reverse Lunges</td><td>3</td><td>10 per leg</td></tr>
+
+            <tr><td></td><td></td><td>Step-ups (on chair)</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Calf Raises</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Crunches</td><td>3</td><td>12</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Rest</td><td>Active Recovery</td><td>-</td><td>-</td></tr>
+
+            <tr><td>Day 6</td><td>Full Body</td><td>Burpees</td><td>3</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Chair Dips</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Mountain Climbers</td><td>3</td><td>20</td></tr>
+
+            <tr><td></td><td></td><td>Leg Raises</td><td>3</td><td>10</td></tr>
+
+ 
+
+            <tr><td>Day 7</td><td>Rest</td><td>Full Rest</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- Home Workout - Intermediate -->
+
+    <div id="homeworkout-intermediate" class="workout-plan">
+
+      <h3>Home Workout - Intermediate</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Push</td><td>Decline Push-ups</td><td>4</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Pike Push-ups</td><td>4</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Chair Dips</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Plank with Shoulder Tap</td><td>3</td><td>20 taps</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Pull</td><td>Towel Rows</td><td>4</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Superman Holds</td><td>3</td><td>30 sec</td></tr>
+
+            <tr><td></td><td></td><td>Reverse Snow Angels</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Side Plank with Reach</td><td>3</td><td>15 each</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Lower Body</td><td>Pistol Squats (assisted)</td><td>4</td><td>6 per leg</td></tr>
+
+            <tr><td></td><td></td><td>Jump Squats</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Glute Bridges (single leg)</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Wall Sit</td><td>3</td><td>45 sec</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>Rest</td><td>Active Recovery</td><td>-</td><td>-</td></tr>
+
+            <tr><td>Day 5</td><td>HIIT</td><td>Burpees</td><td>4</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Mountain Climbers</td><td>3</td><td>30</td></tr>
+
+            <tr><td></td><td></td><td>Jump Lunges</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Bicycle Crunches</td><td>3</td><td>20</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Core & Stability</td><td>Leg Raises</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Russian Twists</td><td>3</td><td>20</td></tr>
+
+            <tr><td></td><td></td><td>Bird Dog</td><td>3</td><td>12 per side</td></tr>
+
+            <tr><td></td><td></td><td>Side Plank Dips</td><td>3</td><td>12 each</td></tr>
+
+ 
+
+            <tr><td>Day 7</td><td>Rest</td><td>Full Rest</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+    <!-- Home Workout - Advanced -->
+
+    <div id="homeworkout-advanced" class="workout-plan">
+
+      <h3>Home Workout - Advanced</h3>
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr><th>Day</th><th>Workout Type</th><th>Exercise</th><th>Sets</th><th>Reps</th></tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr><td>Day 1</td><td>Push</td><td>Handstand Push-ups (wall supported)</td><td>4</td><td>6</td></tr>
+
+            <tr><td></td><td></td><td>Archer Push-ups</td><td>4</td><td>8 each</td></tr>
+
+            <tr><td></td><td></td><td>Dips (chair or parallel bars)</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Explosive Push-ups (clap)</td><td>3</td><td>8</td></tr>
+
+ 
+
+            <tr><td>Day 2</td><td>Pull</td><td>Towel Pull-ups (door frame)</td><td>4</td><td>8</td></tr>
+
+            <tr><td></td><td></td><td>Inverted Rows (table variation)</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Superman Pulls</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Hollow Body Holds</td><td>3</td><td>30 sec</td></tr>
+
+ 
+
+            <tr><td>Day 3</td><td>Lower Body</td><td>Pistol Squats</td><td>4</td><td>8 per leg</td></tr>
+
+            <tr><td></td><td></td><td>Jumping Lunges</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Single-Leg Glute Bridge</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Wall Sit with Shoulder Press</td><td>3</td><td>12</td></tr>
+
+ 
+
+            <tr><td>Day 4</td><td>HIIT</td><td>Burpee to Jump Squat</td><td>5</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>Mountain Climbers</td><td>3</td><td>40</td></tr>
+
+            <tr><td></td><td></td><td>Plyo Push-ups</td><td>3</td><td>10</td></tr>
+
+            <tr><td></td><td></td><td>High Knees</td><td>3</td><td>45 sec</td></tr>
+
+ 
+
+            <tr><td>Day 5</td><td>Core</td><td>V-Ups</td><td>3</td><td>15</td></tr>
+
+            <tr><td></td><td></td><td>Plank to Pike</td><td>3</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>Side Plank with Hip Raise</td><td>3</td><td>12 each</td></tr>
+
+            <tr><td></td><td></td><td>Windshield Wipers</td><td>3</td><td>12</td></tr>
+
+ 
+
+            <tr><td>Day 6</td><td>Full Body Power</td><td>Burpee + Jumping Lunges Combo</td><td>4</td><td>12</td></tr>
+
+            <tr><td></td><td></td><td>One-Arm Push-ups</td><td>3</td><td>6 each</td></tr>
+
+            <tr><td></td><td></td><td>Pike Handstand Hold</td><td>3</td><td>30 sec</td></tr>
+
+            <tr><td></td><td></td><td>Mountain Climber Sprints</td><td>3</td><td>45 sec</td></tr>
+
+ 
+
+            <tr><td>Day 7</td><td>Rest</td><td>Full Rest</td><td>-</td><td>-</td></tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+ 
+
+ 
+
+    <!-- ===== Call To Action ===== -->
+
+  <section class="cta-buttons">
+
+    <a href="https://www.instagram.com/fitstance__?igsh=MW01NHYwcW5ydXlycA==" target="_blank" class="btn">
+
+      Message us for Routines
+
+    </a>
+
+    <a href="index.html" class="btn btn-home">
+
+      Back to Home
+
+    </a>
+
+  </section>
+
+ 
+
+  <!-- ===== Footer ===== -->
+
+  <div id="footer"></div>
+
+ 
+
+  <!-- ===== Master JS ===== -->
+
+  <script src="js/master.js"></script>
+
+ 
+
+</body>
+
+</html>
