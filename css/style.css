@@ -36,7 +36,7 @@ header {
 }
 
 header img {
-  max-height: 60px; /* already small logo */
+  max-height: 60px;
   width: auto;
   margin-bottom: 0.5rem;
 }
@@ -80,8 +80,8 @@ section {
 /* ========= Mission & Values ========= */
 .mission-values-container {
   display: flex;
-  flex-direction: column; /* always stacked */
-  align-items: center;    /* center horizontally */
+  flex-direction: column;
+  align-items: center;
   gap: 1.2rem;
 }
 
@@ -98,14 +98,14 @@ section {
 /* ========= Homepage Topics Grid ========= */
 .topics-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* desktop: 2 per row */
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
 .topic-card {
   display: flex;
-  align-items: center;       /* vertically center icon + text */
+  align-items: center;
   gap: 12px;
   padding: 15px 20px;
   border-radius: 15px;
@@ -113,15 +113,15 @@ section {
   font-weight: 500;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   text-align: left;
-  min-height: 80px;          /* ✅ equal height cards */
+  min-height: 80px;
 }
 
 .topic-card i {
-  font-size: 1.5rem;         /* slightly larger for balance */
-  color: #e63946;            /* red icons */
+  font-size: 1.5rem;
+  color: #e63946;
   flex-shrink: 0;
-  width: 30px;               /* ✅ fixed width for alignment */
-  text-align: center;        /* keep icons aligned */
+  width: 30px;
+  text-align: center;
 }
 
 /* ========= Cards (General) ========= */
@@ -144,7 +144,7 @@ section {
   background: #f8f9fa;
   transform: translateY(-3px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  cursor: pointer; /* ✅ better UX */
+  cursor: pointer;
 }
 
 .card h2 {
@@ -204,15 +204,16 @@ section {
 }
 
 .accordion-content {
-  max-height: 0;             /* ✅ smoother accordion */
+  max-height: 0;
   overflow: hidden;
   padding: 0 1rem;
   background: #fff;
   text-align: left;
   transition: max-height 0.4s ease, padding 0.3s ease;
 }
+
 .accordion-item.active .accordion-content {
-  max-height: 500px; /* adjust if needed */
+  max-height: 500px;
   padding: 1rem;
 }
 
@@ -283,18 +284,39 @@ section {
   border-radius: 15px;
 }
 
+/* ========= New: Media Section ========= */
+.media-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.media-gallery img,
+.media-gallery video {
+  width: 100%;
+  max-height: 300px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 /* ========= Responsive ========= */
 @media (max-width: 992px) {
-  /* ✅ tablet breakpoint */
+  /* Tablet view */
   .topics-container {
     grid-template-columns: repeat(2, 1fr);
   }
   .cards {
     grid-template-columns: repeat(2, 1fr);
   }
+  .media-gallery {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
+  /* Mobile view */
   header h1 {
     font-size: 1.7rem;
   }
@@ -308,6 +330,9 @@ section {
     grid-template-columns: 1fr;
   }
   .topics-container {
-    grid-template-columns: 1fr; /* 1 per row on mobile */
+    grid-template-columns: 1fr;
+  }
+  .media-gallery {
+    grid-template-columns: 1fr;
   }
 }
