@@ -71,7 +71,7 @@
 
     .values-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(2, 1fr);  /* 2 per row on desktop */
       gap: 1.5rem;
     }
 
@@ -82,6 +82,10 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 100%;
     }
 
     .value-card:hover {
@@ -154,6 +158,10 @@
 
       .value-card i {
         font-size: 2rem;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;  /* 1 per row on mobile */
       }
     }
   </style>
