@@ -11,6 +11,49 @@
   
   <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Extra Card Styling -->
+  <style>
+    /* ===== Explore FitStance Grid ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;          /* vertically center icon + text */
+      gap: 12px;
+      padding: 18px 22px;
+      border-radius: 12px;
+      background: #fff;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .card i {
+      font-size: 1.5rem;
+      color: #e63946;               /* red icons */
+      flex-shrink: 0;
+      width: 30px;                  /* fixed width for alignment */
+      text-align: center;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      color: #222;                  /* dark text */
+      margin: 0;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    }
+  </style>
 </head>
 <body>
 
@@ -101,12 +144,11 @@
           <source src="media/workout1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-
       </div>
     </section>
   </main>
 
-<!-- ===== Footer Container (Loaded Dynamically) ===== -->
+  <!-- ===== Footer Container (Loaded Dynamically) ===== -->
   <div id="footer"></div>
 
   <!-- ===== Scripts ===== -->
