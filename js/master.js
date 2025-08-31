@@ -130,16 +130,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const age = parseInt(form.age.value);
       const gender = form.gender.value;
-      const height = parseFloat(form.height.value);
-      const weight = parseFloat(form.weight.value);
       const activity = parseFloat(form.activity.value);
       const goal = form.goal.value;
+
+      // Height handling (cm OR ft+in)
+      let height = 0;
+      if (form.heightCm.value) {
+        height = parseFloat(form.heightCm.value);
+      } else if (form.heightFt.value || form.heightIn.value) {
+        const feet = parseFloat(form.heightFt.value) || 0;
+        const inches = parseFloat(form.heightIn.value) || 0;
+        height = (feet * 30.48) + (inches * 2.54);
+      }
+
+      // Weight handling (kg OR lbs)
+      let weight = 0;
+      if (form.weightKg.value) {
+        weight = parseFloat(form.weightKg.value);
+      } else if (form.weightLbs.value) {
+        weight = parseFloat(form.weightLbs.value) * 0.453592;
+      }
 
       if ([age, height, weight, activity].some(v => isNaN(v)) || !gender || !goal) {
         alert("⚠ Please fill in all fields correctly.");
         return;
       }
 
+      // Core calculations
       const bmr =
         gender === "male"
           ? 10 * weight + 6.25 * height - 5 * age + 5
@@ -169,18 +186,35 @@ document.addEventListener("DOMContentLoaded", () => {
       const carbs = Math.round((remainingCalories * 0.6) / 4);
       const fats = Math.round((remainingCalories * 0.4) / 9);
 
-      const updateResult = (id, value) => {
+      // Conversion back for display
+      const weightLbs = (weight / 0.453592).toFixed(1);
+      const heightFt = Math.floor(height / 30.48);
+      const heightIn = Math.round((height - heightFt * 30.48) / 2.54);
+
+      const updateResult = (id, value, color = null) => {
         const el = document.getElementById(id);
         if (el) {
           el.textContent = value;
+          if (color) el.style.color = color;
           el.classList.add("highlight");
           setTimeout(() => el.classList.remove("highlight"), 800);
         }
       };
 
+      // Update Results
+      updateResult("weight-display", `${weight.toFixed(1)} kg (${weightLbs} lbs)`);
+      updateResult("height-display", `${Math.round(height)} cm (${heightFt} ft ${heightIn} in)`);
       updateResult("bmr", Math.round(bmr));
       updateResult("bmi", bmi.toFixed(1));
-      updateResult("bmi-category", bmiCategory);
+
+      // BMI category with color
+      let bmiColor = "red";
+      if (bmi < 18.5) bmiColor = "orange";
+      else if (bmi < 25) bmiColor = "green";
+      else if (bmi < 30) bmiColor = "orange";
+      else bmiColor = "red";
+      updateResult("bmi-category", bmiCategory, bmiColor);
+
       updateResult("tdee", Math.round(tdee));
       updateResult("water", water.toFixed(2));
       updateResult("protein", protein);
