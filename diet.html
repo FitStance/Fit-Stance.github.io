@@ -13,105 +13,113 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <style>
-    .page-image img {
-      width: 100%;
-      border-radius: 16px;
-      margin: 1.5rem 0;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    }
+  .page-image img {
+    width: 100%;
+    border-radius: 16px;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
 
-    .diet-section {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-    .diet-section h2 {
-      font-size: 2rem;
-      color: #e63946;
-      margin-bottom: 0.75rem;
-      font-weight: 700;
-    }
-    .diet-section p {
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-      color: #333;
-    }
+  .diet-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  .diet-section h2 {
+    font-size: 2rem;
+    color: #e63946;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    text-align: left; /* ✅ ensure headings left aligned */
+  }
+  .diet-section p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    color: #333;
+    text-align: left; /* ✅ force left alignment for paragraphs */
+  }
 
-    .btn {
-      display: inline-block;
-      padding: 0.7rem 1.4rem;
-      border-radius: 25px;
-      background: #e63946;
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #d62839;
-      transform: scale(1.05);
-    }
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    border-radius: 25px;
+    background: #e63946;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  .btn:hover {
+    background: #d62839;
+    transform: scale(1.05);
+  }
 
-    .table-container {
-      overflow-x: auto;
-      background: #fff;
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 680px;
-    }
-    thead {
-      background: #e63946;
-      color: #fff;
-    }
-    th, td {
-      padding: 0.8rem;
-      border-bottom: 1px solid #f0f0f0;
-      font-size: 0.95rem;
-      white-space: nowrap;
-    }
-    tr:hover td { background: #fafafa; }
+  .table-container {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 680px;
+  }
+  thead {
+    background: #e63946;
+    color: #fff;
+  }
+  th, td {
+    padding: 0.8rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    text-align: left; /* ✅ force table text left */
+  }
+  tr:hover td { background: #fafafa; }
 
-    .search-box {
-      margin: 1rem 0;
-      text-align: right;
-    }
-    .search-box input {
-      padding: 0.5rem 1rem;
-      border: 2px solid #ddd;
-      border-radius: 25px;
-      outline: none;
-    }
+  .search-box {
+    margin: 1rem 0;
+    text-align: center; /* ✅ center the search bar */
+  }
+  .search-box input {
+    padding: 0.5rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    width: 250px; /* ✅ fixed width for better centering */
+    max-width: 90%;
+  }
 
-    .macro-section {
-      margin-top: 2.5rem;
-    }
-    .macro-section h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      color: #222;
-    }
-    .macro-section .note {
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-      color: #555;
-    }
+  .macro-section {
+    margin-top: 2.5rem;
+  }
+  .macro-section h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: #222;
+    text-align: left; /* ✅ keep left */
+  }
+  .macro-section .note {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #555;
+    text-align: left; /* ✅ note text left */
+  }
 
-    .cta-buttons {
-      text-align: center;
-      margin: 3rem 0 2rem;
-    }
-    .btn-home {
-      background: #333;
-      margin-left: 1rem;
-    }
-    .btn-home:hover { background: #000; }
-  </style>
+  .cta-buttons {
+    text-align: center;
+    margin: 3rem 0 2rem;
+  }
+  .btn-home {
+    background: #333;
+    margin-left: 1rem;
+  }
+  .btn-home:hover { background: #000; }
+</style>
+
 </head>
 <body>
 
