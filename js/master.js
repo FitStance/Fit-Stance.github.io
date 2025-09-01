@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ------------------------------
-     2. Smooth Scrolling
+     2. Smooth Scrolling for Anchors
   ------------------------------ */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", e => {
@@ -53,20 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ------------------------------
-     3. Accordion Toggle (Workout / FAQs)
+     3. Accordion Toggle (Workouts / FAQs)
   ------------------------------ */
   const accordionHeaders = document.querySelectorAll(".accordion-header");
-
   accordionHeaders.forEach(header => {
     header.addEventListener("click", () => {
       const item = header.parentElement;
 
-      // Close all others
       accordionHeaders.forEach(h => {
         if (h !== header) h.parentElement.classList.remove("active");
       });
 
-      // Toggle clicked one
       item.classList.toggle("active");
     });
   });
@@ -112,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fitnessForm = document.getElementById("fitness-form");
   const resultsBox = document.querySelector(".results");
 
-  if (fitnessForm) {
+  if (fitnessForm && resultsBox) {
     fitnessForm.addEventListener("submit", e => {
       e.preventDefault();
       const form = e.target;
@@ -122,24 +119,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const gender = form.gender.value;
       const activity = parseFloat(form.activity.value);
       const goal = form.goal.value;
+      const weight = parseFloat(form.weightKg.value);
 
-      // Height handling: cm OR ft + in
-      let height = 0;
-      if (form.heightCm.value) {
-        height = parseFloat(form.heightCm.value);
-      } else if (form.heightFt.value || form.heightIn.value) {
-        const feet = parseFloat(form.heightFt.value) || 0;
-        const inches = parseFloat(form.heightIn.value) || 0;
-        height = (feet * 30.48) + (inches * 2.54);
-      }
-
-      // Weight handling: kg OR lbs
-      let weight = 0;
-      if (form.weightKg.value) {
-        weight = parseFloat(form.weightKg.value);
-      } else if (form.weightLbs.value) {
-        weight = parseFloat(form.weightLbs.value) * 0.453592;
-      }
+      // Height: Feet + Inches → CM
+      const feet = parseFloat(form.heightFt.value) || 0;
+      const inches = parseFloat(form.heightIn.value) || 0;
+      const height = (feet * 30.48) + (inches * 2.54);
 
       // Validation
       if (
@@ -151,13 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // BMR Calculation (Mifflin-St Jeor)
+      // BMR (Mifflin-St Jeor)
       const bmr =
         gender === "male"
           ? 10 * weight + 6.25 * height - 5 * age + 5
           : 10 * weight + 6.25 * height - 5 * age - 161;
 
-      // TDEE Calculation
+      // TDEE
       const tdee = bmr * activity;
 
       // Calories based on goal
@@ -165,18 +150,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (goal === "gain") calories += 300;
       if (goal === "lose") calories -= 300;
 
-      // BMI Calculation
+      // BMI
       const bmi = weight / Math.pow(height / 100, 2);
-      const bmiCategory =
-        bmi < 18.5
-          ? "Underweight"
-          : bmi < 25
-          ? "Normal weight"
-          : bmi < 30
-          ? "Overweight"
-          : "Obese";
+      let bmiCategory = "";
+      let bmiClass = "";
 
-      // Water Intake (40ml per kg)
+      if (bmi < 18.5) {
+        bmiCategory = "Underweight";
+        bmiClass = "bmi-warning";
+      } else if (bmi < 25) {
+        bmiCategory = "Normal weight";
+        bmiClass = "bmi-normal";
+      } else if (bmi < 30) {
+        bmiCategory = "Overweight";
+        bmiClass = "bmi-warning";
+      } else {
+        bmiCategory = "Obese";
+        bmiClass = "bmi-danger";
+      }
+
+      // Water Intake (40 ml per kg)
       const water = (weight * 40) / 1000;
 
       // Macronutrients
@@ -186,41 +179,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const carbs = Math.round((remainingCalories * 0.6) / 4);
       const fats = Math.round((remainingCalories * 0.4) / 9);
 
-      // Conversion for display
-      const weightLbs = (weight / 0.453592).toFixed(1);
-      const heightFt = Math.floor(height / 30.48);
-      const heightIn = Math.round((height - heightFt * 30.48) / 2.54);
-
       // Update results dynamically
-      const updateResult = (id, value, color = null) => {
+      const updateResult = (id, value, cssClass = null) => {
         const el = document.getElementById(id);
         if (el) {
           el.textContent = value;
-          if (color) el.style.color = color;
+          el.className = ""; // reset old class
+          if (cssClass) el.classList.add(cssClass);
           el.classList.add("highlight");
           setTimeout(() => el.classList.remove("highlight"), 800);
         }
       };
 
-      // Color-code BMI category
-      let bmiColor = "red";
-      if (bmi < 18.5) bmiColor = "orange";
-      else if (bmi < 25) bmiColor = "green";
-      else if (bmi < 30) bmiColor = "orange";
-      else bmiColor = "red";
-
-      // Update results
       updateResult("bmr", Math.round(bmr));
       updateResult("bmi", bmi.toFixed(1));
-      updateResult("bmi-category", bmiCategory, bmiColor);
+      updateResult("bmi-category", bmiCategory, bmiClass);
       updateResult("tdee", Math.round(tdee));
       updateResult("water", water.toFixed(2));
       updateResult("protein", protein);
       updateResult("carbs", carbs);
       updateResult("fats", fats);
 
-      // Show results box
-      resultsBox.style.display = "block";
+      // Show results with animation
+      resultsBox.classList.add("show");
       resultsBox.scrollIntoView({ behavior: "smooth" });
     });
   }
