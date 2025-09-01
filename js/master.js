@@ -122,8 +122,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const gender = form.gender.value;
       const activity = parseFloat(form.activity.value);
       const goal = form.goal.value;
-      const height = parseFloat(form.heightCm.value);
-      const weight = parseFloat(form.weightKg.value);
+
+      // Height handling: cm OR ft + in
+      let height = 0;
+      if (form.heightCm.value) {
+        height = parseFloat(form.heightCm.value);
+      } else if (form.heightFt.value || form.heightIn.value) {
+        const feet = parseFloat(form.heightFt.value) || 0;
+        const inches = parseFloat(form.heightIn.value) || 0;
+        height = (feet * 30.48) + (inches * 2.54);
+      }
+
+      // Weight handling: kg OR lbs
+      let weight = 0;
+      if (form.weightKg.value) {
+        weight = parseFloat(form.weightKg.value);
+      } else if (form.weightLbs.value) {
+        weight = parseFloat(form.weightLbs.value) * 0.453592;
+      }
 
       // Validation
       if (
@@ -170,6 +186,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const carbs = Math.round((remainingCalories * 0.6) / 4);
       const fats = Math.round((remainingCalories * 0.4) / 9);
 
+      // Conversion for display
+      const weightLbs = (weight / 0.453592).toFixed(1);
+      const heightFt = Math.floor(height / 30.48);
+      const heightIn = Math.round((height - heightFt * 30.48) / 2.54);
+
       // Update results dynamically
       const updateResult = (id, value, color = null) => {
         const el = document.getElementById(id);
@@ -188,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
       else if (bmi < 30) bmiColor = "orange";
       else bmiColor = "red";
 
+      // Update results
       updateResult("bmr", Math.round(bmr));
       updateResult("bmi", bmi.toFixed(1));
       updateResult("bmi-category", bmiCategory, bmiColor);
