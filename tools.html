@@ -202,29 +202,56 @@
     }
 
     /* CTA Buttons */
-    .cta-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
+.cta-buttons {
+  text-align: center;
+  margin: 3rem 0 2rem;
+}
 
-    .cta-buttons a {
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      background-color: #e63946;
-      color: #fff;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
-    }
+/* Default Button Style */
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  background: #e63946; /* Default Red Background */
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
 
-    .cta-buttons a:hover {
-      background-color: #d62839;
-      transform: scale(1.05);
-    }
+/* Default Hover Effect */
+.btn:hover {
+  background: #d62839; /* Darker Red on Hover */
+  transform: scale(1.05);
+}
+
+/* Home Button Style */
+.btn-home {
+  background: #333; /* Black Background */
+  margin-left: 1rem;
+}
+
+/* Home Button Hover */
+.btn-home:hover {
+  background: #000; /* Darker Black on Hover */
+}
+
+/* New "View Diet Plans" Button */
+.btn-diet {
+  background: #e63946; /* Red Background */
+  color: white;
+  margin-left: 1rem;
+}
+
+/* Hover Effect for "View Diet Plans" */
+.btn-diet:hover {
+  background: #d62839; /* Darker Red */
+  transform: scale(1.05);
+}
 
     /* Animations */
     @keyframes fadeIn {
@@ -351,10 +378,9 @@
       </div>
     </div>
 
-    <!-- CTA Buttons -->
     <div class="cta-buttons">
-      <a href="diet.html"><i class="fas fa-utensils"></i> View Diet Plans</a>
-      <a href="index.html"><i class="fas fa-home"></i> Back to Home</a>
+  <a href="diet.html" class="btn btn-diet">View Diet Plans</a>
+  <a href="index.html" class="btn btn-home">Home</a>
     </div>
   </section>
 
