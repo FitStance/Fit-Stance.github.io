@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitness Tools & Calculators | FitStance</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Page Layout */
+    .tools-page {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Hero Image */
+    .page-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Intro */
+    .intro {
+      margin-bottom: 2rem;
+    }
+
+    .intro h2 {
+      font-size: 2.2rem;
+      color: #e63946;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .intro p {
+      color: #444;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Form Styling */
+    .fitness-form {
+      background: #fff;
+      padding: 1.8rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+    }
+
+    .fitness-form h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #222;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .calculate-btn {
+      display: block;
+      margin: 1rem auto 0;
+      background: #e63946;
+      color: #fff;
+      font-size: 1.1rem;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .calculate-btn:hover {
+      background: #d62839;
+    }
+
+    /* Results Box */
+    .results {
+      background: #fff;
+      padding: 1.8rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+      display: none;
+    }
+
+    .results h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: 1rem;
+    }
+
+    .bmi-normal { color: green; }
+    .bmi-warning { color: orange; }
+    .bmi-danger { color: red; }
+
+    /* Macros Table */
+    .macros {
+      margin-top: 1.5rem;
+      border-top: 2px solid #f0f0f0;
+      padding-top: 1rem;
+    }
+
+    .macros h4 {
+      margin-bottom: 0.6rem;
+    }
+
+    /* Buttons */
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .cta-buttons a {
+      padding: 0.8rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      background-color: #e63946;
+      color: #fff;
+      transition: background 0.3s ease;
+    }
+
+    .cta-buttons a:hover {
+      background-color: #d62839;
+    }
+
+    @media (max-width: 768px) {
+      .intro h2 {
+        font-size: 1.8rem;
+      }
+      .results, .fitness-form {
+        padding: 1.2rem;
+      }
+      .result-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header>
+    <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
+    <h1 class="brand-name">FITSTANCE</h1>
+    <p class="tagline">Move better. Feel better ❤</p>
+  </header>
+
+  <!-- ===== Hero Image ===== -->
+  <div class="page-image">
+    <img src="tools-hero.jpg" alt="Fitness Tools" />
+  </div>
+
+  <!-- ===== Tools Content ===== -->
+  <section class="tools-page">
+    <!-- Intro -->
+    <div class="intro">
+      <h2>Fitness Calculators</h2>
+      <p>Calculate your <strong>BMR</strong>, <strong>BMI</strong>, <strong>TDEE</strong>, <strong>water intake</strong>, and <strong>macronutrients</strong> in one place.</p>
+      <p>These numbers help you understand how much to eat and drink according to your goals. Once you calculate them, check our <a href="diet.html" style="color:#e63946; font-weight:600;">Diet Plans</a> for structured meal plans.</p>
+    </div>
+
+    <!-- Calculator Form -->
+    <form id="fitness-form" class="fitness-form">
+      <h3><i class="fas fa-calculator"></i> Fitness Calculator</h3>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" placeholder="Enter your age" required>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+          <option value="">Select gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Height</label>
+        <input type="number" id="heightCm" name="heightCm" placeholder="Height in cm">
+      </div>
+
+      <div class="form-group">
+        <label>Weight</label>
+        <input type="number" id="weightKg" name="weightKg" placeholder="Weight in kg">
+      </div>
+
+      <div class="form-group">
+        <label for="activity">Activity Level</label>
+        <select id="activity" name="activity" required>
+          <option value="">Select activity</option>
+          <option value="1.2">Sedentary</option>
+          <option value="1.375">Lightly active</option>
+          <option value="1.55">Moderately active</option>
+          <option value="1.725">Very active</option>
+          <option value="1.9">Extremely active</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="goal">Goal</label>
+        <select id="goal" name="goal" required>
+          <option value="">Select goal</option>
+          <option value="maintain">Maintain</option>
+          <option value="lose">Lose Weight</option>
+          <option value="gain">Gain Weight</option>
+        </select>
+      </div>
+
+      <button type="submit" class="calculate-btn">Calculate</button>
+    </form>
+
+    <!-- Results -->
+    <div class="results">
+      <h3><i class="fas fa-chart-line"></i> Your Results</h3>
+
+      <div class="result-row"><strong>BMR:</strong> <span id="bmr">--</span> kcal/day</div>
+      <div class="result-row"><strong>BMI:</strong> <span id="bmi">--</span> (<span id="bmi-category">--</span>)</div>
+      <div class="result-row"><strong>TDEE:</strong> <span id="tdee">--</span> kcal/day</div>
+      <div class="result-row"><strong>Water Intake:</strong> <span id="water">--</span> L/day</div>
+
+      <div class="macros">
+        <h4><i class="fas fa-utensils"></i> Macronutrients</h4>
+        <div class="result-row"><strong>Protein:</strong> <span id="protein">--</span> g</div>
+        <div class="result-row"><strong>Carbs:</strong> <span id="carbs">--</span> g</div>
+        <div class="result-row"><strong>Fats:</strong> <span id="fats">--</span> g</div>
+      </div>
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="cta-buttons">
+      <a href="index.html"><i class="fas fa-home"></i> Back to Home</a>
+      <a href="diet.html"><i class="fas fa-utensils"></i> View Diet Plans</a>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <div id="footer"></div>
+
+  <!-- ===== Master JS ===== -->
+  <script src="js/master.js"></script>
+</body>
+</html>
