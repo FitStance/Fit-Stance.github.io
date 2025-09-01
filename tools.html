@@ -9,11 +9,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="css/style.css" />
-
+  <!-- Inline Optimized CSS -->
   <style>
-    /* Page Layout */
+    /* ==============================
+       FITNESS TOOLS & CALCULATOR
+       ============================== */
+
+    /* Tools Page Layout */
     .tools-page {
       max-width: 1200px;
       margin: 2rem auto;
@@ -29,33 +31,39 @@
       border-radius: 16px;
       margin: 1.5rem 0;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 1s ease-in-out;
     }
 
-    /* Intro */
+    /* Intro Section */
     .intro {
       margin-bottom: 2rem;
+      text-align: left;
     }
 
     .intro h2 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       color: #e63946;
       font-weight: 700;
       margin-bottom: 0.8rem;
+      line-height: 1.3;
+      animation: fadeDown 0.8s ease-in-out;
     }
 
     .intro p {
       color: #444;
       font-size: 1rem;
       line-height: 1.6;
+      margin-bottom: 0.6rem;
     }
 
-    /* Form Styling */
+    /* Form Container */
     .fitness-form {
       background: #fff;
-      padding: 1.8rem;
+      padding: 2rem;
       border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       margin-bottom: 2rem;
+      animation: fadeUp 0.8s ease-in-out;
     }
 
     .fitness-form h3 {
@@ -83,8 +91,17 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
+      transition: 0.3s ease;
     }
 
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #e63946;
+      box-shadow: 0 0 8px rgba(230, 57, 70, 0.3);
+    }
+
+    /* Calculate Button */
     .calculate-btn {
       display: block;
       margin: 1rem auto 0;
@@ -96,42 +113,78 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: 600;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
     }
 
     .calculate-btn:hover {
       background: #d62839;
+      transform: scale(1.05);
     }
 
     /* Results Box */
     .results {
       background: #fff;
-      padding: 1.8rem;
+      padding: 2rem;
       border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       margin-bottom: 2rem;
       display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.5s ease;
+    }
+
+    .results.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeUp 0.7s ease-in-out;
     }
 
     .results h3 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
       color: #222;
+      text-align: center;
     }
 
+    /* Result Rows */
     .result-row {
       display: flex;
       justify-content: space-between;
-      padding: 0.5rem 0;
+      padding: 0.7rem 0;
       border-bottom: 1px solid #eee;
       font-size: 1rem;
+      align-items: center;
     }
 
-    .bmi-normal { color: green; }
-    .bmi-warning { color: orange; }
-    .bmi-danger { color: red; }
+    .result-row strong {
+      font-weight: 600;
+      color: #333;
+    }
 
-    /* Macros Table */
+    .result-row span {
+      font-weight: 600;
+    }
+
+    /* BMI Category Colors */
+    .bmi-normal {
+      color: #2ecc71;
+      font-weight: bold;
+    }
+
+    .bmi-warning {
+      color: #f39c12;
+      font-weight: bold;
+    }
+
+    .bmi-danger {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    /* Macronutrients Section */
     .macros {
       margin-top: 1.5rem;
       border-top: 2px solid #f0f0f0;
@@ -140,9 +193,12 @@
 
     .macros h4 {
       margin-bottom: 0.6rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #333;
     }
 
-    /* Buttons */
+    /* CTA Buttons */
     .cta-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -153,18 +209,37 @@
 
     .cta-buttons a {
       padding: 0.8rem 1.5rem;
-      border-radius: 10px;
+      border-radius: 25px;
       text-decoration: none;
       font-weight: 600;
       background-color: #e63946;
       color: #fff;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
     }
 
     .cta-buttons a:hover {
       background-color: #d62839;
+      transform: scale(1.05);
     }
 
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .intro h2 {
         font-size: 1.8rem;
@@ -175,6 +250,7 @@
       .result-row {
         flex-direction: column;
         align-items: flex-start;
+        gap: 0.3rem;
       }
     }
   </style>
@@ -184,7 +260,7 @@
   <header>
     <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
     <h1 class="brand-name">FITSTANCE</h1>
-    <p class="tagline">Move better. Feel better ❤</p>
+    <p class="tagline">Move better. Feel better ♥️</p>
   </header>
 
   <!-- ===== Hero Image ===== -->
@@ -221,12 +297,13 @@
 
       <div class="form-group">
         <label>Height</label>
-        <input type="number" id="heightCm" name="heightCm" placeholder="Height in cm">
+        <input type="number" id="heightFt" name="heightFt" placeholder="Feet" required>
+        <input type="number" id="heightIn" name="heightIn" placeholder="Inches" required>
       </div>
 
       <div class="form-group">
         <label>Weight</label>
-        <input type="number" id="weightKg" name="weightKg" placeholder="Weight in kg">
+        <input type="number" id="weightKg" name="weightKg" placeholder="Weight in kg" required>
       </div>
 
       <div class="form-group">
@@ -273,8 +350,8 @@
 
     <!-- CTA Buttons -->
     <div class="cta-buttons">
-      <a href="index.html"><i class="fas fa-home"></i> Back to Home</a>
       <a href="diet.html"><i class="fas fa-utensils"></i> View Diet Plans</a>
+      <a href="index.html"><i class="fas fa-home"></i> Back to Home</a>
     </div>
   </section>
 
