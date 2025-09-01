@@ -1,18 +1,36 @@
 /* ==========================
    FitStance Master JS
    Works across all pages
+   Merged + Fixed (adds workout goals functions back)
    ========================== */
 
 document.addEventListener("DOMContentLoaded", () => {
   /* ------------------------------
      0. Load Global Footer Dynamically
+     - Tries several sensible fallbacks so pages in different folders work.
   ------------------------------ */
-  const footerContainer = document.getElementById("footer");
-  if (footerContainer) {
-    fetch("footer.html")
+  const footerContainer = document.getElementById("footer") || document.getElementById("footer-container");
+
+  const tryFetchFooter = (path) => {
+    return fetch(path)
       .then(res => (res.ok ? res.text() : Promise.reject("Footer not found")))
-      .then(html => (footerContainer.innerHTML = html))
+      .then(html => {
+        if (footerContainer) footerContainer.innerHTML = html;
+      });
+  };
+
+  if (footerContainer) {
+    // Try a few relative paths in order (root, current folder, parent folder)
+    tryFetchFooter("/footer.html")
+      .catch(() => tryFetchFooter("footer.html"))
+      .catch(() => tryFetchFooter("../footer.html"))
       .catch(err => console.warn("⚠ Footer load skipped:", err));
+  } else {
+    // If no footer element exists, create a container and try parent path
+    const created = document.createElement("div");
+    created.id = "footer-container";
+    document.body.appendChild(created);
+    tryFetchFooter("../footer.html").catch(err => console.warn("⚠ Footer load skipped:", err));
   }
 
   /* ------------------------------
@@ -61,12 +79,49 @@ document.addEventListener("DOMContentLoaded", () => {
       const item = header.parentElement;
 
       accordionHeaders.forEach(h => {
-        if (h !== header) h.parentElement.classList.remove("active");
+        if (h !== header && h.parentElement) h.parentElement.classList.remove("active");
       });
 
-      item.classList.toggle("active");
+      if (item) item.classList.toggle("active");
     });
   });
+
+  
+  const sublevels = document.querySelectorAll(".sublevels");
+  const workoutPlans = document.querySelectorAll(".workout-plan");
+
+  // Toggle a specific sublevel by logical id. Example: toggleSublevels('beginner')
+  // The corresponding container should have id="beginner-sub" (note the -sub suffix).
+  window.toggleSublevels = (id) => {
+    if (!id) return;
+    const targetId = String(id) + "-sub";
+
+    sublevels.forEach(sub => {
+      if (sub.id === targetId) {
+        sub.classList.toggle("show");
+      } else {
+        sub.classList.remove("show");
+      }
+    });
+
+    // When opening sublevels collapse any shown workout plans
+    workoutPlans.forEach(plan => plan.classList.remove("show"));
+  };
+
+  // Show a specific workout plan and hide others. Example: showPlan('plan-1')
+  window.showPlan = (id) => {
+    if (!id) return;
+    const target = String(id);
+    workoutPlans.forEach(plan => {
+      if (plan.id === target) {
+        plan.classList.add("show");
+        // optionally focus/scroll the plan into view
+        plan.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        plan.classList.remove("show");
+      }
+    });
+  };
 
   /* ------------------------------
      4. Back to Top Button
@@ -105,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ------------------------------
      6. Tools Page - Fitness Calculator
+     - Supports height input as Feet + Inches (newer pages) or single cm input.
   ------------------------------ */
   const fitnessForm = document.getElementById("fitness-form");
   const resultsBox = document.querySelector(".results");
@@ -115,16 +171,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const form = e.target;
 
       // Inputs
-      const age = parseInt(form.age.value);
-      const gender = form.gender.value;
-      const activity = parseFloat(form.activity.value);
-      const goal = form.goal.value;
-      const weight = parseFloat(form.weightKg.value);
+      const age = parseInt(form.age?.value);
+      const gender = form.gender?.value;
+      const activity = parseFloat(form.activity?.value);
+      const goal = form.goal?.value;
 
-      // Height: Feet + Inches → CM
-      const feet = parseFloat(form.heightFt.value) || 0;
-      const inches = parseFloat(form.heightIn.value) || 0;
-      const height = (feet * 30.48) + (inches * 2.54);
+      // Support both weightKg and weight inputs
+      const weight = parseFloat(form.weightKg?.value || form.weight?.value);
+
+      // Height: prefer feet+inches fields if present, otherwise use cm field
+      const feet = parseFloat(form.heightFt?.value) || 0;
+      const inches = parseFloat(form.heightIn?.value) || 0;
+      let height = 0;
+      if (feet || inches) {
+        height = (feet * 30.48) + (inches * 2.54);
+      } else if (form.heightCm) {
+        height = parseFloat(form.heightCm.value);
+      }
 
       // Validation
       if (
