@@ -7,14 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ------------------------------
      0. Load Global Footer Dynamically
   ------------------------------ */
-  const footerContainer = document.createElement("div");
-  footerContainer.id = "footer-container";
-  document.body.appendChild(footerContainer);
-
-  fetch("../footer.html")
-    .then(res => res.ok ? res.text() : Promise.reject("Footer not found"))
-    .then(html => (footerContainer.innerHTML = html))
-    .catch(err => console.warn("⚠ Footer load skipped:", err));
+  const footerContainer = document.getElementById("footer");
+  if (footerContainer) {
+    fetch("footer.html")
+      .then(res => (res.ok ? res.text() : Promise.reject("Footer not found")))
+      .then(html => (footerContainer.innerHTML = html))
+      .catch(err => console.warn("⚠ Footer load skipped:", err));
+  }
 
   /* ------------------------------
      1. Mobile Navigation Toggle
@@ -54,33 +53,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ------------------------------
-     3. Workout Goals & Plans Collapsible
+     3. Accordion Toggle (Workout / FAQs)
   ------------------------------ */
-  const goalCards = document.querySelectorAll(".goal-card");
-  const sublevels = document.querySelectorAll(".sublevels");
-  const workoutPlans = document.querySelectorAll(".workout-plan");
+  const accordionHeaders = document.querySelectorAll(".accordion-header");
 
-  window.toggleSublevels = id => {
-    sublevels.forEach(sub => {
-      if (sub.id === `${id}-sub`) {
-        sub.classList.toggle("show");
-      } else {
-        sub.classList.remove("show");
-      }
+  accordionHeaders.forEach(header => {
+    header.addEventListener("click", () => {
+      const item = header.parentElement;
+
+      // Close all others
+      accordionHeaders.forEach(h => {
+        if (h !== header) h.parentElement.classList.remove("active");
+      });
+
+      // Toggle clicked one
+      item.classList.toggle("active");
     });
-
-    workoutPlans.forEach(plan => plan.classList.remove("show"));
-  };
-
-  window.showPlan = id => {
-    workoutPlans.forEach(plan => {
-      if (plan.id === id) {
-        plan.classList.add("show");
-      } else {
-        plan.classList.remove("show");
-      }
-    });
-  };
+  });
 
   /* ------------------------------
      4. Back to Top Button
@@ -100,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
      5. Fade-in Animations
   ------------------------------ */
   const faders = document.querySelectorAll(".fade-in");
-
   if ("IntersectionObserver" in window) {
     const appearOnScroll = new IntersectionObserver(
       (entries, observer) => {
@@ -122,52 +110,46 @@ document.addEventListener("DOMContentLoaded", () => {
      6. Tools Page - Fitness Calculator
   ------------------------------ */
   const fitnessForm = document.getElementById("fitness-form");
+  const resultsBox = document.querySelector(".results");
 
   if (fitnessForm) {
     fitnessForm.addEventListener("submit", e => {
       e.preventDefault();
       const form = e.target;
 
+      // Inputs
       const age = parseInt(form.age.value);
       const gender = form.gender.value;
       const activity = parseFloat(form.activity.value);
       const goal = form.goal.value;
+      const height = parseFloat(form.heightCm.value);
+      const weight = parseFloat(form.weightKg.value);
 
-      // Height handling (cm OR ft+in)
-      let height = 0;
-      if (form.heightCm.value) {
-        height = parseFloat(form.heightCm.value);
-      } else if (form.heightFt.value || form.heightIn.value) {
-        const feet = parseFloat(form.heightFt.value) || 0;
-        const inches = parseFloat(form.heightIn.value) || 0;
-        height = (feet * 30.48) + (inches * 2.54);
-      }
-
-      // Weight handling (kg OR lbs)
-      let weight = 0;
-      if (form.weightKg.value) {
-        weight = parseFloat(form.weightKg.value);
-      } else if (form.weightLbs.value) {
-        weight = parseFloat(form.weightLbs.value) * 0.453592;
-      }
-
-      if ([age, height, weight, activity].some(v => isNaN(v)) || !gender || !goal) {
+      // Validation
+      if (
+        [age, height, weight, activity].some(v => isNaN(v)) ||
+        !gender ||
+        !goal
+      ) {
         alert("⚠ Please fill in all fields correctly.");
         return;
       }
 
-      // Core calculations
+      // BMR Calculation (Mifflin-St Jeor)
       const bmr =
         gender === "male"
           ? 10 * weight + 6.25 * height - 5 * age + 5
           : 10 * weight + 6.25 * height - 5 * age - 161;
 
+      // TDEE Calculation
       const tdee = bmr * activity;
 
+      // Calories based on goal
       let calories = tdee;
       if (goal === "gain") calories += 300;
       if (goal === "lose") calories -= 300;
 
+      // BMI Calculation
       const bmi = weight / Math.pow(height / 100, 2);
       const bmiCategory =
         bmi < 18.5
@@ -178,19 +160,17 @@ document.addEventListener("DOMContentLoaded", () => {
           ? "Overweight"
           : "Obese";
 
+      // Water Intake (40ml per kg)
       const water = (weight * 40) / 1000;
 
+      // Macronutrients
       const protein = Math.round(weight * 1.7);
       const proteinCalories = protein * 4;
       const remainingCalories = calories - proteinCalories;
       const carbs = Math.round((remainingCalories * 0.6) / 4);
       const fats = Math.round((remainingCalories * 0.4) / 9);
 
-      // Conversion back for display
-      const weightLbs = (weight / 0.453592).toFixed(1);
-      const heightFt = Math.floor(height / 30.48);
-      const heightIn = Math.round((height - heightFt * 30.48) / 2.54);
-
+      // Update results dynamically
       const updateResult = (id, value, color = null) => {
         const el = document.getElementById(id);
         if (el) {
@@ -201,34 +181,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       };
 
-      // Update Results
-      updateResult("weight-display", `${weight.toFixed(1)} kg (${weightLbs} lbs)`);
-      updateResult("height-display", `${Math.round(height)} cm (${heightFt} ft ${heightIn} in)`);
-      updateResult("bmr", Math.round(bmr));
-      updateResult("bmi", bmi.toFixed(1));
-
-      // BMI category with color
+      // Color-code BMI category
       let bmiColor = "red";
       if (bmi < 18.5) bmiColor = "orange";
       else if (bmi < 25) bmiColor = "green";
       else if (bmi < 30) bmiColor = "orange";
       else bmiColor = "red";
-      updateResult("bmi-category", bmiCategory, bmiColor);
 
+      updateResult("bmr", Math.round(bmr));
+      updateResult("bmi", bmi.toFixed(1));
+      updateResult("bmi-category", bmiCategory, bmiColor);
       updateResult("tdee", Math.round(tdee));
       updateResult("water", water.toFixed(2));
       updateResult("protein", protein);
       updateResult("carbs", carbs);
       updateResult("fats", fats);
 
-      document.querySelector(".results")?.scrollIntoView({ behavior: "smooth" });
+      // Show results box
+      resultsBox.style.display = "block";
+      resultsBox.scrollIntoView({ behavior: "smooth" });
     });
   }
 
   /* ------------------------------
      7. Responsive Media Auto-Scaling
   ------------------------------ */
-  const mediaElements = document.querySelectorAll(".media-container img, .media-container video");
+  const mediaElements = document.querySelectorAll(
+    ".media-container img, .media-container video"
+  );
   mediaElements.forEach(media => {
     media.style.width = "100%";
     media.style.height = "auto";
