@@ -311,23 +311,11 @@
     </div>
   </section>
 
-  <!-- ===== Standalone Footer ===== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="footer-inner">
-      <div class="brand">
-        <img src="logo-heart.gif" alt="FitStance mini logo" />
-        <span>FITSTANCE</span>
-      </div>
-      <div class="links">
-        <a href="about.html">About</a> •
-        <a href="workouts.html">Workouts</a> •
-        <a href="diet.html">Diet</a> •
-        <a href="tools.html">Tools</a> •
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="copy">© <span id="y"></span> FitStance. Move better. Feel better.</div>
-    </div>
-  </footer>
+    <!-- ===== Footer ===== -->
+  <div id="footer"></div>
+
+  <!-- ===== Master JS ===== -->
+  <script src="js/master.js"></script>
 
   <!-- ===== Minimal JS: search + year ===== -->
   <script>
@@ -346,10 +334,6 @@
       });
     }
     if(q){ q.addEventListener('input', e => filterRows(e.target.value)); }
-
-    // footer year
-    const y = document.getElementById('y');
-    if(y){ y.textContent = new Date().getFullYear(); }
-  </script>
+      </script>
 </body>
 </html>
