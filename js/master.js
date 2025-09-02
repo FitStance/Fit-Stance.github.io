@@ -5,33 +5,7 @@
    ========================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ------------------------------
-     0. Load Global Footer Dynamically
-     - Tries several sensible fallbacks so pages in different folders work.
-  ------------------------------ */
-  const footerContainer = document.getElementById("footer") || document.getElementById("footer-container");
 
-  const tryFetchFooter = (path) => {
-    return fetch(path)
-      .then(res => (res.ok ? res.text() : Promise.reject("Footer not found")))
-      .then(html => {
-        if (footerContainer) footerContainer.innerHTML = html;
-      });
-  };
-
-  if (footerContainer) {
-    // Try a few relative paths in order (root, current folder, parent folder)
-    tryFetchFooter("/footer.html")
-      .catch(() => tryFetchFooter("footer.html"))
-      .catch(() => tryFetchFooter("../footer.html"))
-      .catch(err => console.warn("⚠ Footer load skipped:", err));
-  } else {
-    // If no footer element exists, create a container and try parent path
-    const created = document.createElement("div");
-    created.id = "footer-container";
-    document.body.appendChild(created);
-    tryFetchFooter("../footer.html").catch(err => console.warn("⚠ Footer load skipped:", err));
-  }
 
   /* ------------------------------
      1. Mobile Navigation Toggle
