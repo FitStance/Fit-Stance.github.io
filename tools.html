@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Main CSS -->
+  <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css">
   
   <!-- Inline Optimized CSS -->
@@ -167,25 +167,27 @@
       color: #333;
     }
 
-    .result-row span {
-      font-weight: 600;
+    .result-row .value-wrap {
+      text-align: right;
+    }
+
+    .result-value {
+      font-weight: 700;
+      display: inline-block;
+      min-width: 68px;
+    }
+
+    .unit {
+      display: inline-block;
+      margin-left: 6px;
+      color: #555;
+      font-weight: 500;
     }
 
     /* BMI Category Colors */
-    .bmi-normal {
-      color: #2ecc71;
-      font-weight: bold;
-    }
-
-    .bmi-warning {
-      color: #f39c12;
-      font-weight: bold;
-    }
-
-    .bmi-danger {
-      color: #e74c3c;
-      font-weight: bold;
-    }
+    .bmi-normal { color: #2ecc71; font-weight: bold; }
+    .bmi-warning { color: #f39c12; font-weight: bold; }
+    .bmi-danger  { color: #e74c3c; font-weight: bold; }
 
     /* Macronutrients Section */
     .macros {
@@ -199,9 +201,40 @@
       font-weight: 600;
       font-size: 1.2rem;
       color: #333;
+      text-align: left;
     }
 
-/* CTA Buttons */
+    /* Results Actions */
+    .result-actions {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.1rem;
+      border: none;
+      background: #e63946;
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: .25s;
+    }
+    .btn-action:hover { background: #d62839; transform: translateY(-1px); }
+    .btn-outline {
+      background: #fff;
+      color: #e63946;
+      border: 2px solid #e63946;
+    }
+    .btn-outline:hover { background: #e6394620; }
+
+    /* CTA Buttons */
     .cta-buttons {
       text-align: center;
       margin: 3rem 0 2rem;
@@ -222,50 +255,31 @@
       transition: 0.3s;
     }
 
-    .btn:hover {
-      background: #d62839;
-      transform: scale(1.05);
-    }
-
-    .btn-home {
-      background: #333;
-      margin-left: 1rem;
-    }
-
-    .btn-home:hover {
-      background: #000;
-    }
-    
+    .btn:hover { background: #d62839; transform: scale(1.05); }
+    .btn-home { background: #333; margin-left: 1rem; }
+    .btn-home:hover { background: #000; }
 
     /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.97); }
-      to { opacity: 1; transform: scale(1); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-15px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Print: only results card */
+    @media print {
+      body * { visibility: hidden !important; }
+      .results, .results * { visibility: visible !important; }
+      .results { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; }
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .intro h2 {
-        font-size: 1.8rem;
-      }
-      .results, .fitness-form {
-        padding: 1.2rem;
-      }
-      .result-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.3rem;
-      }
+      .intro h2 { font-size: 1.8rem; }
+      .results, .fitness-form { padding: 1.2rem; }
+      .result-row { gap: 0.25rem; }
+      .result-row { flex-wrap: wrap; }
+      .result-row strong { width: 100%; }
+      .result-row .value-wrap { width: 100%; text-align: left; }
+      .unit { display: block; margin: 2px 0 0 0; }
     }
   </style>
 </head>
@@ -349,16 +363,71 @@
     <div class="results">
       <h3><i class="fas fa-chart-line"></i> Your Results</h3>
 
-      <div class="result-row"><strong>BMR:</strong> <span id="bmr">--</span> kcal/day</div>
-      <div class="result-row"><strong>BMI:</strong> <span id="bmi">--</span> (<span id="bmi-category">--</span>)</div>
-      <div class="result-row"><strong>TDEE:</strong> <span id="tdee">--</span> kcal/day</div>
-      <div class="result-row"><strong>Water Intake:</strong> <span id="water">--</span> L/day</div>
+      <div class="result-row">
+        <strong>BMR:</strong>
+        <div class="value-wrap">
+          <span class="result-value" id="bmr">--</span>
+          <span class="unit">kcal/day</span>
+        </div>
+      </div>
+
+      <div class="result-row">
+        <strong>BMI:</strong>
+        <div class="value-wrap">
+          <span class="result-value" id="bmi">--</span>
+          <span>(<span id="bmi-category">--</span>)</span>
+        </div>
+      </div>
+
+      <div class="result-row">
+        <strong>TDEE:</strong>
+        <div class="value-wrap">
+          <span class="result-value" id="tdee">--</span>
+          <span class="unit">kcal/day</span>
+        </div>
+      </div>
+
+      <div class="result-row">
+        <strong>Water Intake:</strong>
+        <div class="value-wrap">
+          <span class="result-value" id="water">--</span>
+          <span class="unit">L/day</span>
+        </div>
+      </div>
 
       <div class="macros">
         <h4><i class="fas fa-utensils"></i> Macronutrients</h4>
-        <div class="result-row"><strong>Protein:</strong> <span id="protein">--</span> g</div>
-        <div class="result-row"><strong>Carbs:</strong> <span id="carbs">--</span> g</div>
-        <div class="result-row"><strong>Fats:</strong> <span id="fats">--</span> g</div>
+
+        <div class="result-row">
+          <strong>Protein:</strong>
+          <div class="value-wrap">
+            <span class="result-value" id="protein">--</span>
+            <span class="unit">g</span>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <strong>Carbs:</strong>
+          <div class="value-wrap">
+            <span class="result-value" id="carbs">--</span>
+            <span class="unit">g</span>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <strong>Fats:</strong>
+          <div class="value-wrap">
+            <span class="result-value" id="fats">--</span>
+            <span class="unit">g</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="result-actions">
+        <button id="copyResults" class="btn-action btn-outline"><i class="fa-regular fa-clipboard"></i> Copy Results</button>
+        <button id="shareResults" class="btn-action"><i class="fa-solid fa-share-nodes"></i> Share</button>
+        <button id="pdfResults" class="btn-action"><i class="fa-regular fa-file-pdf"></i> Download PDF</button>
       </div>
     </div>
 
@@ -374,5 +443,71 @@
 
   <!-- ===== Master JS ===== -->
   <script src="js/master.js"></script>
+
+  <!-- Page-only helpers for Copy / Share / PDF -->
+  <script>
+    (function () {
+      const resultsEl = document.querySelector('.results');
+      const getText = () => {
+        const val = id => document.getElementById(id)?.textContent?.trim() || '--';
+        const bmiCat = document.getElementById('bmi-category')?.textContent?.trim() || '--';
+        return [
+          'FITSTANCE • Your Results',
+          `BMR: ${val('bmr')} kcal/day`,
+          `BMI: ${val('bmi')} (${bmiCat})`,
+          `TDEE: ${val('tdee')} kcal/day`,
+          `Water Intake: ${val('water')} L/day`,
+          'Macros:',
+          `  Protein: ${val('protein')} g`,
+          `  Carbs: ${val('carbs')} g`,
+          `  Fats: ${val('fats')} g`
+        ].join('\\n');
+      };
+
+      // Copy
+      document.getElementById('copyResults')?.addEventListener('click', async () => {
+        if (!resultsEl.classList.contains('show')) {
+          alert('Please calculate your results first.');
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(getText());
+          alert('Results copied to clipboard.');
+        } catch {
+          alert('Copy failed. Please try again.');
+        }
+      });
+
+      // Share
+      document.getElementById('shareResults')?.addEventListener('click', async () => {
+        if (!resultsEl.classList.contains('show')) {
+          alert('Please calculate your results first.');
+          return;
+        }
+        const text = getText();
+        if (navigator.share) {
+          try {
+            await navigator.share({ title: 'FitStance Results', text });
+          } catch (e) { /* user cancelled */ }
+        } else {
+          try {
+            await navigator.clipboard.writeText(text);
+            alert('Sharing not supported. Results copied instead—paste anywhere.');
+          } catch {
+            alert('Sharing is not supported on this device.');
+          }
+        }
+      });
+
+      // Download PDF via print (prints only the results card)
+      document.getElementById('pdfResults')?.addEventListener('click', () => {
+        if (!resultsEl.classList.contains('show')) {
+          alert('Please calculate your results first.');
+          return;
+        }
+        window.print();
+      });
+    })();
+  </script>
 </body>
 </html>
