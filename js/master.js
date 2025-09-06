@@ -1,36 +1,31 @@
 /* ==========================
    FitStance Master JS
-   Works across all pages
-   Merged + Fixed (adds workout goals functions back)
+   Global Script for All Pages
    ========================== */
 
 document.addEventListener("DOMContentLoaded", () => {
   /* ------------------------------
      0. Load Global Footer Dynamically
-     - Tries several sensible fallbacks so pages in different folders work.
   ------------------------------ */
   const footerContainer = document.getElementById("footer") || document.getElementById("footer-container");
 
-  const tryFetchFooter = (path) => {
-    return fetch(path)
-      .then(res => (res.ok ? res.text() : Promise.reject("Footer not found")))
-      .then(html => {
+  const tryFetchFooter = (path) =>
+    fetch(path)
+      .then((res) => (res.ok ? res.text() : Promise.reject("Footer not found")))
+      .then((html) => {
         if (footerContainer) footerContainer.innerHTML = html;
       });
-  };
 
   if (footerContainer) {
-    // Try a few relative paths in order (root, current folder, parent folder)
     tryFetchFooter("/footer.html")
       .catch(() => tryFetchFooter("footer.html"))
       .catch(() => tryFetchFooter("../footer.html"))
-      .catch(err => console.warn("⚠ Footer load skipped:", err));
+      .catch((err) => console.warn("⚠ Footer load skipped:", err));
   } else {
-    // If no footer element exists, create a container and try parent path
     const created = document.createElement("div");
     created.id = "footer-container";
     document.body.appendChild(created);
-    tryFetchFooter("../footer.html").catch(err => console.warn("⚠ Footer load skipped:", err));
+    tryFetchFooter("../footer.html").catch((err) => console.warn("⚠ Footer load skipped:", err));
   }
 
   /* ------------------------------
@@ -52,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ------------------------------
      2. Smooth Scrolling for Anchors
   ------------------------------ */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", e => {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
       const href = anchor.getAttribute("href");
       if (!href || href === "#") return;
 
@@ -74,63 +69,56 @@ document.addEventListener("DOMContentLoaded", () => {
      3. Accordion Toggle (Workouts / FAQs)
   ------------------------------ */
   const accordionHeaders = document.querySelectorAll(".accordion-header");
-  accordionHeaders.forEach(header => {
+  accordionHeaders.forEach((header) => {
     header.addEventListener("click", () => {
       const item = header.parentElement;
 
-      accordionHeaders.forEach(h => {
+      accordionHeaders.forEach((h) => {
         if (h !== header && h.parentElement) h.parentElement.classList.remove("active");
       });
 
-      if (item) item.classList.toggle("active");
+      if (item) {
+        item.classList.toggle("active");
+        header.setAttribute("aria-expanded", item.classList.contains("active"));
+      }
     });
   });
 
-  
+  /* ------------------------------
+     4. Workout Goals (Sublevels & Plans)
+  ------------------------------ */
   const sublevels = document.querySelectorAll(".sublevels");
   const workoutPlans = document.querySelectorAll(".workout-plan");
 
-  // Toggle a specific sublevel by logical id. Example: toggleSublevels('beginner')
-  // The corresponding container should have id="beginner-sub" (note the -sub suffix).
   window.toggleSublevels = (id) => {
     if (!id) return;
-    const targetId = String(id) + "-sub";
+    const targetId = `${id}-sub`;
 
-    sublevels.forEach(sub => {
-      if (sub.id === targetId) {
-        sub.classList.toggle("show");
-      } else {
-        sub.classList.remove("show");
-      }
+    sublevels.forEach((sub) => {
+      sub.classList.toggle("show", sub.id === targetId && !sub.classList.contains("show"));
     });
 
-    // When opening sublevels collapse any shown workout plans
-    workoutPlans.forEach(plan => plan.classList.remove("show"));
+    workoutPlans.forEach((plan) => plan.classList.remove("show"));
   };
 
-  // Show a specific workout plan and hide others. Example: showPlan('plan-1')
   window.showPlan = (id) => {
     if (!id) return;
-    const target = String(id);
-    workoutPlans.forEach(plan => {
-      if (plan.id === target) {
-        plan.classList.add("show");
-        // optionally focus/scroll the plan into view
-        plan.scrollIntoView({ behavior: "smooth", block: "center" });
-      } else {
-        plan.classList.remove("show");
-      }
+    workoutPlans.forEach((plan) => {
+      plan.classList.toggle("show", plan.id === id);
+      if (plan.id === id) plan.scrollIntoView({ behavior: "smooth", block: "center" });
     });
   };
 
   /* ------------------------------
-     4. Back to Top Button
+     5. Back to Top Button
   ------------------------------ */
   const backToTop = document.querySelector(".back-to-top");
   if (backToTop) {
-    window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       backToTop.classList.toggle("show", window.scrollY > 300);
-    });
+    };
+
+    window.addEventListener("scroll", () => requestAnimationFrame(handleScroll));
 
     backToTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -138,13 +126,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ------------------------------
-     5. Fade-in Animations
+     6. Fade-in Animations
   ------------------------------ */
   const faders = document.querySelectorAll(".fade-in");
   if ("IntersectionObserver" in window) {
     const appearOnScroll = new IntersectionObserver(
       (entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           entry.target.classList.add("appear");
           observer.unobserve(entry.target);
@@ -152,21 +140,20 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       { threshold: 0.3, rootMargin: "0px 0px -50px 0px" }
     );
-
-    faders.forEach(fader => appearOnScroll.observe(fader));
+    faders.forEach((fader) => appearOnScroll.observe(fader));
   } else {
-    faders.forEach(f => f.classList.add("appear"));
+    faders.forEach((f) => f.classList.add("appear"));
   }
 
   /* ------------------------------
-     6. Tools Page - Fitness Calculator
-     - Supports height input as Feet + Inches (newer pages) or single cm input.
+     7. Tools Page - Fitness Calculator
+     (⚠️ Formulas untouched, UX improved)
   ------------------------------ */
   const fitnessForm = document.getElementById("fitness-form");
   const resultsBox = document.querySelector(".results");
 
   if (fitnessForm && resultsBox) {
-    fitnessForm.addEventListener("submit", e => {
+    fitnessForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const form = e.target;
 
@@ -175,40 +162,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const gender = form.gender?.value;
       const activity = parseFloat(form.activity?.value);
       const goal = form.goal?.value;
-
-      // Support both weightKg and weight inputs
       const weight = parseFloat(form.weightKg?.value || form.weight?.value);
 
-      // Height: prefer feet+inches fields if present, otherwise use cm field
+      // Height
       const feet = parseFloat(form.heightFt?.value) || 0;
       const inches = parseFloat(form.heightIn?.value) || 0;
-      let height = 0;
-      if (feet || inches) {
-        height = (feet * 30.48) + (inches * 2.54);
-      } else if (form.heightCm) {
-        height = parseFloat(form.heightCm.value);
-      }
+      let height = feet || inches ? feet * 30.48 + inches * 2.54 : parseFloat(form.heightCm?.value);
 
-      // Validation
-      if (
-        [age, height, weight, activity].some(v => isNaN(v)) ||
-        !gender ||
-        !goal
-      ) {
+      if ([age, height, weight, activity].some((v) => isNaN(v)) || !gender || !goal) {
         alert("⚠ Please fill in all fields correctly.");
         return;
       }
 
-      // BMR (Mifflin-St Jeor)
+      // BMR
       const bmr =
         gender === "male"
           ? 10 * weight + 6.25 * height - 5 * age + 5
           : 10 * weight + 6.25 * height - 5 * age - 161;
 
-      // TDEE
+      // TDEE & Goal
       const tdee = bmr * activity;
-
-      // Calories based on goal
       let calories = tdee;
       if (goal === "gain") calories += 300;
       if (goal === "lose") calories -= 300;
@@ -217,7 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const bmi = weight / Math.pow(height / 100, 2);
       let bmiCategory = "";
       let bmiClass = "";
-
       if (bmi < 18.5) {
         bmiCategory = "Underweight";
         bmiClass = "bmi-warning";
@@ -232,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         bmiClass = "bmi-danger";
       }
 
-      // Water Intake (40 ml per kg)
+      // Water Intake
       const water = (weight * 40) / 1000;
 
       // Macronutrients
@@ -242,18 +214,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const carbs = Math.round((remainingCalories * 0.6) / 4);
       const fats = Math.round((remainingCalories * 0.4) / 9);
 
-      // Update results dynamically
+      // Update Results Helper
       const updateResult = (id, value, cssClass = null) => {
         const el = document.getElementById(id);
         if (el) {
           el.textContent = value;
-          el.className = ""; // reset old class
+          el.className = "";
           if (cssClass) el.classList.add(cssClass);
           el.classList.add("highlight");
           setTimeout(() => el.classList.remove("highlight"), 800);
         }
       };
 
+      // Apply updates
       updateResult("bmr", Math.round(bmr));
       updateResult("bmi", bmi.toFixed(1));
       updateResult("bmi-category", bmiCategory, bmiClass);
@@ -263,19 +236,15 @@ document.addEventListener("DOMContentLoaded", () => {
       updateResult("carbs", carbs);
       updateResult("fats", fats);
 
-      // Show results with animation
       resultsBox.classList.add("show");
       resultsBox.scrollIntoView({ behavior: "smooth" });
     });
   }
 
   /* ------------------------------
-     7. Responsive Media Auto-Scaling
+     8. Responsive Media Auto-Scaling
   ------------------------------ */
-  const mediaElements = document.querySelectorAll(
-    ".media-container img, .media-container video"
-  );
-  mediaElements.forEach(media => {
+  document.querySelectorAll(".media-container img, .media-container video").forEach((media) => {
     media.style.width = "100%";
     media.style.height = "auto";
   });
