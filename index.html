@@ -11,195 +11,6 @@
   
   <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css" />
-
-  <style>
-    :root {
-      --primary: #1a1f36; /* Deep Navy */
-      --secondary: #5f6caf; /* Soft Indigo */
-      --accent: #ff6b6b; /* Coral Red */
-      --muted: #7b8794; /* Muted Gray */
-      --light: #f8f9fc;
-      --card-bg: #fff;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: var(--light);
-      color: var(--primary);
-    }
-
-    h1, h2, h3 {
-      margin: 0;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-top: 2rem;
-      color: var(--primary);
-    }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 1rem;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: var(--card-bg);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .header-content {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo {
-      width: 48px;
-      height: 48px;
-    }
-
-    .brand-name {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .tagline {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .search-bar input {
-      padding: 0.6rem 1rem;
-      border-radius: 25px;
-      border: 1px solid #ddd;
-      outline: none;
-      font-size: 0.9rem;
-      transition: all 0.3s;
-    }
-
-    .search-bar input:focus {
-      border-color: var(--secondary);
-      box-shadow: 0 0 6px rgba(95, 108, 175, 0.3);
-    }
-
-    /* ===== PROFESSIONAL CARDS ===== */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      margin: 0 auto;
-      max-width: 1200px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 2rem 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: 1px solid #eee;
-    }
-
-    .card-icon {
-      flex-shrink: 0;
-      background: linear-gradient(135deg, var(--accent)20%, var(--secondary)80%);
-      color: #fff;
-      font-size: 1.6rem;
-      padding: 14px;
-      border-radius: 12px;
-    }
-
-    .card-content h3 {
-      margin: 0 0 6px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .card-content p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-      border-color: var(--secondary);
-    }
-
-    /* ===== MEDIA SECTION ===== */
-    .media-section {
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-
-    .media-container video {
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: var(--primary);
-      color: #fff;
-      margin-top: 3rem;
-    }
-
-    .footer-text {
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .socials a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--card-bg);
-      color: var(--accent);
-      transition: 0.3s;
-    }
-
-    .socials a:hover {
-      background: var(--accent);
-      color: #fff;
-      transform: scale(1.1);
-    }
-  </style>
 </head>
 <body>
 
@@ -220,7 +31,7 @@
 
   <!-- ===== Main Grid Section ===== -->
   <main>
-    <section class="topics">
+    <section class="topics fade-in">
       <h2 class="section-title">Explore FitStance</h2>
       <p class="section-subtitle">Everything you need for fitness, health & lifestyle</p>
       
@@ -308,7 +119,7 @@
     </section>
 
     <!-- ===== Responsive Media Gallery ===== -->
-    <section class="media-section">
+    <section class="media-section fade-in">
       <h2 class="section-title">Fitness Inspiration</h2>
       <p class="section-subtitle">Watch, Learn & Transform</p>
       <div class="media-container">
@@ -320,16 +131,8 @@
     </section>
   </main>
 
-  <!-- ===== Footer ===== -->
-  <footer>
-    <p class="footer-text">© 2025 FitStance. All rights reserved.</p>
-    <div class="socials">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
-    </div>
-  </footer>
+  <!-- ===== Footer (loaded dynamically via master.js) ===== -->
+  <div id="footer"></div>
 
   <!-- ===== Scripts ===== -->
   <script src="js/master.js"></script>
