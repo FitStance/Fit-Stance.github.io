@@ -13,130 +13,139 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <style>
-  .page-image img {
-    width: 100%;
-    border-radius: 16px;
-    margin: 1.5rem 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  }
+    .page-image img {
+      width: 100%;
+      border-radius: 16px;
+      margin: 1.5rem 0;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
 
-  .diet-section {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-  }
-  .diet-section h2 {
-    font-size: 2rem;
-    color: #e63946;
-    margin-bottom: 0.75rem;
-    font-weight: 700;
-    text-align: left; /* ✅ ensure headings left aligned */
-  }
-  .diet-section p {
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
-    color: #333;
-    text-align: left; /* ✅ force left alignment for paragraphs */
-  }
+    .diet-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
 
-  .btn {
-    display: inline-block;
-    padding: 0.7rem 1.4rem;
-    border-radius: 25px;
-    background: #e63946;
-    color: #fff;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.3s;
-  }
-  .btn:hover {
-    background: #d62839;
-    transform: scale(1.05);
-  }
+    .diet-section h2 {
+      font-size: 2rem;
+      color: #ff4d6d;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      text-align: left;
+    }
 
-  .table-container {
-    overflow-x: auto;
-    background: #fff;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 680px;
-  }
-  thead {
-    background: #e63946;
-    color: #fff;
-  }
-  th, td {
-    padding: 0.8rem;
-    border-bottom: 1px solid #f0f0f0;
-    font-size: 0.95rem;
-    white-space: nowrap;
-    text-align: left; /* ✅ force table text left */
-  }
-  tr:hover td { background: #fafafa; }
+    .diet-section p {
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+      color: #333;
+      text-align: left;
+    }
 
-  .search-box {
-    margin: 1rem 0;
-    text-align: center; /* ✅ center the search bar */
-  }
-  .search-box input {
-    padding: 0.5rem 1rem;
-    border: 2px solid #ddd;
-    border-radius: 25px;
-    outline: none;
-    width: 250px; /* ✅ fixed width for better centering */
-    max-width: 90%;
-  }
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      border-radius: 25px;
+      background: #ff4d6d;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #00bfa6;
+      transform: translateY(-2px);
+    }
 
-  .macro-section {
-    margin-top: 2.5rem;
-  }
-  .macro-section h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-    color: #222;
-    text-align: left; /* ✅ keep left */
-  }
-  .macro-section .note {
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    color: #555;
-    text-align: left; /* ✅ note text left */
-  }
+    .btn-home {
+      background: #0d1b2a;
+      margin-left: 1rem;
+    }
+    .btn-home:hover {
+      background: #142d4c;
+    }
 
-  .cta-buttons {
-    text-align: center;
-    margin: 3rem 0 2rem;
-  }
-  .btn-home {
-    background: #333;
-    margin-left: 1rem;
-  }
-  .btn-home:hover { background: #000; }
-</style>
+    .table-container {
+      overflow-x: auto;
+      background: #fff;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+    }
+    thead {
+      background: #ff4d6d;
+      color: #fff;
+    }
+    th, td {
+      padding: 0.9rem;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      text-align: left;
+    }
+    tr:hover td { background: #fafafa; }
+
+    .search-box {
+      margin: 1rem 0;
+      text-align: center;
+    }
+    .search-box input {
+      padding: 0.5rem 1rem;
+      border: 2px solid #ddd;
+      border-radius: 25px;
+      outline: none;
+      width: 250px;
+      max-width: 90%;
+    }
+
+    .macro-section {
+      margin-top: 2.5rem;
+    }
+    .macro-section h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: #222;
+      text-align: left;
+    }
+    .macro-section .note {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #555;
+      text-align: left;
+    }
+
+    .cta-buttons {
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+  </style>
 </head>
 <body>
 
   <!-- ===== Header ===== -->
   <header>
-    <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
-    <h1 class="brand-name">FITSTANCE</h1>
-    <p class="tagline">Move better. Feel better ♥️</p>
+    <div class="header-content">
+      <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
+      <div class="brand-text">
+        <h1 class="brand-name">FITSTANCE</h1>
+        <p class="tagline">Move better. Feel better ♥️</p>
+      </div>
+    </div>
   </header>
 
   <!-- ===== Hero Image ===== -->
-  <div class="page-image">
+  <div class="page-image fade-in">
     <img src="diet-hero.jpg" alt="Diet Plans" />
   </div>
 
   <!-- ===== Diet Section ===== -->
-  <section class="diet-section">
+  <section class="diet-section fade-in">
     <h2>Diet Plans</h2>
     <p>
       Nutrition plays a key role in achieving your fitness goals. The right balance of protein, carbs, and fats not only fuels your workouts but also helps with recovery, endurance, and overall health.
@@ -148,7 +157,7 @@
   </section>
 
   <!-- ===== Sample Diet Plans ===== -->
-  <section class="diet-section">
+  <section class="diet-section fade-in">
     <h2>Sample Diet Plans</h2>
     <p>Choose a plan that suits your goals and lifestyle.</p>
 
@@ -162,10 +171,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Breakfast</td><td>Oats + Milk</td><td>350</td><td>15g</td><td>55g</td><td>8g</td></tr>
-          <tr><td>Lunch</td><td>Rice + Chicken + Veggies</td><td>500</td><td>35g</td><td>60g</td><td>12g</td></tr>
-          <tr><td>Dinner</td><td>Roti + Paneer + Salad</td><td>450</td><td>28g</td><td>45g</td><td>14g</td></tr>
-          <tr><td>Snack</td><td>Fruits + Nuts</td><td>200</td><td>6g</td><td>25g</td><td>7g</td></tr>
+          <tr><td>Breakfast</td><td>Poha + Curd</td><td>350</td><td>12g</td><td>55g</td><td>6g</td></tr>
+          <tr><td>Lunch</td><td>Rice + Dal + Veg Curry</td><td>500</td><td>22g</td><td>70g</td><td>12g</td></tr>
+          <tr><td>Dinner</td><td>Roti + Paneer Bhurji + Salad</td><td>450</td><td>28g</td><td>45g</td><td>14g</td></tr>
+          <tr><td>Snack</td><td>Fruits + Peanuts</td><td>200</td><td>7g</td><td>25g</td><td>8g</td></tr>
         </tbody>
       </table>
     </div>
@@ -180,9 +189,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Breakfast</td><td>Paratha + Curd</td><td>450</td><td>14g</td><td>65g</td><td>12g</td></tr>
-          <tr><td>Lunch</td><td>Rice + Fish Curry + Veggies</td><td>650</td><td>40g</td><td>70g</td><td>18g</td></tr>
-          <tr><td>Dinner</td><td>Roti + Dal + Veg Curry</td><td>600</td><td>25g</td><td>70g</td><td>15g</td></tr>
+          <tr><td>Breakfast</td><td>Idli + Sambar + Eggs</td><td>450</td><td>20g</td><td>60g</td><td>10g</td></tr>
+          <tr><td>Lunch</td><td>Rice + Rajma + Veg Curry</td><td>650</td><td>35g</td><td>75g</td><td>15g</td></tr>
+          <tr><td>Dinner</td><td>Roti + Chicken Curry + Veggies</td><td>600</td><td>40g</td><td>65g</td><td>18g</td></tr>
           <tr><td>Snack</td><td>Paneer Sandwich</td><td>300</td><td>20g</td><td>30g</td><td>8g</td></tr>
         </tbody>
       </table>
@@ -198,9 +207,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Breakfast</td><td>Idli + Sambar + Eggs</td><td>500</td><td>22g</td><td>70g</td><td>12g</td></tr>
+          <tr><td>Breakfast</td><td>Dosa + Chutney + Eggs</td><td>500</td><td>22g</td><td>70g</td><td>12g</td></tr>
           <tr><td>Lunch</td><td>Biryani + Raita</td><td>800</td><td>40g</td><td>90g</td><td>25g</td></tr>
-          <tr><td>Dinner</td><td>Roti + Chicken Curry + Veggies</td><td>700</td><td>45g</td><td>75g</td><td>20g</td></tr>
+          <tr><td>Dinner</td><td>Roti + Mutton Curry + Veggies</td><td>700</td><td>45g</td><td>75g</td><td>22g</td></tr>
           <tr><td>Snack</td><td>Smoothie + Nuts</td><td>500</td><td>20g</td><td>55g</td><td>15g</td></tr>
         </tbody>
       </table>
@@ -208,7 +217,7 @@
   </section>
 
   <!-- ===== Food Charts ===== -->
-  <section class="diet-section">
+  <section class="diet-section fade-in">
     <h2>Food Charts (per 100 g/ml)</h2>
     <div class="search-box">
       <input type="text" id="foodSearch" placeholder="Search food...">
@@ -218,8 +227,7 @@
     <div class="macro-section">
       <h3>Protein-Rich Foods</h3>
       <p class="note">
-        Protein is essential for muscle growth, recovery, and strength.  
-        <br><strong>Around Training:</strong> Before Workout: Light · During Workout: No · After Workout: Light (or heavy, as needed)
+        Protein is essential for muscle growth, recovery, and strength.
       </p>
       <div class="table-container">
         <table class="food-table">
@@ -230,8 +238,9 @@
             <tr><td>Chicken Breast</td><td>165</td><td>31g</td><td>0g</td><td>3g</td></tr>
             <tr><td>Eggs (whole)</td><td>143</td><td>13g</td><td>1g</td><td>11g</td></tr>
             <tr><td>Paneer</td><td>265</td><td>18g</td><td>6g</td><td>20g</td></tr>
-            <tr><td>Moong Dal</td><td>347</td><td>24g</td><td>63g</td><td>1g</td></tr>
+            <tr><td>Dal</td><td>347</td><td>24g</td><td>63g</td><td>1g</td></tr>
             <tr><td>Milk (toned)</td><td>60</td><td>3g</td><td>5g</td><td>3g</td></tr>
+            <tr><td>Curd</td><td>98</td><td>11g</td><td>4g</td><td>5g</td></tr>
           </tbody>
         </table>
       </div>
@@ -240,20 +249,18 @@
     <!-- Carbs -->
     <div class="macro-section">
       <h3>Carbohydrate-Rich Foods</h3>
-      <p class="note">
-        Carbohydrates fuel energy, stamina, and recovery.  
-        <br><strong>Around Training:</strong> Before Workout: Light · During Workout: No · After Workout: Light (or heavy, as needed)
-      </p>
+      <p class="note">Carbohydrates fuel energy, stamina, and recovery.</p>
       <div class="table-container">
         <table class="food-table">
           <thead>
             <tr><th>Food</th><th>Calories</th><th>Protein</th><th>Carbs</th><th>Fats</th></tr>
           </thead>
           <tbody>
-            <tr><td>Brown Rice (cooked)</td><td>111</td><td>2.6g</td><td>23g</td><td>0.9g</td></tr>
-            <tr><td>White Rice (cooked)</td><td>130</td><td>2.5g</td><td>28g</td><td>0.3g</td></tr>
-            <tr><td>Roti (whole wheat)</td><td>120</td><td>3.2g</td><td>24g</td><td>0.4g</td></tr>
+            <tr><td>Rice (cooked)</td><td>130</td><td>2.5g</td><td>28g</td><td>0.3g</td></tr>
+            <tr><td>Roti (whole wheat)</td><td>120</td><td>3g</td><td>24g</td><td>0.4g</td></tr>
             <tr><td>Poha</td><td>110</td><td>2.5g</td><td>26g</td><td>0.5g</td></tr>
+            <tr><td>Idli</td><td>60</td><td>2g</td><td>12g</td><td>0.3g</td></tr>
+            <tr><td>Dosa</td><td>120</td><td>3g</td><td>20g</td><td>3g</td></tr>
             <tr><td>Banana</td><td>89</td><td>1g</td><td>23g</td><td>0.3g</td></tr>
           </tbody>
         </table>
@@ -263,10 +270,7 @@
     <!-- Fats -->
     <div class="macro-section">
       <h3>Healthy Fats</h3>
-      <p class="note">
-        Fats provide long-lasting energy and support hormones.  
-        <br><strong>Around Training:</strong> Before Workout: Light · During Workout: No · After Workout: Light (or heavy, as needed)
-      </p>
+      <p class="note">Fats provide long-lasting energy and support hormones.</p>
       <div class="table-container">
         <table class="food-table">
           <thead>
@@ -278,15 +282,17 @@
             <tr><td>Cashews</td><td>553</td><td>18g</td><td>30g</td><td>44g</td></tr>
             <tr><td>Ghee</td><td>900</td><td>0g</td><td>0g</td><td>100g</td></tr>
             <tr><td>Coconut</td><td>354</td><td>3g</td><td>15g</td><td>33g</td></tr>
+            <tr><td>Olive Oil</td><td>884</td><td>0g</td><td>0g</td><td>100g</td></tr>
           </tbody>
         </table>
       </div>
     </div>
+
     <p class="note">Values are approximate and may vary depending on brand or preparation.</p>
   </section>
 
   <!-- ===== Recipes ===== -->
-  <section class="diet-section">
+  <section class="diet-section fade-in">
     <h2>Recipes</h2>
     <p>
       Eating healthy doesn’t have to be boring or complicated. With the right combinations, you can enjoy meals that are both nutritious and delicious. We’ve prepared some easy, protein-rich recipes that are budget-friendly and simple to make at home.
@@ -295,7 +301,7 @@
   </section>
 
   <!-- ===== CTA Buttons ===== -->
-  <div class="cta-buttons">
+  <div class="cta-buttons fade-in">
     <a href="https://www.instagram.com/fitstance__?igsh=MW01NHYwcW5ydXlycA==" target="_blank" class="btn">Get a Custom Plan</a>
     <a href="index.html" class="btn btn-home">Back to Home</a>
   </div>
@@ -306,7 +312,7 @@
   <!-- ===== Master JS ===== -->
   <script src="js/master.js"></script>
   <script>
-    // Search filter
+    // Food search filter
     const searchInput = document.getElementById("foodSearch");
     const tables = document.querySelectorAll(".food-table");
 
