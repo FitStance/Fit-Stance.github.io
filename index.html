@@ -12,52 +12,152 @@
   <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Extra Card Styling -->
   <style>
-    /* ===== Explore FitStance Grid ===== */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Always 2 cards per row */
-      gap: 1.5rem;
-      margin-top: 2rem;
+    /* ===== GLOBAL ===== */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f8f9fa;
+      color: #222;
     }
 
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: 1fr; /* On mobile → 1 card per row */
-      }
-    }
-
-    .card {
-      display: flex;
-      align-items: center;          
-      gap: 12px;
-      padding: 18px 22px;
-      border-radius: 12px;
-      background: #fff;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .card i {
-      font-size: 1.5rem;
-      color: #e63946;               
-      flex-shrink: 0;
-      width: 30px;                  
-      text-align: center;
-    }
-
-    .card h3 {
-      font-size: 1rem;
-      color: #222;                  
+    h1, h2, h3 {
       margin: 0;
     }
 
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      color: #222;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+    }
+
+    .brand-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #e63946;
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      color: #444;
+      margin: 0;
+    }
+
+    .search-bar input {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      outline: none;
+      font-size: 0.9rem;
+    }
+
+    /* ===== PROFESSIONAL CARDS ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      padding: 0 1.5rem;
+      margin: 2rem auto;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .card-icon {
+      flex-shrink: 0;
+      background: #ffe9ec;
+      color: #e63946;
+      font-size: 1.6rem;
+      padding: 14px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 8px rgba(230,57,70,0.15);
+    }
+
+    .card-content h3 {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .card-content p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      transform: translateY(-6px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      background: #fff4f5;
+    }
+
+    /* ===== MEDIA SECTION ===== */
+    .media-section {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .media-container video {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #fff;
+      border-top: 1px solid #eee;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #555;
     }
   </style>
 </head>
@@ -66,17 +166,13 @@
   <!-- ===== Header ===== -->
   <header>
     <div class="header-content">
-      <!-- Logo -->
       <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
-
-      <!-- Brand -->
       <div class="brand-text">
         <h1 class="brand-name">FITSTANCE</h1>
         <p class="tagline">Move better. Feel better ♥️</p>
       </div>
     </div>
 
-    <!-- 🔎 Search -->
     <div class="search-bar">
       <input type="text" id="search" placeholder="Search topics..." />
     </div>
@@ -86,55 +182,87 @@
   <main>
     <section class="topics">
       <h2 class="section-title">Explore FitStance</h2>
+      <p class="section-subtitle">Everything you need for fitness, health & lifestyle</p>
+      
       <div class="grid" id="topics-grid">
         <div class="card" data-title="About Us">
-          <i class="fas fa-users"></i>
-          <h3>About Us</h3>
+          <div class="card-icon"><i class="fas fa-users"></i></div>
+          <div class="card-content">
+            <h3>About Us</h3>
+            <p>Discover our mission and values that drive FitStance.</p>
+          </div>
         </div>
 
         <div class="card" data-title="Workouts">
-          <i class="fas fa-dumbbell"></i>
-          <h3>Workout Routines</h3>
+          <div class="card-icon"><i class="fas fa-dumbbell"></i></div>
+          <div class="card-content">
+            <h3>Workout Routines</h3>
+            <p>Step-by-step workouts for all fitness levels.</p>
+          </div>
         </div>
 
         <div class="card" data-title="Diet Plans">
-          <i class="fas fa-apple-alt"></i>
-          <h3>Diet Plans</h3>
+          <div class="card-icon"><i class="fas fa-apple-alt"></i></div>
+          <div class="card-content">
+            <h3>Diet Plans</h3>
+            <p>Balanced meal plans tailored for your goals.</p>
+          </div>
         </div>
 
         <div class="card" data-title="Tools">
-          <i class="fas fa-calculator"></i>
-          <h3>Tools</h3>
+          <div class="card-icon"><i class="fas fa-calculator"></i></div>
+          <div class="card-content">
+            <h3>Tools</h3>
+            <p>Track calories, BMI, and progress with ease.</p>
+          </div>
         </div>
 
         <div class="card" data-title="Pro Tips">
-          <i class="fas fa-bolt"></i>
-          <h3>Pro Tips</h3>
+          <div class="card-icon"><i class="fas fa-bolt"></i></div>
+          <div class="card-content">
+            <h3>Pro Tips</h3>
+            <p>Expert advice to maximize your performance.</p>
+          </div>
         </div>
 
         <div class="card" data-title="Success Stories">
-          <i class="fas fa-star"></i>
-          <h3>Success Stories</h3>
+          <div class="card-icon"><i class="fas fa-star"></i></div>
+          <div class="card-content">
+            <h3>Success Stories</h3>
+            <p>Be inspired by real people who transformed their lives.</p>
+          </div>
         </div>
 
         <div class="card" data-title="Blog">
-          <i class="fas fa-blog"></i>
-          <h3>Blog / Articles</h3>
+          <div class="card-icon"><i class="fas fa-blog"></i></div>
+          <div class="card-content">
+            <h3>Blog / Articles</h3>
+            <p>Latest tips and articles on health & fitness.</p>
+          </div>
         </div>
 
         <div class="card" data-title="FAQ">
-          <i class="fas fa-question-circle"></i>
-          <h3>FAQ</h3>
+          <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+          <div class="card-content">
+            <h3>FAQ</h3>
+            <p>Find quick answers to common fitness questions.</p>
+          </div>
         </div>
 
         <div class="card" data-title="Shop">
-          <i class="fas fa-book"></i>
-          <h3>Shop / eBook</h3>
+          <div class="card-icon"><i class="fas fa-book"></i></div>
+          <div class="card-content">
+            <h3>Shop / eBook</h3>
+            <p>Explore our eBooks and premium workout guides.</p>
+          </div>
         </div>
 
         <div class="card" data-title="Contact">
-          <i class="fas fa-envelope"></i>
-          <h3>Contact Us</h3>
+          <div class="card-icon"><i class="fas fa-envelope"></i></div>
+          <div class="card-content">
+            <h3>Contact Us</h3>
+            <p>Reach out for support, feedback, or collaboration.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -143,9 +271,7 @@
     <section class="media-section">
       <h2 class="section-title">Fitness Inspiration</h2>
       <p class="section-subtitle">Watch, Learn & Transform</p>
-
       <div class="media-container">
-        <!-- Video 1 -->
         <video controls poster="media/workout1.jpg">
           <source src="media/workout1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -154,8 +280,10 @@
     </section>
   </main>
 
-  <!-- ===== Footer Container (Loaded Dynamically) ===== -->
-  <div id="footer"></div>
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>© 2025 FitStance. All rights reserved.</p>
+  </footer>
 
   <!-- ===== Scripts ===== -->
   <script src="js/master.js"></script>
