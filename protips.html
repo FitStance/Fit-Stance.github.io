@@ -29,27 +29,28 @@
     .tips-section h2 {
       font-size: 2rem;
       color: #e63946;
-      margin: 1.5rem 0 0.75rem;
+      margin: 2rem 0 1rem;
       font-weight: 700;
       text-align: left;
     }
 
     .tips-section p {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       line-height: 1.8;
-      color: #333;
+      color: #444;
       text-align: left;
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
     .highlight-box {
       background: #fff4f4;
       border-left: 5px solid #e63946;
-      padding: 1rem;
+      padding: 1rem 1.2rem;
       border-radius: 8px;
       margin: 2rem 0;
       font-weight: 600;
       color: #222;
+      line-height: 1.6;
     }
 
     .cta-buttons {
@@ -77,8 +78,17 @@
     .btn-home {
       background: #333;
     }
-
     .btn-home:hover { background: #000; }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .tips-section h2 {
+        font-size: 1.6rem;
+      }
+      .tips-section p {
+        font-size: 0.95rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -99,88 +109,52 @@
   <section class="tips-section">
     <h2>Pro Tips for Your Fitness Journey</h2>
     <p>
-      At FitStance, we believe fitness is not about quick fixes but about building strong, sustainable habits. 
-      This page is designed to give you detailed, science-backed advice that covers training, nutrition, 
-      and lifestyle. These tips go beyond a single workout or diet plan and instead focus on the everyday 
+      At <strong>FitStance</strong>, we believe fitness is not about quick fixes but about building strong, sustainable habits.  
+      This page is designed to give you detailed, science-backed advice that covers training, nutrition,  
+      and lifestyle. These tips go beyond a single workout or diet plan and instead focus on the everyday  
       actions that create long-term transformation.
     </p>
     <p>
-      Whether you are just starting out or already experienced in fitness, these strategies will help you 
-      train smarter, fuel your body better, recover effectively, and stay consistent. Apply them daily, 
-      connect them with your workouts and diet plans, and you will begin to see not only physical 
-      progress but also improvements in energy, confidence, and overall well-being.
+      Whether you are just starting out or already experienced in fitness, these strategies will help you  
+      train smarter, fuel your body better, recover effectively, and stay consistent. Apply them daily,  
+      and you will see not only physical progress but also improvements in energy, confidence, and overall well-being.
     </p>
 
     <!-- Training Tips -->
     <h2>Training Tips</h2>
-    <p>
-      A proper warm-up is one of the most underrated steps in training. Before lifting or intense cardio, 
-      spend 5–10 minutes doing mobility drills and dynamic stretches. This prepares your muscles, reduces 
-      the risk of injury, and helps you perform better during your workout.
-    </p>
-    <p>
-      Progressive overload is the key to building strength and muscle. Gradually increase weight, 
-      repetitions, or intensity over time so that your body continues to adapt. Remember, slow and steady 
-      progress is far better than rushing and risking injury.
-    </p>
-    <p>
-      Recovery is just as important as training itself. Without enough rest, your body cannot rebuild 
-      and grow stronger. Ensure you have at least one or two rest days every week and listen to your 
-      body’s signals to avoid overtraining.
-    </p>
+    <p>✅ Always warm up with mobility drills and dynamic stretches (5–10 mins) to reduce injury risk and boost performance.</p>
+    <p>✅ Use <strong>progressive overload</strong> — gradually increase weights, reps, or intensity to keep improving safely.</p>
+    <p>✅ Prioritize <strong>recovery</strong> with 1–2 rest days weekly and good sleep to avoid overtraining.</p>
 
     <!-- Nutrition Tips -->
     <h2>Nutrition Tips</h2>
-    <p>
-      Protein is the foundation of a healthy diet when it comes to building muscle and aiding recovery. 
-      Include lean protein sources throughout the day to support your goals. Carbohydrates fuel your 
-      workouts and recovery, while healthy fats keep your hormones and brain function in balance.
-    </p>
-    <p>
-      Hydration is often overlooked but essential. Even slight dehydration can reduce performance, 
-      impact recovery, and affect mood. Keep water with you throughout the day and increase your 
-      intake during hot weather or intense training sessions.
-    </p>
-    <p>
-      Portion control and balance matter. You don’t have to eliminate your favorite foods, but learning 
-      how to manage serving sizes and focusing on whole, nutrient-dense meals will keep your results 
-      consistent and sustainable.
-    </p>
+    <p>✅ Include <strong>lean protein</strong> sources daily to build and repair muscle.</p>
+    <p>✅ Fuel up with <strong>carbs</strong> for energy, and balance with <strong>healthy fats</strong> for hormones and brain function.</p>
+    <p>✅ Stay hydrated — even mild dehydration can impact performance, recovery, and focus.</p>
 
     <!-- Lifestyle Tips -->
     <h2>Lifestyle & Recovery Tips</h2>
-    <p>
-      Quality sleep is one of the most powerful recovery tools. Aim for 7–9 hours each night to allow 
-      your body to repair, grow, and reset. Poor sleep can affect everything from fat loss and 
-      muscle gain to your mood and decision-making.
-    </p>
-    <p>
-      Stress management is vital for fitness. High stress raises cortisol levels, which can slow down 
-      fat loss and recovery. Incorporate practices like meditation, journaling, or simply taking breaks 
-      to recharge your mind and body.
-    </p>
-    <p>
-      Daily movement outside the gym counts more than you think. Walking, climbing stairs, or even 
-      light household activity keeps your metabolism active and adds up to better long-term results. 
-      Consistency always beats perfection.
-    </p>
+    <p>✅ Get <strong>7–9 hours of sleep</strong> to boost recovery, strength, and mood.</p>
+    <p>✅ Manage stress with meditation, journaling, or simply taking breaks.</p>
+    <p>✅ Keep moving outside the gym — walking, stairs, and daily activity add up more than you think.</p>
 
     <!-- Highlight Box -->
     <div class="highlight-box">
-      Golden Rule: Fitness is built on small, consistent actions. One workout or one meal won’t 
+      Golden Rule: Fitness is built on small, consistent actions. One workout or one meal won’t  
       change your body, but repeating them daily will.
     </div>
 
     <!-- Closing Motivation -->
     <h2>Stay Committed</h2>
     <p>
-      Your journey is unique—don’t compare it with anyone else’s. Trust the process, stay patient, 
-      and remember that progress takes time. Focus on building habits that you can follow for years, 
+      Your journey is unique—don’t compare it with anyone else’s. Trust the process, stay patient,  
+      and remember that progress takes time. Focus on building habits that you can follow for years,  
       not just weeks. Fitness is a lifestyle, not a temporary phase.
     </p>
     <p>
-      Apply these pro tips along with the tools, workout routines, and diet plans provided across 
-      FitStance, and you will have everything you need to achieve your goals with confidence.
+      Apply these pro tips along with the <a href="workouts.html"><strong>workouts</strong></a>,  
+      <a href="diet.html"><strong>diet plans</strong></a>, and <a href="tools.html"><strong>fitness tools</strong></a>  
+      provided across FitStance, and you’ll have everything you need to achieve your goals with confidence.
     </p>
   </section>
 
@@ -189,12 +163,12 @@
     <a href="workouts.html" class="btn">Explore Workouts</a>
     <a href="diet.html" class="btn">Check Diet Plans</a>
     <a href="tools.html" class="btn">Use Fitness Tools</a>
+    <a href="https://instagram.com/fitstance__" target="_blank" class="btn">Get a Custom Plan</a>
     <a href="index.html" class="btn btn-home">Back to Home</a>
-    <a href="https://instagram.com/" class="btn">Get a Custom Plan</a>
   </div>
 
   <!-- ===== Footer ===== -->
-  <div id="footer-container"></div>
+  <div id="footer"></div>
   <script src="js/master.js"></script>
 </body>
 </html>
