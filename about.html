@@ -13,17 +13,17 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* Hero Image */
+    /* ===== HERO IMAGE ===== */
     .page-image img {
       width: 100%;
       height: auto;
       display: block;
       border-radius: 16px;
       margin: 1.5rem 0 2rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
     }
 
-    /* About Section */
+    /* ===== ABOUT SECTION ===== */
     .about-section {
       max-width: 1050px;
       margin: 0 auto;
@@ -32,16 +32,15 @@
     }
 
     .about-section h2 {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      color: #e63946;
+      color: #ff4d6d;
       margin-bottom: 1rem;
-      text-align: left;
     }
 
     .about-section p {
-      font-size: 1.1rem;
-      color: #333;
+      font-size: 1.05rem;
+      color: #444;
       line-height: 1.9;
       margin-bottom: 1rem;
     }
@@ -54,7 +53,7 @@
       font-size: 1.05rem;
     }
 
-    /* Mission & Values Section */
+    /* ===== VALUES SECTION ===== */
     .values-section {
       max-width: 1100px;
       margin: 3rem auto;
@@ -62,41 +61,40 @@
     }
 
     .values-section h2 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
-      color: #e63946;
-      text-align: left;
+      color: #ff4d6d;
       margin-bottom: 1.5rem;
     }
 
     .values-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);  /* 2 per row on desktop */
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
     }
 
     .value-card {
       background: #fff;
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 2rem 1.5rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      height: 100%;
     }
 
     .value-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
     }
 
     .value-card i {
-      font-size: 2.2rem;
-      color: #e63946;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #ff4d6d, #ff748d);
+      color: #fff;
+      padding: 14px;
+      border-radius: 50%;
       margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(255,77,109,0.25);
     }
 
     .value-card p {
@@ -105,7 +103,7 @@
       line-height: 1.7;
     }
 
-    /* CTA Buttons */
+    /* ===== CTA BUTTONS ===== */
     .cta-buttons {
       text-align: center;
       margin: 3rem 0 2rem;
@@ -113,38 +111,37 @@
 
     .btn {
       display: inline-block;
-      margin-top: 1rem;
+      margin: 0.5rem;
       padding: 0.8rem 1.6rem;
       border: none;
-      background: #e63946;
-      color: white;
+      background: #ff4d6d;
+      color: #fff;
       border-radius: 25px;
       cursor: pointer;
       font-size: 1rem;
       font-weight: 600;
       text-decoration: none;
-      transition: 0.3s;
+      transition: all 0.3s ease;
     }
 
     .btn:hover {
-      background: #d62839;
-      transform: scale(1.05);
+      background: #00bfa6;
+      transform: translateY(-2px);
     }
 
     .btn-home {
-      background: #333;
-      margin-left: 1rem;
+      background: #0d1b2a;
     }
 
     .btn-home:hover {
-      background: #000;
+      background: #142d4c;
     }
 
-    /* Responsive Adjustments */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .about-section h2,
       .values-section h2 {
-        font-size: 1.9rem;
+        font-size: 1.8rem;
       }
 
       .about-section p,
@@ -157,11 +154,8 @@
       }
 
       .value-card i {
-        font-size: 2rem;
-      }
-
-      .values-grid {
-        grid-template-columns: 1fr;  /* 1 per row on mobile */
+        font-size: 1.8rem;
+        padding: 12px;
       }
     }
   </style>
@@ -170,18 +164,22 @@
 
   <!-- ===== Header ===== -->
   <header>
-    <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
-    <h1 class="brand-name">FITSTANCE</h1>
-    <p class="tagline">Move better. Feel better ♥️</p>
+    <div class="header-content">
+      <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
+      <div class="brand-text">
+        <h1 class="brand-name">FITSTANCE</h1>
+        <p class="tagline">Move better. Feel better ♥️</p>
+      </div>
+    </div>
   </header>
 
   <!-- ===== Hero Image ===== -->
-  <div class="page-image">
+  <div class="page-image fade-in">
     <img src="about-us.jpg" alt="FitStance About Us" />
   </div>
 
   <!-- ===== About Us Section ===== -->
-  <section class="about-section">
+  <section class="about-section fade-in">
     <h2>About Us</h2>
     <p>
       Welcome to <strong>FitStance</strong>, your trusted fitness and wellness partner.  
@@ -211,7 +209,7 @@
   </section>
 
   <!-- ===== Mission & Values ===== -->
-  <section class="values-section">
+  <section class="values-section fade-in">
     <h2>Our Mission & Values</h2>
     <div class="values-grid">
       <div class="value-card">
@@ -234,7 +232,7 @@
   </section>
 
   <!-- ===== Call To Action ===== -->
-  <section class="cta-buttons">
+  <section class="cta-buttons fade-in">
     <a href="https://www.instagram.com/fitstance__?igsh=MW01NHYwcW5ydXlycA==" target="_blank" class="btn">
       Message Us for Custom Plans
     </a>
@@ -243,11 +241,10 @@
     </a>
   </section>
 
- <!-- ===== Footer (loaded from footer.html) ===== -->
-<div id="footer"></div>
+  <!-- ===== Footer (Standalone) ===== -->
+  <div id="footer"></div>
 
-<!-- ===== Master JS ===== -->
-<script src="js/master.js"></script>
-
+  <!-- ===== Master JS ===== -->
+  <script src="js/master.js"></script>
 </body>
 </html>
