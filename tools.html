@@ -11,14 +11,11 @@
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css">
-  
+
   <!-- Inline Optimized CSS -->
   <style>
-    /* ==============================
-       FITNESS TOOLS & CALCULATOR
-       ============================== */
+    body { background: #fafafa; }
 
-    /* Tools Page Layout */
     .tools-page {
       max-width: 1200px;
       margin: 2rem auto;
@@ -26,23 +23,15 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    /* Hero Image */
     .page-image img {
-      width: 100%;
-      height: auto;
-      display: block;
+      width: 100%; height: auto; display: block;
       border-radius: 16px;
       margin: 1.5rem 0;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
       animation: fadeIn 1s ease-in-out;
     }
 
-    /* Intro Section */
-    .intro {
-      margin-bottom: 2rem;
-      text-align: left;
-    }
-
+    .intro { margin-bottom: 2.5rem; text-align: left; }
     .intro h2 {
       font-size: 2.4rem;
       color: #e63946;
@@ -51,254 +40,166 @@
       line-height: 1.3;
       animation: fadeDown 0.8s ease-in-out;
     }
-
     .intro p {
-      color: #444;
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 0.6rem;
+      color: #444; font-size: 1.05rem;
+      line-height: 1.7; margin-bottom: 0.6rem;
     }
 
-    /* Form Container */
     .fitness-form {
-      background: #fff;
-      padding: 2rem;
+      background: #fff; padding: 2rem;
       border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      margin-bottom: 2rem;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2.5rem;
       animation: fadeUp 0.8s ease-in-out;
+      border: 1px solid #f1f1f1;
     }
-
     .fitness-form h3 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #222;
+      font-size: 1.8rem; font-weight: 700;
+      margin-bottom: 1.5rem; color: #222;
       text-align: center;
     }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
+    .form-group { margin-bottom: 1.2rem; }
     .form-group label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 0.3rem;
+      font-weight: 600; display: block;
+      margin-bottom: 0.4rem; color: #333;
     }
-
     .form-group input,
     .form-group select {
-      width: 100%;
-      padding: 0.7rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: 0.3s ease;
+      width: 100%; padding: 0.75rem;
+      border: 1px solid #ddd; border-radius: 10px;
+      font-size: 1rem; transition: 0.3s ease;
+      background: #fafafa;
     }
-
     .form-group input:focus,
     .form-group select:focus {
-      outline: none;
-      border-color: #e63946;
-      box-shadow: 0 0 8px rgba(230, 57, 70, 0.3);
+      outline: none; border-color: #e63946;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(230, 57, 70, 0.25);
     }
 
-    /* Calculate Button */
     .calculate-btn {
-      display: block;
-      margin: 1rem auto 0;
-      background: #e63946;
-      color: #fff;
-      font-size: 1.1rem;
-      padding: 0.8rem 2rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
+      display: block; margin: 1.2rem auto 0;
+      background: #e63946; color: #fff;
+      font-size: 1.1rem; padding: 0.85rem 2rem;
+      border: none; border-radius: 25px;
+      cursor: pointer; font-weight: 600;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+      box-shadow: 0 6px 15px rgba(230, 57, 70, 0.25);
     }
-
     .calculate-btn:hover {
       background: #d62839;
-      transform: scale(1.05);
+      transform: translateY(-2px);
     }
 
-    /* Results Box */
     .results {
-      background: #fff;
-      padding: 2rem;
+      background: #fff; padding: 2rem;
       border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
       margin-bottom: 2rem;
-      display: none;
-      opacity: 0;
+      display: none; opacity: 0;
       transform: translateY(10px);
       transition: all 0.5s ease;
+      border: 1px solid #f1f1f1;
     }
-
     .results.show {
-      display: block;
-      opacity: 1;
+      display: block; opacity: 1;
       transform: translateY(0);
       animation: fadeUp 0.7s ease-in-out;
     }
-
     .results h3 {
       font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #222;
-      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #e63946;
+      text-align: center; font-weight: 700;
     }
 
-    /* Result Rows */
     .result-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.7rem 0;
+      display: flex; justify-content: space-between;
+      padding: 0.9rem 0;
       border-bottom: 1px solid #eee;
-      font-size: 1rem;
-      align-items: center;
+      font-size: 1rem; align-items: center;
     }
+    .result-row strong { font-weight: 600; color: #333; }
+    .result-row .value-wrap { text-align: right; font-size: 1rem; }
+    .result-value { font-weight: 700; display: inline-block; min-width: 70px; }
+    .unit { display: inline-block; margin-left: 6px; color: #666; font-weight: 500; }
 
-    .result-row strong {
-      font-weight: 600;
-      color: #333;
-    }
-
-    .result-row .value-wrap {
-      text-align: right;
-    }
-
-    .result-value {
-      font-weight: 700;
-      display: inline-block;
-      min-width: 68px;
-    }
-
-    .unit {
-      display: inline-block;
-      margin-left: 6px;
-      color: #555;
-      font-weight: 500;
-    }
-
-    /* BMI Category Colors */
     .bmi-normal { color: #2ecc71; font-weight: bold; }
     .bmi-warning { color: #f39c12; font-weight: bold; }
     .bmi-danger  { color: #e74c3c; font-weight: bold; }
 
-    /* Macronutrients Section */
-    .macros {
-      margin-top: 1.5rem;
-      border-top: 2px solid #f0f0f0;
-      padding-top: 1rem;
-    }
-
+    .macros { margin-top: 1.8rem; border-top: 2px solid #f0f0f0; padding-top: 1.2rem; }
     .macros h4 {
-      margin-bottom: 0.6rem;
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: #333;
-      text-align: center;
+      margin-bottom: 0.8rem;
+      font-weight: 600; font-size: 1.2rem;
+      color: #333; text-align: center;
     }
 
-    /* Results Actions */
     .result-actions {
-      display: flex;
-      gap: 0.8rem;
+      display: flex; gap: 1rem;
       justify-content: center;
-      margin-top: 1.2rem;
-      flex-wrap: wrap;
+      margin-top: 1.5rem; flex-wrap: wrap;
     }
     .btn-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.1rem;
-      border: none;
-      background: #e63946;
-      color: #fff;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: .25s;
+      display: inline-flex; align-items: center;
+      gap: 0.5rem; padding: 0.75rem 1.2rem;
+      border: none; background: #e63946;
+      color: #fff; border-radius: 25px;
+      cursor: pointer; font-size: 0.95rem;
+      font-weight: 600; transition: .25s;
+      box-shadow: 0 4px 12px rgba(230,57,70,0.25);
     }
-    .btn-action:hover { background: #d62839; transform: translateY(-1px); }
-    .btn-outline {
-      background: #fff;
-      color: #e63946;
-      border: 2px solid #e63946;
-    }
-    .btn-outline:hover { background: #e6394620; }
+    .btn-action:hover { background: #d62839; transform: translateY(-2px); }
+    .btn-outline { background: #fff; color: #e63946; border: 2px solid #e63946; }
+    .btn-outline:hover { background: #fff0f0; }
 
-    /* CTA Buttons */
-    .cta-buttons {
-      text-align: center;
-      margin: 3rem 0 2rem;
-    }
-
+    .cta-buttons { text-align: center; margin: 3rem 0 2rem; }
     .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.8rem 1.6rem;
-      border: none;
-      background: #e63946;
-      color: white;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.3s;
+      display: inline-block; margin: 0.5rem;
+      padding: 0.85rem 1.6rem; border: none;
+      background: #e63946; color: white;
+      border-radius: 25px; cursor: pointer;
+      font-size: 1rem; font-weight: 600;
+      text-decoration: none; transition: 0.3s;
     }
-
-    .btn:hover { background: #d62839; transform: scale(1.05); }
-    .btn-home { background: #333; margin-left: 1rem; }
+    .btn:hover { background: #d62839; transform: translateY(-2px); }
+    .btn-home { background: #333; }
     .btn-home:hover { background: #000; }
 
-    /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Print: only results card */
     @media print {
       body * { visibility: hidden !important; }
       .results, .results * { visibility: visible !important; }
       .results { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; }
     }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .intro h2 { font-size: 1.8rem; }
+      .intro h2 { font-size: 1.9rem; }
       .results, .fitness-form { padding: 1.2rem; }
-      .result-row { gap: 0.25rem; }
       .result-row { flex-wrap: wrap; }
-      .result-row strong { width: 100%; }
+      .result-row strong { width: 100%; margin-bottom: 0.3rem; }
       .result-row .value-wrap { width: 100%; text-align: left; }
       .unit { display: block; margin: 2px 0 0 0; }
     }
   </style>
 </head>
 <body>
-  <!-- ===== Header ===== -->
+  <!-- Header -->
   <header>
     <img src="logo-heart.gif" alt="FitStance Logo" class="logo" />
     <h1 class="brand-name">FITSTANCE</h1>
     <p class="tagline">Move better. Feel better ♥️</p>
   </header>
 
-  <!-- ===== Hero Image ===== -->
+  <!-- Hero -->
   <div class="page-image">
     <img src="tools-hero.jpg" alt="Fitness Tools" />
   </div>
 
-  <!-- ===== Tools Content ===== -->
+  <!-- Tools Section -->
   <section class="tools-page">
-    <!-- Intro -->
     <div class="intro">
       <h2>Fitness Calculators</h2>
       <p>Calculate your <strong>BMR</strong>, <strong>BMI</strong>, <strong>TDEE</strong>, <strong>water intake</strong>, and <strong>macronutrients</strong> in one place.</p>
@@ -308,12 +209,10 @@
     <!-- Calculator Form -->
     <form id="fitness-form" class="fitness-form">
       <h3><i class="fas fa-calculator"></i> Fitness Calculator</h3>
-
       <div class="form-group">
         <label for="age">Age</label>
         <input type="number" id="age" name="age" placeholder="Enter your age" required>
       </div>
-
       <div class="form-group">
         <label for="gender">Gender</label>
         <select id="gender" name="gender" required>
@@ -322,18 +221,15 @@
           <option value="female">Female</option>
         </select>
       </div>
-
       <div class="form-group">
         <label>Height</label>
         <input type="number" id="heightFt" name="heightFt" placeholder="Feet" required>
         <input type="number" id="heightIn" name="heightIn" placeholder="Inches" required>
       </div>
-
       <div class="form-group">
         <label>Weight</label>
         <input type="number" id="weightKg" name="weightKg" placeholder="Weight in kg" required>
       </div>
-
       <div class="form-group">
         <label for="activity">Activity Level</label>
         <select id="activity" name="activity" required>
@@ -345,7 +241,6 @@
           <option value="1.9">Extremely active</option>
         </select>
       </div>
-
       <div class="form-group">
         <label for="goal">Goal</label>
         <select id="goal" name="goal" required>
@@ -355,96 +250,55 @@
           <option value="gain">Gain Weight</option>
         </select>
       </div>
-
       <button type="submit" class="calculate-btn">Calculate</button>
     </form>
 
     <!-- Results -->
     <div class="results">
-      <h3><i class="fas fa-chart-line"></i>  Your Results</h3>
-
+      <h3><i class="fas fa-chart-line"></i> Your Results</h3>
       <div class="result-row">
         <strong>BMR:</strong>
-        <div class="value-wrap">
-          <span class="result-value" id="bmr">--</span>
-          <span class="unit">kcal/day</span>
-        </div>
+        <div class="value-wrap"><span class="result-value" id="bmr">--</span> <span class="unit">kcal/day</span></div>
       </div>
-
       <div class="result-row">
         <strong>BMI:</strong>
-        <div class="value-wrap">
-          <span class="result-value" id="bmi">--</span>
-          <span>(<span id="bmi-category">--</span>)</span>
-        </div>
+        <div class="value-wrap"><span class="result-value" id="bmi">--</span> (<span id="bmi-category">--</span>)</div>
       </div>
-
       <div class="result-row">
         <strong>TDEE:</strong>
-        <div class="value-wrap">
-          <span class="result-value" id="tdee">--</span>
-          <span class="unit">kcal/day</span>
-        </div>
+        <div class="value-wrap"><span class="result-value" id="tdee">--</span> <span class="unit">kcal/day</span></div>
       </div>
-
       <div class="result-row">
         <strong>Water Intake:</strong>
-        <div class="value-wrap">
-          <span class="result-value" id="water">--</span>
-          <span class="unit">L/day</span>
-        </div>
+        <div class="value-wrap"><span class="result-value" id="water">--</span> <span class="unit">L/day</span></div>
       </div>
-
       <div class="macros">
-        <h4><i class="fas fa-utensils"></i>  Macronutrients</h4>
-
-        <div class="result-row">
-          <strong>Protein:</strong>
-          <div class="value-wrap">
-            <span class="result-value" id="protein">--</span>
-            <span class="unit">g</span>
-          </div>
-        </div>
-
-        <div class="result-row">
-          <strong>Carbs:</strong>
-          <div class="value-wrap">
-            <span class="result-value" id="carbs">--</span>
-            <span class="unit">g</span>
-          </div>
-        </div>
-
-        <div class="result-row">
-          <strong>Fats:</strong>
-          <div class="value-wrap">
-            <span class="result-value" id="fats">--</span>
-            <span class="unit">g</span>
-          </div>
-        </div>
+        <h4><i class="fas fa-utensils"></i> Macronutrients</h4>
+        <div class="result-row"><strong>Protein:</strong><div class="value-wrap"><span class="result-value" id="protein">--</span> <span class="unit">g</span></div></div>
+        <div class="result-row"><strong>Carbs:</strong><div class="value-wrap"><span class="result-value" id="carbs">--</span> <span class="unit">g</span></div></div>
+        <div class="result-row"><strong>Fats:</strong><div class="value-wrap"><span class="result-value" id="fats">--</span> <span class="unit">g</span></div></div>
       </div>
-
-      <!-- Action Buttons -->
       <div class="result-actions">
-        <button id="copyResults" class="btn-action btn-outline"><i class="fa-regular fa-clipboard"></i> Copy Results</button>
+        <button id="copyResults" class="btn-action btn-outline"><i class="fa-regular fa-clipboard"></i> Copy</button>
         <button id="shareResults" class="btn-action"><i class="fa-solid fa-share-nodes"></i> Share</button>
-        <button id="pdfResults" class="btn-action"><i class="fa-regular fa-file-pdf"></i> Download PDF</button>
+        <button id="pdfResults" class="btn-action"><i class="fa-regular fa-file-pdf"></i> PDF</button>
       </div>
     </div>
 
-    <!-- CTA Buttons -->
+    <!-- CTA -->
     <section class="cta-buttons">
       <a href="diet.html" class="btn"><i class="fas fa-utensils"></i> View Diet Plans</a>
       <a href="index.html" class="btn btn-home"><i class="fas fa-home"></i> Back to Home</a>
     </section>
   </section>
 
-  <!-- ===== Footer ===== -->
+  <!-- Footer -->
   <div id="footer"></div>
 
-  <!-- ===== Master JS ===== -->
+  <!-- Master JS -->
   <script src="js/master.js"></script>
 
-  <!-- Page-only helpers for Copy / Share / PDF -->
+  <!-- Page helpers (Copy / Share / PDF) -->
   <script>
     (function () {
       const resultsEl = document.querySelector('.results');
@@ -461,50 +315,29 @@
           `  Protein: ${val('protein')} g`,
           `  Carbs: ${val('carbs')} g`,
           `  Fats: ${val('fats')} g`
-        ].join('\\n');
+        ].join('\n');
       };
 
-      // Copy
       document.getElementById('copyResults')?.addEventListener('click', async () => {
-        if (!resultsEl.classList.contains('show')) {
-          alert('Please calculate your results first.');
-          return;
-        }
-        try {
-          await navigator.clipboard.writeText(getText());
-          alert('Results copied to clipboard.');
-        } catch {
-          alert('Copy failed. Please try again.');
-        }
+        if (!resultsEl.classList.contains('show')) return alert('Please calculate your results first.');
+        try { await navigator.clipboard.writeText(getText()); alert('Results copied to clipboard.'); }
+        catch { alert('Copy failed. Please try again.'); }
       });
 
-      // Share
       document.getElementById('shareResults')?.addEventListener('click', async () => {
-        if (!resultsEl.classList.contains('show')) {
-          alert('Please calculate your results first.');
-          return;
-        }
+        if (!resultsEl.classList.contains('show')) return alert('Please calculate your results first.');
         const text = getText();
         if (navigator.share) {
-          try {
-            await navigator.share({ title: 'FitStance Results', text });
-          } catch (e) { /* user cancelled */ }
+          try { await navigator.share({ title: 'FitStance Results', text }); }
+          catch (e) { /* cancelled */ }
         } else {
-          try {
-            await navigator.clipboard.writeText(text);
-            alert('Sharing not supported. Results copied instead—paste anywhere.');
-          } catch {
-            alert('Sharing is not supported on this device.');
-          }
+          try { await navigator.clipboard.writeText(text); alert('Sharing not supported. Results copied instead.'); }
+          catch { alert('Sharing not supported on this device.'); }
         }
       });
 
-      // Download PDF via print (prints only the results card)
       document.getElementById('pdfResults')?.addEventListener('click', () => {
-        if (!resultsEl.classList.contains('show')) {
-          alert('Please calculate your results first.');
-          return;
-        }
+        if (!resultsEl.classList.contains('show')) return alert('Please calculate your results first.');
         window.print();
       });
     })();
